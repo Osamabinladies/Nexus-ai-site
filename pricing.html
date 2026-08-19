@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>料金プラン — NEXUS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <h1 class="logo">NEXUS</h1>
+            <nav class="site-nav">
+                <a href="index.html">Home</a>
+                <a href="features.html">Features</a>
+                <a href="pricing.html" class="active">Plans</a>
+                <a href="about_us.html">About Us</a>
+            </nav>
+            <a href="about_us.html#contact" class="contact-button">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <p class="page-hero-subtitle">PRICING</p>
+            <h2>あなたに合った<span class="break">プランを</span></h2>
+            <p>まずは無料で。必要になったらいつでもアップグレードできます。</p>
+        </section>
+
+        <!-- same plan-card layout as the pricing section on index.html -->
+        <section class="pricing-section">
+            <div class="plan-list">
+                <div class="plan-card">
+                    <h3 class="plan-name">Free</h3>
+                    <p class="plan-price">¥0<span>/月</span></p>
+                    <ul class="plan-detail-list">
+                        <li>基本のスケジュール管理</li>
+                        <li>1日10回までの会話</li>
+                        <li>メモ機能</li>
+                    </ul>
+                    <a href="#" class="plan-button">始める</a>
+                </div>
+
+                <div class="plan-card plan-card-highlight" data-label="人気">
+                    <h3 class="plan-name">Pro</h3>
+                    <p class="plan-price">¥980<span>/月</span></p>
+                    <ul class="plan-detail-list">
+                        <li>無制限の会話</li>
+                        <li>スマートホーム連携</li>
+                        <li>健康サポート機能</li>
+                    </ul>
+                    <a href="#" class="plan-button plan-button-filled">Proを選ぶ</a>
+                </div>
+
+                <div class="plan-card">
+                    <h3 class="plan-name">Business</h3>
+                    <p class="plan-price">¥2,980<span>/月</span></p>
+                    <ul class="plan-detail-list">
+                        <li>チームでの共有機能</li>
+                        <li>専用サポート</li>
+                        <li>API連携</li>
+                    </ul>
+                    <a href="#" class="plan-button">相談する</a>
+                </div>
+            </div>
+
+            <!-- frequently asked questions, just a repeating question/answer block -->
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h4>無料プランでもすべての機能が使えますか？</h4>
+                    <p>基本のスケジュール管理とメモ機能は無料プランでもご利用いただけます。スマートホーム連携や健康サポートはProプラン以上が対象です。</p>
+                </div>
+                <div class="faq-item">
+                    <h4>プランはいつでも変更できますか？</h4>
+                    <p>はい、いつでもアップグレード・ダウングレードが可能です。日割り計算で調整されます。</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Businessプランは何人まで利用できますか？</h4>
+                    <p>基本は5名までとなっており、それ以上のチームでのご利用はお問い合わせください。</p>
+                </div>
+                <div class="faq-item">
+                    <h4>解約はいつでもできますか？</h4>
+                    <p>はい、契約期間の縛りはなく、いつでも解約可能です。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 NEXUS Inc. All rights reserved.</p>
+    </footer>
+
+
+<div id="nexus-chat-btn" style="position:fixed;bottom:24px;right:24px;width:60px;height:60px;border-radius:50%;
+  background:linear-gradient(135deg,var(--cyan),var(--blue));display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-weight:900;color:#0a0e1a;font-size:22px;z-index:100;border:2px solid rgba(255,255,255,0.15);">
+  N
+</div>
+
+<div id="nexus-chat-box" style="display:none;position:fixed;bottom:96px;right:24px;width:320px;max-height:440px;
+  background:var(--card);border:1px solid var(--border);border-radius:16px;z-index:100;flex-direction:column;overflow:hidden;">
+  <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,var(--cyan),var(--blue));
+        display:flex;align-items:center;justify-content:center;font-weight:900;color:#0a0e1a;font-size:13px;">N</div>
+      <span style="font-size:14px;font-weight:600;">NEXUS アシスタント</span>
+    </div>
+    <span id="nexus-chat-close" style="cursor:pointer;color:var(--text-dim);font-size:16px;">×</span>
+  </div>
+
+  <div id="nexus-chat-messages" style="flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:10px;max-height:280px;">
+    <div style="background:linear-gradient(90deg, rgba(79,224,212,0.15), rgba(108,141,255,0.15));border:1px solid var(--border);
+      padding:10px 14px;border-radius:12px;font-size:13px;max-width:85%;">
+      こんにちは！NEXUSです。何でも聞いてくださいね。
+    </div>
+  </div>
+
+  <div style="padding:12px;border-top:1px solid var(--border);display:flex;gap:8px;">
+    <input id="nexus-chat-input" type="text" placeholder="質問を入力してください"
+      style="flex:1;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;
+      color:var(--text);font-size:13px;font-family:inherit;">
+    <button id="nexus-chat-send" style="background:linear-gradient(90deg,var(--cyan),var(--blue));border:none;
+      border-radius:10px;padding:0 14px;color:#0a0e1a;font-weight:700;cursor:pointer;font-size:13px;">送信</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const API_URL = "/chat";
+  const btn = document.getElementById("nexus-chat-btn");
+  const box = document.getElementById("nexus-chat-box");
+  const closeBtn = document.getElementById("nexus-chat-close");
+  const input = document.getElementById("nexus-chat-input");
+  const sendBtn = document.getElementById("nexus-chat-send");
+  const messages = document.getElementById("nexus-chat-messages");
+
+  btn.addEventListener("click", () => {
+    box.style.display = box.style.display === "flex" ? "none" : "flex";
+  });
+  closeBtn.addEventListener("click", () => { box.style.display = "none"; });
+
+  function addMessage(text, isUser){
+    const div = document.createElement("div");
+    div.style.padding = "10px 14px";
+    div.style.borderRadius = "12px";
+    div.style.fontSize = "13px";
+    div.style.maxWidth = "85%";
+    if(isUser){
+      div.style.background = "var(--border)";
+      div.style.alignSelf = "flex-end";
+      div.style.marginLeft = "auto";
+    } else {
+      div.style.background = "linear-gradient(90deg, rgba(79,224,212,0.15), rgba(108,141,255,0.15))";
+      div.style.border = "1px solid var(--border)";
+    }
+    div.textContent = text;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  async function sendMessage(){
+    const question = input.value.trim();
+    if(!question) return;
+    addMessage(question, true);
+    input.value = "";
+
+    const loadingDiv = document.createElement("div");
+    loadingDiv.style.fontSize = "13px";
+    loadingDiv.style.color = "var(--text-dim)";
+    loadingDiv.textContent = "考え中...";
+    messages.appendChild(loadingDiv);
+    messages.scrollTop = messages.scrollHeight;
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({question})
+      });
+      const data = await res.json();
+      loadingDiv.remove();
+      if(data.answer){
+        addMessage(data.answer, false);
+      } else {
+        addMessage("エラーが発生しました。サーバーが起動しているか確認してください。", false);
+      }
+    } catch(err){
+      loadingDiv.remove();
+      addMessage("サーバーに接続できません。server.pyが起動しているか確認してください。", false);
+    }
+  }
+
+  sendBtn.addEventListener("click", sendMessage);
+  input.addEventListener("keydown", (e) => { if(e.key === "Enter") sendMessage(); });
+})();
+</script>
+
+</body>
+</html>

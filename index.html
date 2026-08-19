@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N.E.X.U.S</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <h1 class="logo">NEXUS</h1>
+            <nav class="site-nav">
+                <a href="index.html" class="active">Home</a>
+                <a href="features.html">Features</a>
+                <a href="pricing.html">Plans</a>
+                <a href="about_us.html">About Us</a>
+            </nav>
+            <a href="about_us.html#contact" class="contact-button">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- hero: the big intro section people see first -->
+        <section id="home" class="home">
+            <div class="home-inner">
+                <p class="home-label">YOUR EVERYDAY AI ASSISTANT</p>
+                <h2>あなたの毎日に、<br><span class="break">ちょうどいいAI</span></h2>
+                <p class="home-text">
+                    予定管理から家電操作まで、
+                    NEXUSがあなたの一日をそっとサポートします。
+                </p>
+                <a href="pricing.html" class="button">無料で始める ➡</a>
+                <img src="chat-preview.png" alt="NEXUSとの会話例" class="hero-image">
+            </div>
+        </section>
+
+        <!-- features: what the product can do, shown as cards -->
+        <section id="features" class="features-section">
+            <div class="section-heading">
+                <p class="section-heading-subtitle">FEATURES</p>
+                <h2>NEXUSにできること</h2>
+            </div>
+
+            <div class="feature-list">
+                <div class="feature-card">
+                    <p class="feature-icon">⏰</p>
+                    <h3 class="feature-title">スケジュール管理</h3>
+                    <p class="feature-description">予定を自動で整理して、最適なタイミングで教えてくれます。</p>
+                </div>
+
+                <div class="feature-card">
+                    <p class="feature-icon">🏠</p>
+                    <h3 class="feature-title">スマートホーム連携</h3>
+                    <p class="feature-description">照明やエアコンを声だけで操作できます。</p>
+                </div>
+
+                <div class="feature-card">
+                    <p class="feature-icon">📝</p>
+                    <h3 class="feature-title">メモ・要約</h3>
+                    <p class="feature-description">会話やメモを自動で整理・要約します。</p>
+                </div>
+
+                <div class="feature-card">
+                    <p class="feature-icon">❤</p>
+                    <h3 class="feature-title">健康サポート</h3>
+                    <p class="feature-description">生活リズムに合わせて、軽くアドバイスします。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- pricing: three plan cards, the middle one is highlighted -->
+        <section id="pricing" class="pricing-section">
+            <div class="section-heading">
+                <p class="section-heading-subtitle">PRICING</p>
+                <h2>あなたに合ったプランを</h2>
+            </div>
+
+            <div class="plan-list">
+                <div class="plan-card">
+                    <h3 class="plan-name">Free</h3>
+                    <p class="plan-price">¥0<span>/月</span></p>
+                    <ul class="plan-detail-list">
+                        <li>基本のスケジュール管理</li>
+                        <li>1日10回までの会話</li>
+                        <li>メモ機能</li>
+                    </ul>
+                    <a href="#" class="plan-button">始める</a>
+                </div>
+
+                <!-- data-label is read by CSS with attr() to draw the "人気" badge -->
+                <div class="plan-card plan-card-highlight" data-label="人気">
+                    <h3 class="plan-name">Pro</h3>
+                    <p class="plan-price">¥980<span>/月</span></p>
+                    <ul class="plan-detail-list">
+                        <li>無制限の会話</li>
+                        <li>スマートホーム連携</li>
+                        <li>健康サポート機能</li>
+                    </ul>
+                    <a href="#" class="plan-button plan-button-filled">Proを選ぶ</a>
+                </div>
+
+                <div class="plan-card">
+                    <h3 class="plan-name">Business</h3>
+                    <p class="plan-price">¥2,980<span>/月</span></p>
+                    <ul class="plan-detail-list">
+                        <li>チームでの共有機能</li>
+                        <li>専用サポート</li>
+                        <li>API連携</li>
+                    </ul>
+                    <a href="#" class="plan-button">相談する</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- about: short closing message -->
+        <section id="about" class="about-section">
+            <div class="section-heading">
+                <p class="section-heading-subtitle">ABOUT US</p>
+                <h2>NEXUSについて</h2>
+            </div>
+            <p class="about-text">
+                NEXUSは、忙しい毎日を少しだけ楽にするために生まれたAIアシスタントです。
+                複雑な操作は必要ありません。話しかけるだけで、あなたの生活をサポートします。
+            </p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 NEXUS Inc. All rights reserved.</p>
+    </footer>
+
+
+<div id="nexus-chat-btn" style="position:fixed;bottom:24px;right:24px;width:60px;height:60px;border-radius:50%;
+  background:linear-gradient(135deg,var(--cyan),var(--blue));display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-weight:900;color:#0a0e1a;font-size:22px;z-index:100;border:2px solid rgba(255,255,255,0.15);">
+  N
+</div>
+
+<div id="nexus-chat-box" style="display:none;position:fixed;bottom:96px;right:24px;width:320px;max-height:440px;
+  background:var(--card);border:1px solid var(--border);border-radius:16px;z-index:100;flex-direction:column;overflow:hidden;">
+  <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,var(--cyan),var(--blue));
+        display:flex;align-items:center;justify-content:center;font-weight:900;color:#0a0e1a;font-size:13px;">N</div>
+      <span style="font-size:14px;font-weight:600;">NEXUS アシスタント</span>
+    </div>
+    <span id="nexus-chat-close" style="cursor:pointer;color:var(--text-dim);font-size:16px;">×</span>
+  </div>
+
+  <div id="nexus-chat-messages" style="flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:10px;max-height:280px;">
+    <div style="background:linear-gradient(90deg, rgba(79,224,212,0.15), rgba(108,141,255,0.15));border:1px solid var(--border);
+      padding:10px 14px;border-radius:12px;font-size:13px;max-width:85%;">
+      こんにちは！NEXUSです。何でも聞いてくださいね。
+    </div>
+  </div>
+
+  <div style="padding:12px;border-top:1px solid var(--border);display:flex;gap:8px;">
+    <input id="nexus-chat-input" type="text" placeholder="質問を入力してください"
+      style="flex:1;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;
+      color:var(--text);font-size:13px;font-family:inherit;">
+    <button id="nexus-chat-send" style="background:linear-gradient(90deg,var(--cyan),var(--blue));border:none;
+      border-radius:10px;padding:0 14px;color:#0a0e1a;font-weight:700;cursor:pointer;font-size:13px;">送信</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const API_URL = "/chat";
+  const btn = document.getElementById("nexus-chat-btn");
+  const box = document.getElementById("nexus-chat-box");
+  const closeBtn = document.getElementById("nexus-chat-close");
+  const input = document.getElementById("nexus-chat-input");
+  const sendBtn = document.getElementById("nexus-chat-send");
+  const messages = document.getElementById("nexus-chat-messages");
+
+  btn.addEventListener("click", () => {
+    box.style.display = box.style.display === "flex" ? "none" : "flex";
+  });
+  closeBtn.addEventListener("click", () => { box.style.display = "none"; });
+
+  function addMessage(text, isUser){
+    const div = document.createElement("div");
+    div.style.padding = "10px 14px";
+    div.style.borderRadius = "12px";
+    div.style.fontSize = "13px";
+    div.style.maxWidth = "85%";
+    if(isUser){
+      div.style.background = "var(--border)";
+      div.style.alignSelf = "flex-end";
+      div.style.marginLeft = "auto";
+    } else {
+      div.style.background = "linear-gradient(90deg, rgba(79,224,212,0.15), rgba(108,141,255,0.15))";
+      div.style.border = "1px solid var(--border)";
+    }
+    div.textContent = text;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  async function sendMessage(){
+    const question = input.value.trim();
+    if(!question) return;
+    addMessage(question, true);
+    input.value = "";
+
+    const loadingDiv = document.createElement("div");
+    loadingDiv.style.fontSize = "13px";
+    loadingDiv.style.color = "var(--text-dim)";
+    loadingDiv.textContent = "考え中...";
+    messages.appendChild(loadingDiv);
+    messages.scrollTop = messages.scrollHeight;
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({question})
+      });
+      const data = await res.json();
+      loadingDiv.remove();
+      if(data.answer){
+        addMessage(data.answer, false);
+      } else {
+        addMessage("エラーが発生しました。サーバーが起動しているか確認してください。", false);
+      }
+    } catch(err){
+      loadingDiv.remove();
+      addMessage("サーバーに接続できません。server.pyが起動しているか確認してください。", false);
+    }
+  }
+
+  sendBtn.addEventListener("click", sendMessage);
+  input.addEventListener("keydown", (e) => { if(e.key === "Enter") sendMessage(); });
+})();
+</script>
+
+</body>
+</html>

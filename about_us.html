@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会社概要・お問い合わせ — NEXUS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <h1 class="logo">NEXUS</h1>
+            <nav class="site-nav">
+                <a href="index.html">Home</a>
+                <a href="features.html">Features</a>
+                <a href="pricing.html">Plans</a>
+                <a href="about_us.html" class="active">About Us</a>
+            </nav>
+            <a href="#contact" class="contact-button">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <p class="page-hero-subtitle">ABOUT US</p>
+            <h2>NEXUSが目指す<span class="break">未来</span></h2>
+            <p>「テクノロジーは、静かであるべき」という考えから、NEXUSは生まれました。</p>
+        </section>
+
+        <!-- the story, just a few centered paragraphs -->
+        <section class="story">
+            <p>2023年、日々のタスクに追われる開発者チームが、「本当に必要な時だけそっと支えてくれるAI」を作りたいという想いから NEXUS の開発をスタートしました。</p>
+            <p>目立つ通知や複雑な設定ではなく、必要な瞬間に、必要なだけ。NEXUSは声をかけずとも寄り添う、そんな存在を目指しています。</p>
+            <p>現在は個人の日常サポートを中心に、家庭やチームでも使える機能へと少しずつ広げています。</p>
+        </section>
+
+        <!-- three numbers side by side using flexbox -->
+        <section class="stats">
+            <div class="stat">
+                <p class="stat-number">2023</p>
+                <p class="stat-label">設立年</p>
+            </div>
+            <div class="stat">
+                <p class="stat-number">12万</p>
+                <p class="stat-label">利用ユーザー数</p>
+            </div>
+            <div class="stat">
+                <p class="stat-number">4.7</p>
+                <p class="stat-label">平均評価</p>
+            </div>
+        </section>
+
+        <!-- contact form: no JavaScript here, just the plain HTML form elements -->
+        <section class="contact-wrap" id="contact">
+            <h2>お問い合わせ</h2>
+            <p class="contact-subtitle">ご質問・ご相談など、お気軽にご連絡ください。</p>
+            <form action="" method="post">
+                <label for="name">お名前</label>
+                <input type="text" name="name" id="name" placeholder="山田 太郎">
+
+                <label for="email">メールアドレス</label>
+                <input type="email" name="email" id="email" placeholder="you@example.com">
+
+                <label for="message">お問い合わせ内容</label>
+                <textarea name="message" id="message" rows="5" placeholder="ご質問やご要望をご記入ください"></textarea>
+
+                <button type="submit" class="submit-button">送信する</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 NEXUS Inc. All rights reserved.</p>
+    </footer>
+
+
+<div id="nexus-chat-btn" style="position:fixed;bottom:24px;right:24px;width:60px;height:60px;border-radius:50%;
+  background:linear-gradient(135deg,var(--cyan),var(--blue));display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-weight:900;color:#0a0e1a;font-size:22px;z-index:100;border:2px solid rgba(255,255,255,0.15);">
+  N
+</div>
+
+<div id="nexus-chat-box" style="display:none;position:fixed;bottom:96px;right:24px;width:320px;max-height:440px;
+  background:var(--card);border:1px solid var(--border);border-radius:16px;z-index:100;flex-direction:column;overflow:hidden;">
+  <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,var(--cyan),var(--blue));
+        display:flex;align-items:center;justify-content:center;font-weight:900;color:#0a0e1a;font-size:13px;">N</div>
+      <span style="font-size:14px;font-weight:600;">NEXUS アシスタント</span>
+    </div>
+    <span id="nexus-chat-close" style="cursor:pointer;color:var(--text-dim);font-size:16px;">×</span>
+  </div>
+
+  <div id="nexus-chat-messages" style="flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:10px;max-height:280px;">
+    <div style="background:linear-gradient(90deg, rgba(79,224,212,0.15), rgba(108,141,255,0.15));border:1px solid var(--border);
+      padding:10px 14px;border-radius:12px;font-size:13px;max-width:85%;">
+      こんにちは！NEXUSです。何でも聞いてくださいね。
+    </div>
+  </div>
+
+  <div style="padding:12px;border-top:1px solid var(--border);display:flex;gap:8px;">
+    <input id="nexus-chat-input" type="text" placeholder="質問を入力してください"
+      style="flex:1;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;
+      color:var(--text);font-size:13px;font-family:inherit;">
+    <button id="nexus-chat-send" style="background:linear-gradient(90deg,var(--cyan),var(--blue));border:none;
+      border-radius:10px;padding:0 14px;color:#0a0e1a;font-weight:700;cursor:pointer;font-size:13px;">送信</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const API_URL = "/chat";
+  const btn = document.getElementById("nexus-chat-btn");
+  const box = document.getElementById("nexus-chat-box");
+  const closeBtn = document.getElementById("nexus-chat-close");
+  const input = document.getElementById("nexus-chat-input");
+  const sendBtn = document.getElementById("nexus-chat-send");
+  const messages = document.getElementById("nexus-chat-messages");
+
+  btn.addEventListener("click", () => {
+    box.style.display = box.style.display === "flex" ? "none" : "flex";
+  });
+  closeBtn.addEventListener("click", () => { box.style.display = "none"; });
+
+  function addMessage(text, isUser){
+    const div = document.createElement("div");
+    div.style.padding = "10px 14px";
+    div.style.borderRadius = "12px";
+    div.style.fontSize = "13px";
+    div.style.maxWidth = "85%";
+    if(isUser){
+      div.style.background = "var(--border)";
+      div.style.alignSelf = "flex-end";
+      div.style.marginLeft = "auto";
+    } else {
+      div.style.background = "linear-gradient(90deg, rgba(79,224,212,0.15), rgba(108,141,255,0.15))";
+      div.style.border = "1px solid var(--border)";
+    }
+    div.textContent = text;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  async function sendMessage(){
+    const question = input.value.trim();
+    if(!question) return;
+    addMessage(question, true);
+    input.value = "";
+
+    const loadingDiv = document.createElement("div");
+    loadingDiv.style.fontSize = "13px";
+    loadingDiv.style.color = "var(--text-dim)";
+    loadingDiv.textContent = "考え中...";
+    messages.appendChild(loadingDiv);
+    messages.scrollTop = messages.scrollHeight;
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({question})
+      });
+      const data = await res.json();
+      loadingDiv.remove();
+      if(data.answer){
+        addMessage(data.answer, false);
+      } else {
+        addMessage("エラーが発生しました。サーバーが起動しているか確認してください。", false);
+      }
+    } catch(err){
+      loadingDiv.remove();
+      addMessage("サーバーに接続できません。server.pyが起動しているか確認してください。", false);
+    }
+  }
+
+  sendBtn.addEventListener("click", sendMessage);
+  input.addEventListener("keydown", (e) => { if(e.key === "Enter") sendMessage(); });
+})();
+</script>
+
+</body>
+</html>
