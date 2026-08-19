@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>会社概要・お問い合わせ — NEXUS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,41 +21,51 @@
                 <a href="about_us.html" class="active">About Us</a>
             </nav>
             <a href="#contact" class="contact-button">Contact</a>
+            <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
 
+    <div class="marquee">
+        <div class="marquee-track">
+            <span>NEXUS — <em>テクノロジーは、静かであるべき</em> — NEXUS — <em>2023年設立</em> — NEXUS — <em>テクノロジーは、静かであるべき</em> — NEXUS — <em>2023年設立</em> —</span>
+            <span aria-hidden="true">NEXUS — <em>テクノロジーは、静かであるべき</em> — NEXUS — <em>2023年設立</em> — NEXUS — <em>テクノロジーは、静かであるべき</em> — NEXUS — <em>2023年設立</em> —</span>
+        </div>
+    </div>
+
     <main>
-        <section class="page-hero">
+        <section class="page-hero" data-reveal>
             <p class="page-hero-subtitle">ABOUT US</p>
             <h2>NEXUSが目指す<span class="break">未来</span></h2>
             <p>「テクノロジーは、静かであるべき」という考えから、NEXUSは生まれました。</p>
         </section>
 
         <!-- the story, just a few centered paragraphs -->
-        <section class="story">
+        <section class="story" data-reveal>
             <p>2023年、日々のタスクに追われる開発者チームが、「本当に必要な時だけそっと支えてくれるAI」を作りたいという想いから NEXUS の開発をスタートしました。</p>
             <p>目立つ通知や複雑な設定ではなく、必要な瞬間に、必要なだけ。NEXUSは声をかけずとも寄り添う、そんな存在を目指しています。</p>
             <p>現在は個人の日常サポートを中心に、家庭やチームでも使える機能へと少しずつ広げています。</p>
         </section>
 
-        <!-- three numbers side by side using flexbox -->
+        <!-- three numbers side by side using flexbox, counting up when scrolled into view -->
         <section class="stats">
-            <div class="stat">
-                <p class="stat-number">2023</p>
+            <div class="stat" data-reveal>
+                <p class="stat-number" data-count-to="2023">0</p>
                 <p class="stat-label">設立年</p>
             </div>
-            <div class="stat">
-                <p class="stat-number">12万</p>
+            <div class="stat" data-reveal>
+                <p class="stat-number" data-count-to="12" data-count-suffix="万">0</p>
                 <p class="stat-label">利用ユーザー数</p>
             </div>
-            <div class="stat">
-                <p class="stat-number">4.7</p>
+            <div class="stat" data-reveal>
+                <p class="stat-number" data-count-to="4.7" data-count-decimals="1">0</p>
                 <p class="stat-label">平均評価</p>
             </div>
         </section>
 
         <!-- contact form: no JavaScript here, just the plain HTML form elements -->
-        <section class="contact-wrap" id="contact">
+        <section class="contact-wrap" id="contact" data-reveal>
             <h2>お問い合わせ</h2>
             <p class="contact-subtitle">ご質問・ご相談など、お気軽にご連絡ください。</p>
             <form action="" method="post">
@@ -71,6 +84,7 @@
     </main>
 
     <footer class="site-footer">
+        <p class="footer-wordmark">NEXUS</p>
         <p>&copy; 2026 NEXUS Inc. All rights reserved.</p>
     </footer>
 
@@ -178,6 +192,8 @@
   input.addEventListener("keydown", (e) => { if(e.key === "Enter") sendMessage(); });
 })();
 </script>
+
+<script src="motion.js"></script>
 
 </body>
 </html>

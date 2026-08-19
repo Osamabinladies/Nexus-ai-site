@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>機能 — NEXUS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,19 +21,30 @@
                 <a href="about_us.html">About Us</a>
             </nav>
             <a href="about_us.html#contact" class="contact-button">Contact</a>
+            <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
 
+    <div class="marquee">
+        <div class="marquee-track">
+            <span>NEXUS — <em>4つのコア機能</em> — NEXUS — <em>話しかけるだけ</em> — NEXUS — <em>4つのコア機能</em> — NEXUS — <em>話しかけるだけ</em> —</span>
+            <span aria-hidden="true">NEXUS — <em>4つのコア機能</em> — NEXUS — <em>話しかけるだけ</em> — NEXUS — <em>4つのコア機能</em> — NEXUS — <em>話しかけるだけ</em> —</span>
+        </div>
+    </div>
+
     <main>
         <!-- small hero at the top of the page, same idea as the home hero but shorter -->
-        <section class="page-hero">
+        <section class="page-hero" data-reveal>
             <p class="page-hero-subtitle">FEATURES</p>
             <h2>NEXUSが、<span class="break">毎日を軽くする</span></h2>
             <p>4つのコア機能で、あなたの一日をそっとサポートします。</p>
         </section>
 
         <!-- one row per feature, image/icon on one side and text on the other -->
-        <div class="feature-row">
+        <div class="feature-row" data-reveal="left">
+            <p class="feature-index">01</p>
             <div class="feature-visual">⏰</div>
             <div class="feature-text">
                 <p class="feature-tag">SCHEDULE</p>
@@ -47,7 +61,8 @@
         <hr>
 
         <!-- "feature-row-reverse" just flips which side the icon is on -->
-        <div class="feature-row feature-row-reverse">
+        <div class="feature-row feature-row-reverse" data-reveal="right">
+            <p class="feature-index">02</p>
             <div class="feature-visual">🏠</div>
             <div class="feature-text">
                 <p class="feature-tag">SMART HOME</p>
@@ -63,7 +78,8 @@
 
         <hr>
 
-        <div class="feature-row">
+        <div class="feature-row" data-reveal="left">
+            <p class="feature-index">03</p>
             <div class="feature-visual">📝</div>
             <div class="feature-text">
                 <p class="feature-tag">NOTES</p>
@@ -79,7 +95,8 @@
 
         <hr>
 
-        <div class="feature-row feature-row-reverse">
+        <div class="feature-row feature-row-reverse" data-reveal="right">
+            <p class="feature-index">04</p>
             <div class="feature-visual">❤</div>
             <div class="feature-text">
                 <p class="feature-tag">WELLBEING</p>
@@ -94,7 +111,7 @@
         </div>
 
         <!-- banner at the bottom pushing people towards the pricing page -->
-        <section class="cta-band">
+        <section class="cta-band" data-reveal="zoom">
             <div>
                 <h3>すべての機能を、無料で試せます</h3>
                 <p>クレジットカード登録不要。今日から始められます。</p>
@@ -104,6 +121,7 @@
     </main>
 
     <footer class="site-footer">
+        <p class="footer-wordmark">NEXUS</p>
         <p>&copy; 2026 NEXUS Inc. All rights reserved.</p>
     </footer>
 
@@ -211,6 +229,8 @@
   input.addEventListener("keydown", (e) => { if(e.key === "Enter") sendMessage(); });
 })();
 </script>
+
+<script src="motion.js"></script>
 
 </body>
 </html>
