@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>料金プラン — NEXUS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,11 +21,21 @@
                 <a href="about_us.html">About Us</a>
             </nav>
             <a href="about_us.html#contact" class="contact-button">Contact</a>
+            <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
 
+    <div class="marquee">
+        <div class="marquee-track">
+            <span>NEXUS — <em>まずは無料で</em> — NEXUS — <em>いつでもアップグレード</em> — NEXUS — <em>まずは無料で</em> — NEXUS — <em>いつでもアップグレード</em> —</span>
+            <span aria-hidden="true">NEXUS — <em>まずは無料で</em> — NEXUS — <em>いつでもアップグレード</em> — NEXUS — <em>まずは無料で</em> — NEXUS — <em>いつでもアップグレード</em> —</span>
+        </div>
+    </div>
+
     <main>
-        <section class="page-hero">
+        <section class="page-hero" data-reveal>
             <p class="page-hero-subtitle">PRICING</p>
             <h2>あなたに合った<span class="break">プランを</span></h2>
             <p>まずは無料で。必要になったらいつでもアップグレードできます。</p>
@@ -31,7 +44,7 @@
         <!-- same plan-card layout as the pricing section on index.html -->
         <section class="pricing-section">
             <div class="plan-list">
-                <div class="plan-card">
+                <div class="plan-card" data-reveal>
                     <h3 class="plan-name">Free</h3>
                     <p class="plan-price">¥0<span>/月</span></p>
                     <ul class="plan-detail-list">
@@ -42,7 +55,7 @@
                     <a href="#" class="plan-button">始める</a>
                 </div>
 
-                <div class="plan-card plan-card-highlight" data-label="人気">
+                <div class="plan-card plan-card-highlight" data-label="人気" data-reveal="zoom">
                     <h3 class="plan-name">Pro</h3>
                     <p class="plan-price">¥980<span>/月</span></p>
                     <ul class="plan-detail-list">
@@ -53,7 +66,7 @@
                     <a href="#" class="plan-button plan-button-filled">Proを選ぶ</a>
                 </div>
 
-                <div class="plan-card">
+                <div class="plan-card" data-reveal>
                     <h3 class="plan-name">Business</h3>
                     <p class="plan-price">¥2,980<span>/月</span></p>
                     <ul class="plan-detail-list">
@@ -67,19 +80,19 @@
 
             <!-- frequently asked questions, just a repeating question/answer block -->
             <div class="faq-list">
-                <div class="faq-item">
+                <div class="faq-item" data-reveal>
                     <h4>無料プランでもすべての機能が使えますか？</h4>
                     <p>基本のスケジュール管理とメモ機能は無料プランでもご利用いただけます。スマートホーム連携や健康サポートはProプラン以上が対象です。</p>
                 </div>
-                <div class="faq-item">
+                <div class="faq-item" data-reveal>
                     <h4>プランはいつでも変更できますか？</h4>
                     <p>はい、いつでもアップグレード・ダウングレードが可能です。日割り計算で調整されます。</p>
                 </div>
-                <div class="faq-item">
+                <div class="faq-item" data-reveal>
                     <h4>Businessプランは何人まで利用できますか？</h4>
                     <p>基本は5名までとなっており、それ以上のチームでのご利用はお問い合わせください。</p>
                 </div>
-                <div class="faq-item">
+                <div class="faq-item" data-reveal>
                     <h4>解約はいつでもできますか？</h4>
                     <p>はい、契約期間の縛りはなく、いつでも解約可能です。</p>
                 </div>
@@ -88,6 +101,7 @@
     </main>
 
     <footer class="site-footer">
+        <p class="footer-wordmark">NEXUS</p>
         <p>&copy; 2026 NEXUS Inc. All rights reserved.</p>
     </footer>
 
@@ -195,6 +209,8 @@
   input.addEventListener("keydown", (e) => { if(e.key === "Enter") sendMessage(); });
 })();
 </script>
+
+<script src="motion.js"></script>
 
 </body>
 </html>

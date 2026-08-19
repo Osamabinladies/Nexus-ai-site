@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>N.E.X.U.S</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,15 +21,31 @@
                 <a href="about_us.html">About Us</a>
             </nav>
             <a href="about_us.html#contact" class="contact-button">Contact</a>
+            <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
 
+    <div class="marquee">
+        <div class="marquee-track">
+            <span>NEXUS — <em>YOUR EVERYDAY AI</em> — NEXUS — <em>ALWAYS LISTENING, RARELY LOUD</em> — NEXUS — <em>YOUR EVERYDAY AI</em> — NEXUS — <em>ALWAYS LISTENING, RARELY LOUD</em> —</span>
+            <span aria-hidden="true">NEXUS — <em>YOUR EVERYDAY AI</em> — NEXUS — <em>ALWAYS LISTENING, RARELY LOUD</em> — NEXUS — <em>YOUR EVERYDAY AI</em> — NEXUS — <em>ALWAYS LISTENING, RARELY LOUD</em> —</span>
+        </div>
+    </div>
+
     <main>
-        <!-- hero: the big intro section people see first -->
-        <section id="home" class="home">
+        <!-- hero: the big cinematic intro section people see first -->
+        <section id="home" class="home" data-parallax>
+            <div class="glow-orb orb-1"></div>
+            <div class="glow-orb orb-2"></div>
+            <div class="glow-orb orb-3"></div>
             <div class="home-inner">
                 <p class="home-label">YOUR EVERYDAY AI ASSISTANT</p>
-                <h2>あなたの毎日に、<br><span class="break">ちょうどいいAI</span></h2>
+                <h2>
+                    <span class="line"><span class="line-inner">あなたの毎日に、</span></span>
+                    <span class="line"><span class="line-inner"><span class="break">ちょうどいいAI</span></span></span>
+                </h2>
                 <p class="home-text">
                     予定管理から家電操作まで、
                     NEXUSがあなたの一日をそっとサポートします。
@@ -38,31 +57,31 @@
 
         <!-- features: what the product can do, shown as cards -->
         <section id="features" class="features-section">
-            <div class="section-heading">
+            <div class="section-heading" data-reveal>
                 <p class="section-heading-subtitle">FEATURES</p>
                 <h2>NEXUSにできること</h2>
             </div>
 
             <div class="feature-list">
-                <div class="feature-card">
+                <div class="feature-card" data-reveal>
                     <p class="feature-icon">⏰</p>
                     <h3 class="feature-title">スケジュール管理</h3>
                     <p class="feature-description">予定を自動で整理して、最適なタイミングで教えてくれます。</p>
                 </div>
 
-                <div class="feature-card">
+                <div class="feature-card" data-reveal>
                     <p class="feature-icon">🏠</p>
                     <h3 class="feature-title">スマートホーム連携</h3>
                     <p class="feature-description">照明やエアコンを声だけで操作できます。</p>
                 </div>
 
-                <div class="feature-card">
+                <div class="feature-card" data-reveal>
                     <p class="feature-icon">📝</p>
                     <h3 class="feature-title">メモ・要約</h3>
                     <p class="feature-description">会話やメモを自動で整理・要約します。</p>
                 </div>
 
-                <div class="feature-card">
+                <div class="feature-card" data-reveal>
                     <p class="feature-icon">❤</p>
                     <h3 class="feature-title">健康サポート</h3>
                     <p class="feature-description">生活リズムに合わせて、軽くアドバイスします。</p>
@@ -72,13 +91,13 @@
 
         <!-- pricing: three plan cards, the middle one is highlighted -->
         <section id="pricing" class="pricing-section">
-            <div class="section-heading">
+            <div class="section-heading" data-reveal>
                 <p class="section-heading-subtitle">PRICING</p>
                 <h2>あなたに合ったプランを</h2>
             </div>
 
             <div class="plan-list">
-                <div class="plan-card">
+                <div class="plan-card" data-reveal>
                     <h3 class="plan-name">Free</h3>
                     <p class="plan-price">¥0<span>/月</span></p>
                     <ul class="plan-detail-list">
@@ -90,7 +109,7 @@
                 </div>
 
                 <!-- data-label is read by CSS with attr() to draw the "人気" badge -->
-                <div class="plan-card plan-card-highlight" data-label="人気">
+                <div class="plan-card plan-card-highlight" data-label="人気" data-reveal="zoom">
                     <h3 class="plan-name">Pro</h3>
                     <p class="plan-price">¥980<span>/月</span></p>
                     <ul class="plan-detail-list">
@@ -101,7 +120,7 @@
                     <a href="#" class="plan-button plan-button-filled">Proを選ぶ</a>
                 </div>
 
-                <div class="plan-card">
+                <div class="plan-card" data-reveal>
                     <h3 class="plan-name">Business</h3>
                     <p class="plan-price">¥2,980<span>/月</span></p>
                     <ul class="plan-detail-list">
@@ -116,11 +135,11 @@
 
         <!-- about: short closing message -->
         <section id="about" class="about-section">
-            <div class="section-heading">
+            <div class="section-heading" data-reveal>
                 <p class="section-heading-subtitle">ABOUT US</p>
                 <h2>NEXUSについて</h2>
             </div>
-            <p class="about-text">
+            <p class="about-text" data-reveal>
                 NEXUSは、忙しい毎日を少しだけ楽にするために生まれたAIアシスタントです。
                 複雑な操作は必要ありません。話しかけるだけで、あなたの生活をサポートします。
             </p>
@@ -128,6 +147,7 @@
     </main>
 
     <footer class="site-footer">
+        <p class="footer-wordmark">NEXUS</p>
         <p>&copy; 2026 NEXUS Inc. All rights reserved.</p>
     </footer>
 
@@ -235,6 +255,8 @@
   input.addEventListener("keydown", (e) => { if(e.key === "Enter") sendMessage(); });
 })();
 </script>
+
+<script src="motion.js"></script>
 
 </body>
 </html>
