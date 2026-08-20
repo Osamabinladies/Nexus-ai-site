@@ -352,16 +352,24 @@ body::before {
         #ff8a3d 72%, #1c1330 86%, var(--page-background-color) 100%);
 }
 
-/* slow continuous background zoom/pan, like a cinematic camera drift.
-   inset:0 matches .home's own box exactly; the scale-up during the
-   animation overflows it on purpose, and .home's overflow:hidden clips it. */
+/* scroll-driven zoom: --scroll-zoom is set by motion.js from scroll position,
+   0 at the top of the page, growing as you scroll down the hero, and back to
+   0 as you scroll back up. inset:0 matches .home's own box exactly; the
+   scale-up overflows it on purpose, and .home's overflow:hidden clips it. */
 .home-bg {
+    --scroll-zoom: 0;
     position: absolute;
     inset: 0;
     z-index: -1;
-    animation: kenBurns 30s ease-in-out infinite alternate;
+    transform: scale(calc(1 + var(--scroll-zoom, 0)));
     will-change: transform;
-    transform-origin: 50% 100%;
+    transform-origin: 50% 50%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .home-bg {
+        transition: transform 0.05s linear;
+    }
 }
 
 @keyframes kenBurns {
