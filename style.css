@@ -1023,19 +1023,32 @@ body.page-about main::before {
     color: var(--subtext-color);
 }
 
-/* ---- feature-row: icon on one side, text on the other (features.html) ---- */
-.feature-row {
+/* ---- persona-row: a "cast profile" style feature block (features.html) ----
+   a sticky portrait panel that stays pinned while the text column beside it
+   scrolls past, mirroring the character-page mechanic from the Rockstar VI
+   site the user referenced. Each mode gets its own accent color via a
+   --persona-accent / --persona-hue pair set on the row's modifier class. */
+.persona-row {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 60px;
     max-width: var(--content-width);
     margin: 0 auto;
-    padding: 60px 24px;
+    padding: 90px 24px;
     position: relative;
 }
 
+.persona-row.reverse {
+    flex-direction: row-reverse;
+}
+
+.persona-row.mode-schedule  { --persona-accent: var(--cyan);   --persona-hue: 148deg; }
+.persona-row.mode-home      { --persona-accent: var(--orange); --persona-hue: 0deg; }
+.persona-row.mode-notes     { --persona-accent: var(--violet); --persona-hue: 200deg; }
+.persona-row.mode-wellbeing { --persona-accent: var(--pink);   --persona-hue: 315deg; }
+
 /* big faded index number behind each row, like a game feature-list */
-.feature-row .feature-index {
+.persona-row .feature-index {
     position: absolute;
     top: 24px;
     font-family: 'Anton', sans-serif;
@@ -1046,47 +1059,148 @@ body.page-about main::before {
     left: 0;
 }
 
-.feature-row-reverse .feature-index {
+.persona-row.reverse .feature-index {
     left: auto;
     right: 0;
 }
 
-/* flipping the row order puts the icon on the right instead of the left */
-.feature-row-reverse {
-    flex-direction: row-reverse;
+/* the portrait: pinned in place while .persona-content scrolls past it */
+.persona-portrait {
+    flex: 1 1 360px;
+    position: sticky;
+    top: 110px;
+    height: 70vh;
+    min-height: 420px;
+    max-height: 580px;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background: linear-gradient(160deg, var(--card-background-color), var(--card-background-color-2));
 }
 
-.feature-visual {
-    flex: 1 1 240px;
-    height: 220px;
-    background: linear-gradient(160deg, var(--card-background-color), var(--card-background-color-2));
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
+.persona-portrait-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle at 50% 38%, color-mix(in srgb, var(--persona-accent) 55%, transparent) 0%, transparent 46%),
+        url("grid-city.svg");
+    background-repeat: no-repeat, repeat;
+    background-size: 100% 100%, 700px auto;
+    background-position: center, center top;
+    filter: hue-rotate(var(--persona-hue));
+    opacity: 0.9;
+}
+
+.persona-icon {
+    position: absolute;
+    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 3.4rem;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+    font-size: 8rem;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.55));
 }
 
-.feature-visual::after {
-    content: "";
+.persona-badge {
     position: absolute;
-    inset: 0;
-    background: var(--sunset-soft);
-    opacity: 0;
-    transition: opacity 0.5s ease;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    background: rgba(6, 4, 9, 0.45);
+    padding: 7px 14px;
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
 }
 
-.feature-row:hover .feature-visual {
-    transform: translateY(-6px) rotate(-1deg);
+.persona-badge span {
+    color: var(--persona-accent);
+}
+
+.persona-name-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 90px 26px 26px;
+    background: linear-gradient(to top, rgba(6, 4, 9, 0.94), transparent);
+}
+
+.persona-name-overlay .persona-label {
+    color: var(--persona-accent);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    margin-bottom: 8px;
+}
+
+.persona-name-overlay h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.1rem;
+    color: #fff;
+    margin: 0;
+}
+
+/* the scrolling column beside the pinned portrait */
+.persona-content {
+    flex: 1 1 380px;
+    padding-top: 20px;
+    padding-bottom: 220px;
+}
+
+.persona-quote {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.25rem, 2.1vw, 1.7rem);
+    line-height: 1.4;
+    color: #fff;
+    margin: 30px 0;
+    padding-left: 22px;
+    border-left: 3px solid var(--persona-accent);
+    text-transform: none;
+}
+
+.detail-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(160deg, var(--card-background-color), var(--card-background-color-2));
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 13px 18px;
+    margin: 8px 12px 8px 0;
+    font-size: 0.85rem;
+    color: var(--subtext-color);
+    box-shadow: 0 14px 30px -18px rgba(0, 0, 0, 0.6);
+}
+
+.detail-card:nth-of-type(1) { --tilt: -2.5deg; }
+.detail-card:nth-of-type(2) { --tilt: 2deg; }
+.detail-card:nth-of-type(3) { --tilt: -1.5deg; }
+
+.detail-cards {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+
+/* pop-in reveal for the small tilted detail cards */
+[data-reveal="pop"] {
+    transform: scale(0.6) rotate(var(--tilt, -3deg));
+}
+
+[data-reveal="pop"].in-view {
+    transform: scale(1) rotate(var(--tilt, -3deg));
+}
+
+.persona-row:hover .persona-portrait {
     box-shadow: 0 30px 60px -26px rgba(255, 46, 121, 0.3);
-}
-
-.feature-row:hover .feature-visual::after {
-    opacity: 1;
 }
 
 .feature-text {
@@ -1385,6 +1499,7 @@ hr {
 
     .page-hero {
         padding: 130px 24px 50px;
+        min-height: auto;
     }
 
     .feature-list,
@@ -1396,14 +1511,21 @@ hr {
         transform: none;
     }
 
-    .feature-row,
-    .feature-row-reverse {
+    .persona-row,
+    .persona-row.reverse {
         flex-direction: column;
         padding: 50px 24px;
     }
 
-    .feature-row .feature-index,
-    .feature-row-reverse .feature-index {
+    .persona-portrait {
+        position: relative;
+        top: auto;
+        width: 100%;
+        height: 320px;
+        min-height: 0;
+    }
+
+    .persona-row .feature-index {
         display: none;
     }
 
