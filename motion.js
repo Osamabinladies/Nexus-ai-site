@@ -106,15 +106,19 @@
   }
 
   /* ---- hero background zoom, tied directly to scroll position: scrolling
-     down zooms the scene in, scrolling back up zooms it back out ---- */
-  var homeBg = document.querySelector(".home-bg");
-  if (homeBg && !reduceMotion) {
+     down zooms the scene in, scrolling back up zooms it back out. Applies to
+     the home hero's skyline and the smaller page-hero banners alike. ---- */
+  var zoomTargets = document.querySelectorAll(".home-bg, .page-hero");
+  if (zoomTargets.length && !reduceMotion) {
     var zoomTicking = false;
     var updateZoom = function () {
       zoomTicking = false;
       var range = window.innerHeight * 0.9;
       var progress = Math.min(Math.max(window.scrollY / range, 0), 1);
-      homeBg.style.setProperty("--scroll-zoom", (progress * 0.28).toFixed(4));
+      var zoom = (progress * 0.28).toFixed(4);
+      zoomTargets.forEach(function (el) {
+        el.style.setProperty("--scroll-zoom", zoom);
+      });
     };
     updateZoom();
     window.addEventListener(
