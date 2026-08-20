@@ -391,7 +391,8 @@ main {
     100% { transform: scale(1.14) translate(-2.5%, -1.5%); }
 }
 
-.home .sun-glow {
+.home .sun-glow,
+.page-hero .sun-glow {
     position: absolute;
     top: 30%;
     left: 50%;
@@ -516,6 +517,12 @@ main {
 .home-inner {
     position: relative;
     max-width: 760px;
+    margin: 0 auto;
+}
+
+.page-hero-inner {
+    position: relative;
+    max-width: 680px;
     margin: 0 auto;
 }
 
@@ -969,74 +976,23 @@ body.page-about main::before {
     white-space: nowrap;
 }
 
-/* ---- page-hero: the short intro banner at the top of features/pricing/about_us ---- */
+/* ---- page-hero: the same cinematic hero treatment as the home page,
+   just a little shorter, so the banner at the top of features/pricing/about_us
+   matches the home hero's sunset sky + parallax skyline exactly. ---- */
 .page-hero {
-    --scroll-zoom: 0;
+    --mx: 0;
+    --my: 0;
     text-align: center;
-    max-width: 680px;
-    margin: 0 auto;
     padding: 170px 24px 100px;
     position: relative;
+    overflow: hidden;
+    min-height: 78vh;
+    display: flex;
+    align-items: center;
     isolation: isolate;
-}
-
-/* static sunset backdrop, full-bleed here (kept still, like the home hero's sky) */
-.page-hero::before {
-    content: "";
-    position: absolute;
-    top: -20%;
-    left: 50%;
-    width: 100vw;
-    height: 140%;
-    margin-left: -50vw;
-    z-index: -2;
-    background:
-        linear-gradient(180deg, #150a26 0%, #2c0f47 22%, #7a2864 48%, #c85a5f 64%,
-            #ff8a3d 80%, #1c1330 94%, var(--page-background-color) 100%),
-        radial-gradient(circle at 50% 20%, rgba(255, 210, 130, 0.35), transparent 45%);
-}
-
-/* a small skyline strip along the bottom: pans sideways via background-position,
-   and scales with --scroll-zoom (set by motion.js) so it zooms in on scroll down
-   and back out on scroll up, same as the home hero. */
-.page-hero::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    width: 100vw;
-    height: 18%;
-    min-height: 80px;
-    max-height: 150px;
-    margin-left: -50vw;
-    z-index: -1;
-    background-image:
-        linear-gradient(180deg, rgba(6, 4, 9, 0.6) 0%, transparent 55%),
-        url("skyline-front.svg");
-    background-repeat: no-repeat, repeat-x;
-    background-position: 0 0, 0 bottom;
-    background-size: 100% 100%, auto 100%;
-    opacity: 0.92;
-    animation: skylinePanBg 70s linear infinite;
-    transform: scale(calc(1 + var(--scroll-zoom, 0)));
-    transform-origin: 50% 100%;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    .page-hero::after {
-        transition: transform 0.05s linear;
-    }
-}
-
-@keyframes skylinePanBg {
-    from { background-position-x: 0; }
-    to { background-position-x: -1600px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .page-hero::after {
-        animation: none;
-    }
+    background: linear-gradient(180deg,
+        #150a26 0%, #2c0f47 20%, #7a2864 42%, #c85a5f 58%,
+        #ff8a3d 72%, #1c1330 86%, var(--page-background-color) 100%);
 }
 
 .page-hero-subtitle {
