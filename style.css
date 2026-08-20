@@ -156,6 +156,20 @@ body::before {
     * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
 }
 
+main {
+    position: relative;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .features-section::before,
+    .pricing-section::before,
+    .about-section::before,
+    body.page-features main::before,
+    body.page-about main::before {
+        transition: transform 0.05s linear;
+    }
+}
+
 /* ---- header ---- */
 .site-header {
     position: fixed;
@@ -647,6 +661,32 @@ body::before {
     margin: 0 auto;
     padding: 110px 24px;
     position: relative;
+    isolation: isolate;
+}
+
+/* an amber wireframe-city backdrop for feature/capability content, scoped by
+   the shared .features-section class (index.html) or the page body class
+   (features.html, which doesn't share that wrapper). Panned/zoomed by
+   --scroll-zoom-2 / --scroll-pan-2, which motion.js sets per-element from
+   how far that element has scrolled through the viewport. */
+.features-section::before,
+body.page-features main::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100vw;
+    height: 100%;
+    margin-left: -50vw;
+    z-index: -3;
+    pointer-events: none;
+    background-image: url("grid-city.svg");
+    background-repeat: repeat;
+    background-position: center top;
+    background-size: 900px auto;
+    opacity: 0.55;
+    transform: translateX(calc(var(--scroll-pan-2, 0) * -5%)) scale(calc(1 + var(--scroll-zoom-2, 0)));
+    transform-origin: 50% 50%;
 }
 
 .feature-list {
@@ -719,6 +759,31 @@ body::before {
     max-width: var(--content-width);
     margin: 0 auto;
     padding: 110px 24px;
+    position: relative;
+    isolation: isolate;
+}
+
+/* the same wireframe city, hue-shifted to cyan/teal for the pricing content
+   (this class is shared by index.html's pricing block and pricing.html's
+   whole body, so one rule covers both files). */
+.pricing-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100vw;
+    height: 100%;
+    margin-left: -50vw;
+    z-index: -3;
+    pointer-events: none;
+    background-image: url("grid-city.svg");
+    background-repeat: repeat;
+    background-position: center top;
+    background-size: 900px auto;
+    filter: hue-rotate(148deg) saturate(1.2);
+    opacity: 0.5;
+    transform: translateX(calc(var(--scroll-pan-2, 0) * -5%)) scale(calc(1 + var(--scroll-zoom-2, 0)));
+    transform-origin: 50% 50%;
 }
 
 .plan-list {
@@ -847,6 +912,33 @@ body::before {
     margin: 0 auto;
     padding: 30px 24px 110px;
     text-align: center;
+    position: relative;
+    isolation: isolate;
+}
+
+/* a dim, warm skyline behind the human/story content, echoing the hero's
+   own art instead of the technical grid used for features and pricing.
+   Shared by index.html's about blurb; about_us.html gets the equivalent
+   treatment on <main> below, since its content isn't in one wrapper class. */
+.about-section::before,
+body.page-about main::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100vw;
+    height: 100%;
+    margin-left: -50vw;
+    z-index: -3;
+    pointer-events: none;
+    background-image: url("grid-city.svg");
+    background-repeat: repeat;
+    background-position: center top;
+    background-size: 900px auto;
+    filter: hue-rotate(315deg) saturate(1.3);
+    opacity: 0.5;
+    transform: translateX(calc(var(--scroll-pan-2, 0) * -5%)) scale(calc(1 + var(--scroll-zoom-2, 0)));
+    transform-origin: 50% 50%;
 }
 
 .about-text {

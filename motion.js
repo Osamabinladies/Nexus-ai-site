@@ -133,6 +133,42 @@
     );
   }
 
+  /* ---- content-section backdrops: each section's wireframe/skyline
+     background zooms in and drifts sideways as that section travels
+     through the viewport, then eases back as you scroll past or back up.
+     Progress is per-element (via getBoundingClientRect), not global scroll
+     position, so every section gets its own fresh 0-to-1 sweep. ---- */
+  var bgZoomEls = document.querySelectorAll(
+    "main, .features-section, .pricing-section, .about-section"
+  );
+  if (bgZoomEls.length && !reduceMotion) {
+    var bgTicking = false;
+    var updateBgZoom = function () {
+      bgTicking = false;
+      var vh = window.innerHeight;
+      bgZoomEls.forEach(function (el) {
+        var rect = el.getBoundingClientRect();
+        var total = rect.height + vh;
+        var traveled = vh - rect.top;
+        var progress = total > 0 ? Math.min(Math.max(traveled / total, 0), 1) : 0;
+        el.style.setProperty("--scroll-zoom-2", (progress * 0.22).toFixed(4));
+        el.style.setProperty("--scroll-pan-2", ((progress - 0.5) * 2).toFixed(4));
+      });
+    };
+    updateBgZoom();
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (!bgTicking) {
+          bgTicking = true;
+          requestAnimationFrame(updateBgZoom);
+        }
+      },
+      { passive: true }
+    );
+    window.addEventListener("resize", updateBgZoom);
+  }
+
   /* ---- glowing cursor trail (desktop pointer only) ---- */
   if (!reduceMotion && window.matchMedia("(pointer: fine)").matches) {
     var glow = document.createElement("div");
