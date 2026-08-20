@@ -1312,6 +1312,254 @@ hr {
     backdrop-filter: blur(10px);
 }
 
+/* ---- Pip: the little robot mascot on the login/signup pages ----
+   Sits inside .persona-icon (same slot the feature-card emoji uses), themed
+   automatically by whichever --persona-accent the wrapping accent-* class
+   sets. Floats gently, blinks on a loop, and covers its eye with both arms
+   while a password field is focused — toggle by adding .covering to
+   .bot-mascot from JS. */
+.bot-mascot {
+    width: 220px;
+    height: 220px;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.55));
+}
+
+.bot-shadow {
+    fill: #000;
+    opacity: 0.35;
+    animation: botShadowPulse 3.6s ease-in-out infinite;
+}
+
+.bot-float {
+    animation: botFloat 3.6s ease-in-out infinite;
+    transform-origin: 50% 50%;
+}
+
+.bot-antenna-tip {
+    fill: var(--persona-accent);
+    filter: drop-shadow(0 0 6px var(--persona-accent));
+    animation: botAntennaPulse 1.8s ease-in-out infinite;
+}
+
+.bot-body {
+    fill: color-mix(in srgb, var(--persona-accent) 22%, #17101f);
+    stroke: color-mix(in srgb, var(--persona-accent) 55%, transparent);
+    stroke-width: 2;
+}
+
+.bot-face-plate {
+    fill: #0b0712;
+    opacity: 0.9;
+}
+
+.bot-eye-group {
+    animation: botBlink 4.6s ease-in-out infinite;
+    transform-origin: 100px 96px;
+}
+
+.bot-eye-white {
+    fill: #f4f2ff;
+}
+
+.bot-eye-pupil {
+    fill: var(--persona-accent);
+}
+
+.bot-cheek {
+    fill: var(--pink);
+    opacity: 0.45;
+}
+
+.bot-arm {
+    fill: color-mix(in srgb, var(--persona-accent) 30%, #17101f);
+    stroke: color-mix(in srgb, var(--persona-accent) 55%, transparent);
+    stroke-width: 2;
+    transition: transform 0.4s var(--ease);
+}
+
+.bot-arm-left {
+    transform-origin: 42px 98px;
+}
+
+.bot-arm-right {
+    transform-origin: 158px 98px;
+}
+
+.bot-mascot.covering .bot-arm-left {
+    transform: rotate(125deg);
+}
+
+.bot-mascot.covering .bot-arm-right {
+    transform: rotate(-125deg);
+}
+
+.bot-mascot.covering .bot-eye-group {
+    animation: none;
+    transform: scaleY(0.08);
+}
+
+@keyframes botFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes botShadowPulse {
+    0%, 100% { transform: scale(1); opacity: 0.35; }
+    50% { transform: scale(0.85); opacity: 0.22; }
+}
+
+@keyframes botAntennaPulse {
+    0%, 100% { opacity: 0.6; r: 5; }
+    50% { opacity: 1; r: 7; }
+}
+
+@keyframes botBlink {
+    0%, 88%, 100% { transform: scaleY(1); }
+    92% { transform: scaleY(0.08); }
+    96% { transform: scaleY(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bot-float, .bot-shadow, .bot-antenna-tip, .bot-eye-group {
+        animation: none;
+    }
+}
+
+/* ---- auth forms: login.html / signup.html, living inside .persona-content
+   next to Pip. Reuses the same field look as the contact form, sized to sit
+   in the persona column instead of a centered standalone card. ---- */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: linear-gradient(160deg, var(--card-background-color), var(--card-background-color-2));
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 30px;
+    margin-top: 20px;
+    max-width: 420px;
+}
+
+.auth-form label {
+    color: var(--subtext-color);
+    font-size: 0.85rem;
+    margin-top: 14px;
+}
+
+.auth-form input {
+    width: 100%;
+    background-color: var(--page-background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 11px 13px;
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: var(--persona-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--persona-accent) 20%, transparent);
+}
+
+.password-field {
+    position: relative;
+}
+
+.password-field input {
+    padding-right: 44px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--subtext-color);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 6px 8px;
+}
+
+.password-toggle:hover {
+    color: var(--persona-accent);
+}
+
+.auth-form .submit-button {
+    max-width: none;
+}
+
+.auth-switch {
+    margin-top: 18px;
+    font-size: 0.85rem;
+    color: var(--subtext-color);
+}
+
+.auth-switch a {
+    color: var(--persona-accent);
+    font-weight: 700;
+}
+
+.auth-switch a:hover {
+    text-decoration: underline;
+}
+
+/* ---- shared status banner: contact form + login/signup forms ---- */
+.form-status {
+    display: none;
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    font-size: 0.85rem;
+}
+
+.form-status.visible {
+    display: block;
+}
+
+.form-status.ok {
+    background: rgba(79, 224, 212, 0.15);
+    border: 1px solid var(--cyan);
+    color: var(--text-color);
+}
+
+.form-status.error {
+    background: rgba(255, 46, 121, 0.12);
+    border: 1px solid var(--pink);
+    color: var(--text-color);
+}
+
+/* ---- welcome banner: index.html, shown after a signup/login redirect ---- */
+.welcome-banner-wrap {
+    max-width: 640px;
+    margin: 24px auto 0;
+    padding: 0 24px;
+    position: relative;
+    z-index: 5;
+}
+
+.welcome-banner-wrap .form-status {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+/* ---- header auth links: Log In / Sign Up, and the logged-in state
+   motion.js swaps them for once /me confirms a session ---- */
+.nav-user {
+    color: #fff;
+}
+
+.nav-signup {
+    color: var(--persona-accent, var(--cyan));
+}
+
 /* ---- small screens: stack things, collapse the nav into a menu ---- */
 @media (max-width: 860px) {
     .site-nav {

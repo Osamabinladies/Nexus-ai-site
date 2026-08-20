@@ -14,18 +14,28 @@ Then open http://localhost:5000
 
 import os
 import re
+import secrets
 import smtplib
+import sqlite3
 from email.message import EmailMessage
 from pathlib import Path
 
 import requests
 from dotenv import load_dotenv
-from flask import Flask, jsonify, redirect, request, send_from_directory
+from flask import Flask, jsonify, redirect, request, send_from_directory, session
+from werkzeug.security import check_password_hash, generate_password_hash
 
 BASE_DIR = Path(__file__).resolve().parent
 load_dotenv(BASE_DIR / ".env")
 
 app = Flask(__name__, static_folder=str(BASE_DIR), static_url_path="")
+
+SECRET_KEY = os.environ.get("SECRET_KEY")
+if not SECRET_KEY:
+    print("WARNING: SECRET_KEY not set in .env — using a random key, so logins won't survive a server restart.")
+    SECRET_KEY = secrets.token_hex(32)
+app.secret_key = SECRET_KEY
+app.config.update(SESSION_COOKIE_SAMESITE="Lax", SESSION_COOKIE_HTTPONLY=True)
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.6-flash")
@@ -56,6 +66,37 @@ SMTP_PORT = int(os.environ.get("SMTP_PORT", "587"))
 SMTP_USERNAME = os.environ.get("SMTP_USERNAME")
 SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")
 CONTACT_EMAIL_TO = os.environ.get("CONTACT_EMAIL_TO") or SMTP_USERNAME
+
+# --- Accounts (SQLite) ----------------------------------------------------
+DB_PATH = BASE_DIR / "nexus.db"
+
+
+def get_db():
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    return conn
+
+
+def init_db():
+    conn = get_db()
+    conn.execute(
+        """
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            email TEXT NOT NULL UNIQUE,
+            password_hash TEXT NOT NULL,
+            created_at TEXT NOT NULL DEFAULT (datetime('now'))
+        )
+        """
+    )
+    conn.commit()
+    conn.close()
+
+
+init_db()
+
+EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
 
 # ---------------------------------------------------------------------------
@@ -545,6 +586,82 @@ def contact():
         return redirect("/about_us.html?contact=success#contact")
     except Exception:
         return redirect("/about_us.html?contact=error#contact")
+
+
+# --- Accounts: signup / login / logout / session check --------------------
+# Both forms are plain HTML posts (work without JS); the pages themselves
+# read the `error`/`success` query string back to show a banner, the same
+# pattern as the contact form above. Passwords are hashed with Werkzeug's
+# scrypt-based generate_password_hash — never stored or logged in plaintext.
+
+
+@app.route("/signup", methods=["POST"])
+def signup():
+    name = (request.form.get("name") or "").strip()
+    email = (request.form.get("email") or "").strip().lower()
+    password = request.form.get("password") or ""
+    confirm_password = request.form.get("confirm_password") or ""
+
+    if not (name and email and password and confirm_password):
+        return redirect("/signup.html?error=missing")
+    if not EMAIL_RE.match(email):
+        return redirect("/signup.html?error=invalid_email")
+    if len(password) < 8:
+        return redirect("/signup.html?error=weak_password")
+    if password != confirm_password:
+        return redirect("/signup.html?error=mismatch")
+
+    conn = get_db()
+    try:
+        cur = conn.execute(
+            "INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)",
+            (name, email, generate_password_hash(password)),
+        )
+        conn.commit()
+        user_id = cur.lastrowid
+    except sqlite3.IntegrityError:
+        return redirect("/signup.html?error=duplicate")
+    finally:
+        conn.close()
+
+    session.clear()
+    session["user_id"] = user_id
+    session["user_name"] = name
+    return redirect("/index.html?welcome=1")
+
+
+@app.route("/login", methods=["POST"])
+def login():
+    email = (request.form.get("email") or "").strip().lower()
+    password = request.form.get("password") or ""
+
+    if not (email and password):
+        return redirect("/login.html?error=missing")
+
+    conn = get_db()
+    user = conn.execute("SELECT * FROM users WHERE email = ?", (email,)).fetchone()
+    conn.close()
+
+    if not user or not check_password_hash(user["password_hash"], password):
+        return redirect("/login.html?error=invalid")
+
+    session.clear()
+    session["user_id"] = user["id"]
+    session["user_name"] = user["name"]
+    return redirect("/index.html?login=success")
+
+
+@app.route("/logout", methods=["POST"])
+def logout():
+    session.clear()
+    return redirect("/index.html")
+
+
+@app.route("/me")
+def me():
+    if "user_id" in session:
+        return jsonify({"loggedIn": True, "name": session.get("user_name")})
+    return jsonify({"loggedIn": False})
 
 
 if __name__ == "__main__":
