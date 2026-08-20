@@ -283,6 +283,36 @@ main {
 .nav-toggle.open span:nth-child(2) { opacity: 0; }
 .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* small, deliberately understated language switch — sits beside Contact,
+   shows the language you'd switch TO, easy to miss unless you're looking */
+.lang-toggle {
+    width: 30px;
+    height: 24px;
+    border-radius: 7px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: opacity 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    opacity: 0.6;
+    flex-shrink: 0;
+}
+
+.lang-toggle:hover {
+    opacity: 1;
+    border-color: var(--cyan);
+    color: #fff;
+}
+
 /* the pill-shaped "Contact" button that sits on the right side of the header */
 .contact-button {
     padding: 10px 22px;

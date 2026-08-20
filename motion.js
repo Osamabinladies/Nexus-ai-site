@@ -4,6 +4,71 @@
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* ---- language toggle: EN by default, JA on request, remembered site-wide.
+     Elements are tagged data-i18n="ns.key" (textContent) or
+     data-i18n-html="ns.key" (innerHTML, for entries with nested tags) —
+     see translations.js for the dictionary. ---- */
+  if (window.NEXUS_I18N) {
+    var LANG_KEY = "nexus-lang";
+    var lang = localStorage.getItem(LANG_KEY) === "ja" ? "ja" : "en";
+
+    var lookup = function (key) {
+      var parts = key.split(".");
+      var entry = NEXUS_I18N[parts[0]] && NEXUS_I18N[parts[0]][parts[1]];
+      return entry ? entry[lang] : null;
+    };
+
+    var applyLang = function () {
+      document.documentElement.setAttribute("lang", lang);
+      document.querySelectorAll("[data-i18n]").forEach(function (el) {
+        var v = lookup(el.getAttribute("data-i18n"));
+        if (v != null) el.textContent = v;
+      });
+      document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
+        var v = lookup(el.getAttribute("data-i18n-html"));
+        if (v != null) el.innerHTML = v;
+      });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
+        var v = lookup(el.getAttribute("data-i18n-placeholder"));
+        if (v != null) el.setAttribute("placeholder", v);
+      });
+      document.querySelectorAll("[data-i18n-aria-label]").forEach(function (el) {
+        var v = lookup(el.getAttribute("data-i18n-aria-label"));
+        if (v != null) el.setAttribute("aria-label", v);
+      });
+      document.querySelectorAll("[data-i18n-alt]").forEach(function (el) {
+        var v = lookup(el.getAttribute("data-i18n-alt"));
+        if (v != null) el.setAttribute("alt", v);
+      });
+      var toggle = document.getElementById("lang-toggle");
+      if (toggle) {
+        toggle.textContent = lang === "en" ? "JA" : "EN";
+        toggle.setAttribute("aria-label", lookup("common.langToggleLabel") || "Switch language");
+      }
+    };
+
+    var actions = document.querySelector(".header-actions");
+    if (actions && !document.getElementById("lang-toggle")) {
+      var btn = document.createElement("button");
+      btn.id = "lang-toggle";
+      btn.className = "lang-toggle";
+      btn.type = "button";
+      var navToggleEl = actions.querySelector(".nav-toggle");
+      if (navToggleEl) {
+        actions.insertBefore(btn, navToggleEl);
+      } else {
+        actions.appendChild(btn);
+      }
+      btn.addEventListener("click", function () {
+        lang = lang === "en" ? "ja" : "en";
+        localStorage.setItem(LANG_KEY, lang);
+        applyLang();
+      });
+    }
+
+    applyLang();
+  }
+
   /* ---- header: adds a solid/blurred background once the page scrolls ---- */
   var header = document.querySelector(".site-header");
   if (header) {
