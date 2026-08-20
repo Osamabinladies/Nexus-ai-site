@@ -108,7 +108,7 @@
   /* ---- hero background zoom, tied directly to scroll position: scrolling
      down zooms the scene in, scrolling back up zooms it back out. Applies to
      the home hero's skyline and the smaller page-hero banners alike. ---- */
-  var zoomTargets = document.querySelectorAll(".home-bg, .page-hero");
+  var zoomTargets = document.querySelectorAll(".home-bg");
   if (zoomTargets.length && !reduceMotion) {
     var zoomTicking = false;
     var updateZoom = function () {
