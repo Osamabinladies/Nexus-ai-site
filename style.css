@@ -1042,10 +1042,10 @@ body.page-about main::before {
     flex-direction: row-reverse;
 }
 
-.persona-row.mode-schedule  { --persona-accent: var(--cyan);   --persona-hue: 148deg; }
-.persona-row.mode-home      { --persona-accent: var(--orange); --persona-hue: 0deg; }
-.persona-row.mode-notes     { --persona-accent: var(--violet); --persona-hue: 200deg; }
-.persona-row.mode-wellbeing { --persona-accent: var(--pink);   --persona-hue: 315deg; }
+.persona-row.accent-cyan   { --persona-accent: var(--cyan);   --persona-hue: 148deg; }
+.persona-row.accent-orange { --persona-accent: var(--orange); --persona-hue: 0deg; }
+.persona-row.accent-violet { --persona-accent: var(--violet); --persona-hue: 200deg; }
+.persona-row.accent-pink   { --persona-accent: var(--pink);   --persona-hue: 315deg; }
 
 /* big faded index number behind each row, like a game feature-list */
 .persona-row .feature-index {
@@ -1317,18 +1317,6 @@ hr {
 }
 
 /* ---- story & stats: about_us.html ---- */
-.story {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 0 24px 70px;
-    text-align: center;
-}
-
-.story p {
-    color: var(--subtext-color);
-    margin-bottom: 18px;
-}
-
 .stats {
     display: flex;
     flex-wrap: wrap;
