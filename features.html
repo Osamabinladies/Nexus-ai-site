@@ -66,71 +66,135 @@
             </div>
         </section>
 
-        <!-- one row per feature, image/icon on one side and text on the other -->
-        <div class="feature-row" data-reveal="left">
+        <!-- one persona per feature: a pinned portrait beside scrolling text,
+             same sticky-scroll mechanic as the Rockstar VI character pages -->
+        <div class="persona-row mode-schedule" data-reveal="left">
             <p class="feature-index">01</p>
-            <div class="feature-visual">⏰</div>
-            <div class="feature-text">
-                <p class="feature-tag">SCHEDULE</p>
-                <h3>スケジュール管理</h3>
-                <p class="feature-summary">予定を話しかけるだけで登録。重複や移動時間も自動で考慮します。</p>
-                <ul>
-                    <li>音声・テキストで予定登録</li>
-                    <li>予定の衝突を自動検知</li>
-                    <li>前日・当日のリマインド通知</li>
-                </ul>
+            <div class="persona-portrait">
+                <div class="persona-portrait-bg"></div>
+                <div class="persona-icon">⏰</div>
+                <div class="persona-badge">NEXUS · <span>SCHEDULE MODE</span></div>
+                <div class="persona-name-overlay">
+                    <p class="persona-label">SCHEDULE MODE</p>
+                    <h3>プランナー</h3>
+                </div>
+            </div>
+            <div class="persona-content">
+                <div class="feature-text">
+                    <p class="feature-tag">SCHEDULE</p>
+                    <h3>スケジュール管理</h3>
+                    <p class="feature-summary">予定を話しかけるだけで登録。重複や移動時間も自動で考慮します。</p>
+                    <ul>
+                        <li>音声・テキストで予定登録</li>
+                        <li>予定の衝突を自動検知</li>
+                        <li>前日・当日のリマインド通知</li>
+                    </ul>
+                </div>
+                <blockquote class="persona-quote">「明日の予定は、もう把握してます。」</blockquote>
+                <div class="detail-cards">
+                    <span class="detail-card" data-reveal="pop">🎙️ 音声で予定登録</span>
+                    <span class="detail-card" data-reveal="pop">⚡ 衝突を自動検知</span>
+                    <span class="detail-card" data-reveal="pop">🔔 前日にリマインド</span>
+                </div>
             </div>
         </div>
 
         <hr>
 
-        <!-- "feature-row-reverse" just flips which side the icon is on -->
-        <div class="feature-row feature-row-reverse" data-reveal="right">
+        <div class="persona-row mode-home reverse" data-reveal="right">
             <p class="feature-index">02</p>
-            <div class="feature-visual">🏠</div>
-            <div class="feature-text">
-                <p class="feature-tag">SMART HOME</p>
-                <h3>スマートホーム連携</h3>
-                <p class="feature-summary">照明・エアコン・鍵など、対応家電をひとつの会話でまとめて操作。</p>
-                <ul>
-                    <li>主要スマート家電メーカーに対応</li>
-                    <li>「行ってきます」で一括オフ</li>
-                    <li>外出先からの遠隔操作</li>
-                </ul>
+            <div class="persona-portrait">
+                <div class="persona-portrait-bg"></div>
+                <div class="persona-icon">🏠</div>
+                <div class="persona-badge">NEXUS · <span>SMART HOME MODE</span></div>
+                <div class="persona-name-overlay">
+                    <p class="persona-label">SMART HOME MODE</p>
+                    <h3>ガーディアン</h3>
+                </div>
+            </div>
+            <div class="persona-content">
+                <div class="feature-text">
+                    <p class="feature-tag">SMART HOME</p>
+                    <h3>スマートホーム連携</h3>
+                    <p class="feature-summary">照明・エアコン・鍵など、対応家電をひとつの会話でまとめて操作。</p>
+                    <ul>
+                        <li>主要スマート家電メーカーに対応</li>
+                        <li>「行ってきます」で一括オフ</li>
+                        <li>外出先からの遠隔操作</li>
+                    </ul>
+                </div>
+                <blockquote class="persona-quote">「『行ってきます』のひと言で、全部消します。」</blockquote>
+                <div class="detail-cards">
+                    <span class="detail-card" data-reveal="pop">🔌 主要メーカーに対応</span>
+                    <span class="detail-card" data-reveal="pop">🚪 外出先から遠隔操作</span>
+                    <span class="detail-card" data-reveal="pop">🌙 一括オフで安心</span>
+                </div>
             </div>
         </div>
 
         <hr>
 
-        <div class="feature-row" data-reveal="left">
+        <div class="persona-row mode-notes" data-reveal="left">
             <p class="feature-index">03</p>
-            <div class="feature-visual">📝</div>
-            <div class="feature-text">
-                <p class="feature-tag">NOTES</p>
-                <h3>メモ・要約</h3>
-                <p class="feature-summary">会議や会話のメモを自動で整理し、要点だけをまとめて残します。</p>
-                <ul>
-                    <li>音声メモの自動文字起こし</li>
-                    <li>長文の要約とタグ付け</li>
-                    <li>過去のメモをキーワード検索</li>
-                </ul>
+            <div class="persona-portrait">
+                <div class="persona-portrait-bg"></div>
+                <div class="persona-icon">📝</div>
+                <div class="persona-badge">NEXUS · <span>NOTES MODE</span></div>
+                <div class="persona-name-overlay">
+                    <p class="persona-label">NOTES MODE</p>
+                    <h3>スクライブ</h3>
+                </div>
+            </div>
+            <div class="persona-content">
+                <div class="feature-text">
+                    <p class="feature-tag">NOTES</p>
+                    <h3>メモ・要約</h3>
+                    <p class="feature-summary">会議や会話のメモを自動で整理し、要点だけをまとめて残します。</p>
+                    <ul>
+                        <li>音声メモの自動文字起こし</li>
+                        <li>長文の要約とタグ付け</li>
+                        <li>過去のメモをキーワード検索</li>
+                    </ul>
+                </div>
+                <blockquote class="persona-quote">「大事なところだけ、残しておきます。」</blockquote>
+                <div class="detail-cards">
+                    <span class="detail-card" data-reveal="pop">🗣️ 自動文字起こし</span>
+                    <span class="detail-card" data-reveal="pop">🏷️ 要約とタグ付け</span>
+                    <span class="detail-card" data-reveal="pop">🔍 キーワード検索</span>
+                </div>
             </div>
         </div>
 
         <hr>
 
-        <div class="feature-row feature-row-reverse" data-reveal="right">
+        <div class="persona-row mode-wellbeing reverse" data-reveal="right">
             <p class="feature-index">04</p>
-            <div class="feature-visual">❤</div>
-            <div class="feature-text">
-                <p class="feature-tag">WELLBEING</p>
-                <h3>健康サポート</h3>
-                <p class="feature-summary">生活リズムを見守り、無理のない範囲で軽いアドバイスを届けます。</p>
-                <ul>
-                    <li>睡眠・活動リズムの記録</li>
-                    <li>水分補給や休憩のさりげない提案</li>
-                    <li>体調メモの簡易記録</li>
-                </ul>
+            <div class="persona-portrait">
+                <div class="persona-portrait-bg"></div>
+                <div class="persona-icon">❤</div>
+                <div class="persona-badge">NEXUS · <span>WELLBEING MODE</span></div>
+                <div class="persona-name-overlay">
+                    <p class="persona-label">WELLBEING MODE</p>
+                    <h3>コンパニオン</h3>
+                </div>
+            </div>
+            <div class="persona-content">
+                <div class="feature-text">
+                    <p class="feature-tag">WELLBEING</p>
+                    <h3>健康サポート</h3>
+                    <p class="feature-summary">生活リズムを見守り、無理のない範囲で軽いアドバイスを届けます。</p>
+                    <ul>
+                        <li>睡眠・活動リズムの記録</li>
+                        <li>水分補給や休憩のさりげない提案</li>
+                        <li>体調メモの簡易記録</li>
+                    </ul>
+                </div>
+                <blockquote class="persona-quote">「そろそろ、休憩しませんか？」</blockquote>
+                <div class="detail-cards">
+                    <span class="detail-card" data-reveal="pop">😴 睡眠リズムを記録</span>
+                    <span class="detail-card" data-reveal="pop">💧 水分補給を提案</span>
+                    <span class="detail-card" data-reveal="pop">📋 体調メモを簡易記録</span>
+                </div>
             </div>
         </div>
 
