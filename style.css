@@ -352,16 +352,24 @@ body::before {
         #ff8a3d 72%, #1c1330 86%, var(--page-background-color) 100%);
 }
 
-/* slow continuous background zoom/pan, like a cinematic camera drift.
-   inset:0 matches .home's own box exactly; the scale-up during the
-   animation overflows it on purpose, and .home's overflow:hidden clips it. */
+/* scroll-driven zoom: --scroll-zoom is set by motion.js from scroll position,
+   0 at the top of the page, growing as you scroll down the hero, and back to
+   0 as you scroll back up. inset:0 matches .home's own box exactly; the
+   scale-up overflows it on purpose, and .home's overflow:hidden clips it. */
 .home-bg {
+    --scroll-zoom: 0;
     position: absolute;
     inset: 0;
     z-index: -1;
-    animation: kenBurns 30s ease-in-out infinite alternate;
+    transform: scale(calc(1 + var(--scroll-zoom, 0)));
     will-change: transform;
-    transform-origin: 50% 100%;
+    transform-origin: 50% 50%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .home-bg {
+        transition: transform 0.05s linear;
+    }
 }
 
 @keyframes kenBurns {
@@ -871,6 +879,7 @@ body::before {
 
 /* ---- page-hero: the short intro banner at the top of features/pricing/about_us ---- */
 .page-hero {
+    --scroll-zoom: 0;
     text-align: center;
     max-width: 680px;
     margin: 0 auto;
@@ -879,7 +888,7 @@ body::before {
     isolation: isolate;
 }
 
-/* same slow cinematic zoom/pan used behind the home hero, full-bleed here */
+/* static sunset backdrop, full-bleed here (kept still, like the home hero's sky) */
 .page-hero::before {
     content: "";
     position: absolute;
@@ -893,11 +902,11 @@ body::before {
         linear-gradient(180deg, #150a26 0%, #2c0f47 22%, #7a2864 48%, #c85a5f 64%,
             #ff8a3d 80%, #1c1330 94%, var(--page-background-color) 100%),
         radial-gradient(circle at 50% 20%, rgba(255, 210, 130, 0.35), transparent 45%);
-    animation: kenBurns 22s ease-in-out infinite alternate;
-    transform-origin: 50% 100%;
 }
 
-/* a small animated skyline strip along the bottom, tiled + panned via background-position */
+/* a small skyline strip along the bottom: pans sideways via background-position,
+   and scales with --scroll-zoom (set by motion.js) so it zooms in on scroll down
+   and back out on scroll up, same as the home hero. */
 .page-hero::after {
     content: "";
     position: absolute;
@@ -917,6 +926,14 @@ body::before {
     background-size: 100% 100%, auto 100%;
     opacity: 0.92;
     animation: skylinePanBg 70s linear infinite;
+    transform: scale(calc(1 + var(--scroll-zoom, 0)));
+    transform-origin: 50% 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .page-hero::after {
+        transition: transform 0.05s linear;
+    }
 }
 
 @keyframes skylinePanBg {
