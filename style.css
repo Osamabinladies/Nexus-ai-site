@@ -347,15 +347,21 @@ body::before {
     display: flex;
     align-items: center;
     isolation: isolate;
+    background: linear-gradient(180deg,
+        #150a26 0%, #2c0f47 20%, #7a2864 42%, #c85a5f 58%,
+        #ff8a3d 72%, #1c1330 86%, var(--page-background-color) 100%);
 }
 
-/* slow continuous background zoom/pan, like a cinematic camera drift */
+/* slow continuous background zoom/pan, like a cinematic camera drift.
+   inset:0 matches .home's own box exactly; the scale-up during the
+   animation overflows it on purpose, and .home's overflow:hidden clips it. */
 .home-bg {
     position: absolute;
-    inset: -12%;
+    inset: 0;
     z-index: -1;
-    animation: kenBurns 26s ease-in-out infinite alternate;
+    animation: kenBurns 30s ease-in-out infinite alternate;
     will-change: transform;
+    transform-origin: 50% 100%;
 }
 
 @keyframes kenBurns {
@@ -363,47 +369,126 @@ body::before {
     100% { transform: scale(1.14) translate(-2.5%, -1.5%); }
 }
 
-.home .glow-orb {
+.home .sun-glow {
     position: absolute;
+    top: 30%;
+    left: 50%;
+    width: 420px;
+    height: 420px;
     border-radius: 50%;
-    filter: blur(70px);
-    opacity: 0.55;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(255, 210, 130, 0.55), rgba(255, 138, 61, 0.18) 55%, transparent 75%);
+    filter: blur(6px);
+}
+
+/* the animated skyline: two tracks (back/front) that pan sideways forever,
+   each holding two copies of the same svg for a seamless loop */
+.skyline-scene {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.skyline-parallax {
+    position: absolute;
+    inset: 0;
     transition: transform 0.4s ease-out;
 }
 
-.home .glow-orb.orb-1 {
-    width: 520px;
-    height: 520px;
-    top: -160px;
-    left: 8%;
-    background: radial-gradient(circle, var(--pink), transparent 70%);
-    transform: translate(calc(var(--mx) * 30px), calc(var(--my) * 30px));
-    animation: drift 14s ease-in-out infinite;
+.skyline-parallax.back {
+    bottom: 8%;
+    transform: translate(calc(var(--mx) * 10px), calc(var(--my) * 6px));
+    opacity: 0.75;
+    filter: blur(0.5px) brightness(0.9);
 }
 
-.home .glow-orb.orb-2 {
-    width: 460px;
-    height: 460px;
-    bottom: -200px;
-    right: 6%;
-    background: radial-gradient(circle, var(--cyan), transparent 70%);
-    transform: translate(calc(var(--mx) * -25px), calc(var(--my) * -25px));
-    animation: drift 18s ease-in-out infinite reverse;
+.skyline-parallax.front {
+    bottom: 0;
+    transform: translate(calc(var(--mx) * 20px), calc(var(--my) * 10px));
 }
 
-.home .glow-orb.orb-3 {
-    width: 340px;
-    height: 340px;
-    top: 30%;
-    left: 46%;
-    background: radial-gradient(circle, var(--violet), transparent 70%);
-    transform: translate(calc(var(--mx) * 18px), calc(var(--my) * 18px));
-    animation: drift 11s ease-in-out infinite;
+.skyline-track {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    width: max-content;
+    height: 44vh;
+    min-height: 260px;
+    max-height: 460px;
 }
 
-@keyframes drift {
-    0%, 100% { margin: 0; }
-    50% { margin: 24px 0 0 18px; }
+.skyline-track img {
+    display: block;
+    width: 100vw;
+    min-width: 1600px;
+    height: 100%;
+}
+
+.skyline-track.pan-back {
+    animation: skylinePan 90s linear infinite;
+}
+
+.skyline-track.pan-front {
+    animation: skylinePan 55s linear infinite reverse;
+}
+
+@keyframes skylinePan {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+.skyline-reflection {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 10%;
+    overflow: hidden;
+    opacity: 0.3;
+}
+
+.skyline-reflection img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    min-width: 1600px;
+    height: 44vh;
+    max-height: 460px;
+    transform: scaleY(-1);
+    -webkit-mask-image: linear-gradient(to top, black, transparent 85%);
+    mask-image: linear-gradient(to top, black, transparent 85%);
+}
+
+.skyline-water-shimmer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 10%;
+    background: repeating-linear-gradient(100deg,
+        rgba(255, 190, 130, 0.1) 0px, rgba(255, 190, 130, 0.1) 2px,
+        transparent 2px, transparent 16px);
+    animation: sheen 9s linear infinite;
+}
+
+/* darkens the middle of the hero so the heading stays legible over the skyline */
+.skyline-vignette {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 70% 55% at 50% 42%, rgba(6, 4, 9, 0.72), transparent 70%),
+        linear-gradient(180deg, rgba(6, 4, 9, 0.35) 0%, transparent 22%, transparent 68%, rgba(6, 4, 9, 0.75) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skyline-track.pan-back,
+    .skyline-track.pan-front,
+    .home-bg {
+        animation: none;
+    }
 }
 
 .home-inner {
@@ -789,7 +874,7 @@ body::before {
     text-align: center;
     max-width: 680px;
     margin: 0 auto;
-    padding: 170px 24px 60px;
+    padding: 170px 24px 100px;
     position: relative;
     isolation: isolate;
 }
@@ -803,11 +888,46 @@ body::before {
     width: 100vw;
     height: 140%;
     margin-left: -50vw;
-    z-index: -1;
+    z-index: -2;
     background:
-        radial-gradient(circle at 50% 25%, rgba(255, 46, 121, 0.16), transparent 55%),
-        radial-gradient(circle at 65% 70%, rgba(79, 224, 212, 0.14), transparent 50%);
+        linear-gradient(180deg, #150a26 0%, #2c0f47 22%, #7a2864 48%, #c85a5f 64%,
+            #ff8a3d 80%, #1c1330 94%, var(--page-background-color) 100%),
+        radial-gradient(circle at 50% 20%, rgba(255, 210, 130, 0.35), transparent 45%);
     animation: kenBurns 22s ease-in-out infinite alternate;
+    transform-origin: 50% 100%;
+}
+
+/* a small animated skyline strip along the bottom, tiled + panned via background-position */
+.page-hero::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 100vw;
+    height: 18%;
+    min-height: 80px;
+    max-height: 150px;
+    margin-left: -50vw;
+    z-index: -1;
+    background-image:
+        linear-gradient(180deg, rgba(6, 4, 9, 0.6) 0%, transparent 55%),
+        url("skyline-front.svg");
+    background-repeat: no-repeat, repeat-x;
+    background-position: 0 0, 0 bottom;
+    background-size: 100% 100%, auto 100%;
+    opacity: 0.92;
+    animation: skylinePanBg 70s linear infinite;
+}
+
+@keyframes skylinePanBg {
+    from { background-position-x: 0; }
+    to { background-position-x: -1600px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .page-hero::after {
+        animation: none;
+    }
 }
 
 .page-hero-subtitle {
