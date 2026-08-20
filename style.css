@@ -909,10 +909,10 @@ body.page-about main::before {
     flex-direction: row-reverse;
 }
 
-.persona-row.accent-cyan   { --persona-accent: var(--cyan);   --persona-hue: 148deg; }
-.persona-row.accent-orange { --persona-accent: var(--orange); --persona-hue: 0deg; }
-.persona-row.accent-violet { --persona-accent: var(--violet); --persona-hue: 200deg; }
-.persona-row.accent-pink   { --persona-accent: var(--pink);   --persona-hue: 315deg; }
+.persona-row.accent-cyan,   .auth-card.accent-cyan   { --persona-accent: var(--cyan);   --persona-hue: 148deg; }
+.persona-row.accent-orange, .auth-card.accent-orange { --persona-accent: var(--orange); --persona-hue: 0deg; }
+.persona-row.accent-violet, .auth-card.accent-violet { --persona-accent: var(--violet); --persona-hue: 200deg; }
+.persona-row.accent-pink,   .auth-card.accent-pink   { --persona-accent: var(--pink);   --persona-hue: 315deg; }
 
 /* big faded index number behind each row, like a game feature-list */
 .persona-row .feature-index {
@@ -1313,21 +1313,26 @@ hr {
 }
 
 /* ---- Pip: the little robot mascot on the login/signup pages ----
-   Sits inside .persona-icon (same slot the feature-card emoji uses), themed
+   A single head+paws graphic that peeks over the top of .auth-card, themed
    automatically by whichever --persona-accent the wrapping accent-* class
-   sets. Floats gently, blinks on a loop, and covers its eye with both arms
-   while a password field is focused — toggle by adding .covering to
-   .bot-mascot from JS. */
-.bot-mascot {
-    width: 220px;
-    height: 220px;
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.55));
+   sets (cyan on login, pink on signup). Floats gently, blinks on a loop, and
+   the two paws swing up to cover its eye while a password field is focused
+   — toggled by adding .covering to .bot-mascot from JS. */
+.bot-peek {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 260px;
+    transform: translate(-50%, -72%);
+    z-index: 2;
+    pointer-events: none;
 }
 
-.bot-shadow {
-    fill: #000;
-    opacity: 0.35;
-    animation: botShadowPulse 3.6s ease-in-out infinite;
+.bot-mascot {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.55));
 }
 
 .bot-float {
@@ -1354,7 +1359,7 @@ hr {
 
 .bot-eye-group {
     animation: botBlink 4.6s ease-in-out infinite;
-    transform-origin: 100px 96px;
+    transform-origin: 130px 90px;
 }
 
 .bot-eye-white {
@@ -1371,26 +1376,30 @@ hr {
 }
 
 .bot-arm {
-    fill: color-mix(in srgb, var(--persona-accent) 30%, #17101f);
-    stroke: color-mix(in srgb, var(--persona-accent) 55%, transparent);
+    fill: color-mix(in srgb, var(--persona-accent) 34%, #f4f2ff);
+    stroke: color-mix(in srgb, var(--persona-accent) 60%, transparent);
     stroke-width: 2;
     transition: transform 0.4s var(--ease);
 }
 
+.bot-paw-pad {
+    fill: rgba(0, 0, 0, 0.2);
+}
+
 .bot-arm-left {
-    transform-origin: 42px 98px;
+    transform-origin: 29px 140px;
 }
 
 .bot-arm-right {
-    transform-origin: 158px 98px;
+    transform-origin: 231px 140px;
 }
 
 .bot-mascot.covering .bot-arm-left {
-    transform: rotate(125deg);
+    transform: rotate(-120deg);
 }
 
 .bot-mascot.covering .bot-arm-right {
-    transform: rotate(-125deg);
+    transform: rotate(120deg);
 }
 
 .bot-mascot.covering .bot-eye-group {
@@ -1400,12 +1409,7 @@ hr {
 
 @keyframes botFloat {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-@keyframes botShadowPulse {
-    0%, 100% { transform: scale(1); opacity: 0.35; }
-    50% { transform: scale(0.85); opacity: 0.22; }
+    50% { transform: translateY(-8px); }
 }
 
 @keyframes botAntennaPulse {
@@ -1420,24 +1424,52 @@ hr {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .bot-float, .bot-shadow, .bot-antenna-tip, .bot-eye-group {
+    .bot-float, .bot-antenna-tip, .bot-eye-group {
         animation: none;
     }
 }
 
-/* ---- auth forms: login.html / signup.html, living inside .persona-content
-   next to Pip. Reuses the same field look as the contact form, sized to sit
-   in the persona column instead of a centered standalone card. ---- */
+/* ---- auth card: login.html / signup.html — a single compact card
+   centered on the page, with Pip peeking over its top edge. Themed by the
+   same accent-* modifier classes the persona-row cast-profile cards use. ---- */
+.auth-card-wrap {
+    max-width: 460px;
+    margin: 130px auto 120px;
+    padding: 0 24px;
+    position: relative;
+}
+
+.auth-card {
+    position: relative;
+    background: linear-gradient(160deg, var(--card-background-color), var(--card-background-color-2));
+    border: 1px solid var(--border-color);
+    border-radius: 26px;
+    padding: 74px 34px 34px;
+    text-align: center;
+    box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.6);
+}
+
+.auth-tagline {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    text-transform: none;
+    color: var(--persona-accent);
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.auth-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+}
+
+/* ---- auth forms: login.html / signup.html, living inside .auth-card ---- */
 .auth-form {
     display: flex;
     flex-direction: column;
     gap: 6px;
-    background: linear-gradient(160deg, var(--card-background-color), var(--card-background-color-2));
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 30px;
+    text-align: left;
     margin-top: 20px;
-    max-width: 420px;
 }
 
 .auth-form label {
