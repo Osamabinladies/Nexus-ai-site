@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>料金プラン — NEXUS</title>
+    <title data-i18n="pricing.title">Pricing — NEXUS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -20,17 +20,19 @@
                 <a href="pricing.html" class="active">Plans</a>
                 <a href="about_us.html">About Us</a>
             </nav>
-            <a href="about_us.html#contact" class="contact-button">Contact</a>
-            <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
+            <div class="header-actions">
+                <a href="about_us.html#contact" class="contact-button">Contact</a>
+                <button class="nav-toggle" aria-label="Open menu" data-i18n-aria-label="common.navToggleLabel" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </div>
     </header>
 
     <div class="marquee">
         <div class="marquee-track">
-            <span>NEXUS — <em>まずは無料で</em> — NEXUS — <em>いつでもアップグレード</em> — NEXUS — <em>まずは無料で</em> — NEXUS — <em>いつでもアップグレード</em> —</span>
-            <span aria-hidden="true">NEXUS — <em>まずは無料で</em> — NEXUS — <em>いつでもアップグレード</em> — NEXUS — <em>まずは無料で</em> — NEXUS — <em>いつでもアップグレード</em> —</span>
+            <span>NEXUS — <em data-i18n="pricing.marquee1">Start for free</em> — NEXUS — <em data-i18n="pricing.marquee2">Upgrade anytime</em> — NEXUS — <em data-i18n="pricing.marquee1">Start for free</em> — NEXUS — <em data-i18n="pricing.marquee2">Upgrade anytime</em> —</span>
+            <span aria-hidden="true">NEXUS — <em data-i18n="pricing.marquee1">Start for free</em> — NEXUS — <em data-i18n="pricing.marquee2">Upgrade anytime</em> — NEXUS — <em data-i18n="pricing.marquee1">Start for free</em> — NEXUS — <em data-i18n="pricing.marquee2">Upgrade anytime</em> —</span>
         </div>
     </div>
 
@@ -60,8 +62,8 @@
             <div class="skyline-vignette"></div>
             <div class="page-hero-inner" data-reveal>
                 <p class="page-hero-subtitle">PRICING</p>
-                <h2>あなたに合った<span class="break">プランを</span></h2>
-                <p>まずは無料で。必要になったらいつでもアップグレードできます。</p>
+                <h2 data-i18n-html="pricing.heroHeadingHtml">Find the <span class="break">right plan</span> for you</h2>
+                <p data-i18n="pricing.heroText">Start free. Upgrade anytime you need to.</p>
             </div>
         </section>
 
@@ -75,25 +77,25 @@
                 <div class="persona-badge">NEXUS · <span>FREE PLAN</span></div>
                 <div class="persona-name-overlay">
                     <p class="persona-label">FREE PLAN</p>
-                    <h3>スターター</h3>
+                    <h3 data-i18n="pricing.freeName">Starter</h3>
                 </div>
             </div>
             <div class="persona-content">
                 <p class="feature-tag">FREE PLAN</p>
-                <p class="plan-price">¥0<span>/月</span></p>
-                <p class="feature-summary">まずは無料で。基本の機能だけで十分な方に。</p>
+                <p class="plan-price">¥0<span data-i18n="pricing.perMonth">/mo</span></p>
+                <p class="feature-summary" data-i18n="pricing.freeSummary">Start free — perfect if the basics are all you need.</p>
                 <ul class="plan-detail-list">
-                    <li>基本のスケジュール管理</li>
-                    <li>1日10回までの会話</li>
-                    <li>メモ機能</li>
+                    <li data-i18n="pricing.freeList1">Basic schedule management</li>
+                    <li data-i18n="pricing.freeList2">Up to 10 conversations a day</li>
+                    <li data-i18n="pricing.freeList3">Notes feature</li>
                 </ul>
-                <blockquote class="persona-quote">「まずは、ここから始めましょう。」</blockquote>
+                <blockquote class="persona-quote" data-i18n="pricing.freeQuote">“Let's start right here.”</blockquote>
                 <div class="detail-cards">
-                    <span class="detail-card" data-reveal="pop">📅 基本のスケジュール管理</span>
-                    <span class="detail-card" data-reveal="pop">💬 1日10回まで会話</span>
-                    <span class="detail-card" data-reveal="pop">📝 メモ機能つき</span>
+                    <span class="detail-card" data-reveal="pop" data-i18n="pricing.freeCard1">📅 Basic schedule management</span>
+                    <span class="detail-card" data-reveal="pop" data-i18n="pricing.freeCard2">💬 Up to 10 conversations/day</span>
+                    <span class="detail-card" data-reveal="pop" data-i18n="pricing.freeCard3">📝 Includes notes</span>
                 </div>
-                <a href="#" class="button">始める ➡</a>
+                <a href="#" class="button" data-i18n="pricing.freeButton">Get started ➡</a>
             </div>
         </div>
 
@@ -104,27 +106,28 @@
             <div class="persona-portrait">
                 <div class="persona-portrait-bg"></div>
                 <div class="persona-icon">🚀</div>
-                <div class="persona-badge">NEXUS · <span>PRO PLAN · 人気</span></div>
+                <div class="persona-badge">NEXUS · <span data-i18n="pricing.proBadge">PRO PLAN · Popular</span></div>
                 <div class="persona-name-overlay">
-                    <p class="persona-label">PRO PLAN · 人気</p>
-                    <h3>パートナー</h3>
+                    <p class="persona-label" data-i18n="pricing.proBadge">PRO PLAN · Popular</p>
+                    <h3 data-i18n="pricing.proName">Partner</h3>
                 </div>
             </div>
             <div class="persona-content">
                 <p class="feature-tag">PRO PLAN</p>
-                <p class="plan-price">¥980<span>/月</span></p>
-                <p class="feature-summary">会話も家も健康も。本気で毎日に寄り添うなら、これ。</p>
+                <p class="plan-price">¥980<span data-i18n="pricing.perMonth">/mo</span></p>
+                <p class="feature-summary" data-i18n="pricing.proSummary">Conversations, your home, your health — if you want NEXUS to truly show up for you, this is it.</p>
                 <ul class="plan-detail-list">
-                    <li>無制限の会話</li>
-                    <li>スマートホーム連携</li>
-                    <li>健康サポート機能</li>
+                    <li data-i18n="pricing.proList1">Unlimited conversations</li>
+                    <li data-i18n="pricing.proList2">Smart home integration</li>
+                    <li data-i18n="pricing.proList3">Wellbeing support</li>
                 </ul>
-                <blockquote class="persona-quote">「あなたの毎日に、本気で寄り添います。」</blockquote>
+                <blockquote class="persona-quote" data-i18n="pricing.proQuote">“I'm here for your every day, for real.”</blockquote>
                 <div class="detail-cards">
-                    <span class="detail-card" data-reveal="pop">♾️ 無制限の会話</span>
-                    <span class="detail-card" data-reveal="pop">🏠 スマートホーム連携</span>
-                    <span class="detail-card" data-reveal="pop">❤️ 健康サポート機能</span>
+                    <span class="detail-card" data-reveal="pop" data-i18n="pricing.proCard1">♾️ Unlimited conversations</span>
+                    <span class="detail-card" data-reveal="pop" data-i18n="pricing.proCard2">🏠 Smart home integration</span>
+                    <span class="detail-card" data-reveal="pop" data-i18n="pricing.proCard3">❤️ Wellbeing support</span>
                 </div>
+<<<<<<< HEAD
                 <button type="button" id="pro-checkout-toggle" class="button">Proを選ぶ ➡</button>
 
                 <div id="pro-payment-panel" style="display:none;margin-top:16px;padding:16px;border:1px solid var(--border);
@@ -140,6 +143,9 @@
                     <div id="paypal-button-container"></div>
                     <p id="payment-status" style="font-size:12px;color:var(--text-dim);margin:10px 0 0;"></p>
                 </div>
+=======
+                <a href="#" class="button" data-i18n="pricing.proButton">Choose Pro ➡</a>
+>>>>>>> 4c86c611f20f80007f1595d1896cbb0aebb91e32
             </div>
         </div>
 
@@ -153,25 +159,25 @@
                 <div class="persona-badge">NEXUS · <span>BUSINESS PLAN</span></div>
                 <div class="persona-name-overlay">
                     <p class="persona-label">BUSINESS PLAN</p>
-                    <h3>コマンダー</h3>
+                    <h3 data-i18n="pricing.bizName">Commander</h3>
                 </div>
             </div>
             <div class="persona-content">
                 <p class="feature-tag">BUSINESS PLAN</p>
-                <p class="plan-price">¥2,980<span>/月</span></p>
-                <p class="feature-summary">チームで使うなら、専用サポートとAPI連携まで。</p>
+                <p class="plan-price">¥2,980<span data-i18n="pricing.perMonth">/mo</span></p>
+                <p class="feature-summary" data-i18n="pricing.bizSummary">Built for teams — with dedicated support and API access.</p>
                 <ul class="plan-detail-list">
-                    <li>チームでの共有機能</li>
-                    <li>専用サポート</li>
-                    <li>API連携</li>
+                    <li data-i18n="pricing.bizList1">Team sharing features</li>
+                    <li data-i18n="pricing.bizList2">Dedicated support</li>
+                    <li data-i18n="pricing.bizList3">API access</li>
                 </ul>
-                <blockquote class="persona-quote">「チーム全体を、一つにまとめます。」</blockquote>
+                <blockquote class="persona-quote" data-i18n="pricing.bizQuote">“I'll bring your whole team together.”</blockquote>
                 <div class="detail-cards">
-                    <span class="detail-card" data-reveal="pop">👥 チームでの共有機能</span>
-                    <span class="detail-card" data-reveal="pop">🎧 専用サポート</span>
-                    <span class="detail-card" data-reveal="pop">🔗 API連携</span>
+                    <span class="detail-card" data-reveal="pop" data-i18n="pricing.bizCard1">👥 Team sharing features</span>
+                    <span class="detail-card" data-reveal="pop" data-i18n="pricing.bizCard2">🎧 Dedicated support</span>
+                    <span class="detail-card" data-reveal="pop" data-i18n="pricing.bizCard3">🔗 API access</span>
                 </div>
-                <a href="#" class="button">相談する ➡</a>
+                <a href="#" class="button" data-i18n="pricing.bizButton">Talk to us ➡</a>
             </div>
         </div>
 
@@ -179,20 +185,20 @@
         <section class="pricing-section">
             <div class="faq-list">
                 <div class="faq-item" data-reveal>
-                    <h4>無料プランでもすべての機能が使えますか？</h4>
-                    <p>基本のスケジュール管理とメモ機能は無料プランでもご利用いただけます。スマートホーム連携や健康サポートはProプラン以上が対象です。</p>
+                    <h4 data-i18n="pricing.faqQ1">Can I use every feature on the free plan?</h4>
+                    <p data-i18n="pricing.faqA1">Basic schedule management and notes are available on the free plan. Smart home integration and wellbeing support require Pro or higher.</p>
                 </div>
                 <div class="faq-item" data-reveal>
-                    <h4>プランはいつでも変更できますか？</h4>
-                    <p>はい、いつでもアップグレード・ダウングレードが可能です。日割り計算で調整されます。</p>
+                    <h4 data-i18n="pricing.faqQ2">Can I change plans anytime?</h4>
+                    <p data-i18n="pricing.faqA2">Yes, you can upgrade or downgrade anytime. Charges are prorated automatically.</p>
                 </div>
                 <div class="faq-item" data-reveal>
-                    <h4>Businessプランは何人まで利用できますか？</h4>
-                    <p>基本は5名までとなっており、それ以上のチームでのご利用はお問い合わせください。</p>
+                    <h4 data-i18n="pricing.faqQ3">How many people can use the Business plan?</h4>
+                    <p data-i18n="pricing.faqA3">It covers up to 5 people by default — contact us for larger teams.</p>
                 </div>
                 <div class="faq-item" data-reveal>
-                    <h4>解約はいつでもできますか？</h4>
-                    <p>はい、契約期間の縛りはなく、いつでも解約可能です。</p>
+                    <h4 data-i18n="pricing.faqQ4">Can I cancel anytime?</h4>
+                    <p data-i18n="pricing.faqA4">Yes, there's no minimum commitment — cancel whenever you like.</p>
                 </div>
             </div>
         </section>
@@ -216,24 +222,24 @@
     <div style="display:flex;align-items:center;gap:10px;">
       <div style="width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,var(--cyan),var(--blue));
         display:flex;align-items:center;justify-content:center;font-weight:900;color:#0a0e1a;font-size:13px;">N</div>
-      <span style="font-size:14px;font-weight:600;">NEXUS アシスタント</span>
+      <span style="font-size:14px;font-weight:600;" data-i18n="common.chatTitle">NEXUS Assistant</span>
     </div>
     <span id="nexus-chat-close" style="cursor:pointer;color:var(--text-dim);font-size:16px;">×</span>
   </div>
 
   <div id="nexus-chat-messages" style="flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:10px;max-height:280px;">
     <div style="background:linear-gradient(90deg, rgba(79,224,212,0.15), rgba(108,141,255,0.15));border:1px solid var(--border);
-      padding:10px 14px;border-radius:12px;font-size:13px;max-width:85%;">
-      こんにちは！NEXUSです。何でも聞いてくださいね。
+      padding:10px 14px;border-radius:12px;font-size:13px;max-width:85%;" data-i18n="common.chatGreeting">
+      Hi! I'm NEXUS. Feel free to ask me anything.
     </div>
   </div>
 
   <div style="padding:12px;border-top:1px solid var(--border);display:flex;gap:8px;">
-    <input id="nexus-chat-input" type="text" placeholder="質問を入力してください"
+    <input id="nexus-chat-input" type="text" placeholder="Type your question" data-i18n-placeholder="common.chatPlaceholder"
       style="flex:1;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;
       color:var(--text);font-size:13px;font-family:inherit;">
     <button id="nexus-chat-send" style="background:linear-gradient(90deg,var(--cyan),var(--blue));border:none;
-      border-radius:10px;padding:0 14px;color:#0a0e1a;font-weight:700;cursor:pointer;font-size:13px;">送信</button>
+      border-radius:10px;padding:0 14px;color:#0a0e1a;font-weight:700;cursor:pointer;font-size:13px;" data-i18n="common.chatSend">Send</button>
   </div>
 </div>
 
@@ -277,10 +283,16 @@
     addMessage(question, true);
     input.value = "";
 
+    const t = (key, fallback) => {
+      const lang = localStorage.getItem("nexus-lang") === "ja" ? "ja" : "en";
+      const entry = window.NEXUS_I18N && NEXUS_I18N.common[key];
+      return entry ? entry[lang] : fallback;
+    };
+
     const loadingDiv = document.createElement("div");
     loadingDiv.style.fontSize = "13px";
     loadingDiv.style.color = "var(--text-dim)";
-    loadingDiv.textContent = "考え中...";
+    loadingDiv.textContent = t("chatThinking", "Thinking...");
     messages.appendChild(loadingDiv);
     messages.scrollTop = messages.scrollHeight;
 
@@ -295,11 +307,11 @@
       if(data.answer){
         addMessage(data.answer, false);
       } else {
-        addMessage("エラーが発生しました。サーバーが起動しているか確認してください。", false);
+        addMessage(t("chatErrorGeneric", "Something went wrong. Please check that the server is running."), false);
       }
     } catch(err){
       loadingDiv.remove();
-      addMessage("サーバーに接続できません。server.pyが起動しているか確認してください。", false);
+      addMessage(t("chatErrorConnection", "Can't connect to the server. Please check that server.py is running."), false);
     }
   }
 
@@ -308,6 +320,7 @@
 })();
 </script>
 
+<<<<<<< HEAD
 <script>
 (function(){
   const toggleBtn = document.getElementById("pro-checkout-toggle");
@@ -395,6 +408,9 @@
 })();
 </script>
 
+=======
+<script src="translations.js"></script>
+>>>>>>> 4c86c611f20f80007f1595d1896cbb0aebb91e32
 <script src="motion.js"></script>
 
 </body>

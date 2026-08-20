@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>N.E.X.U.S</title>
+    <title data-i18n="index.title">N.E.X.U.S</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -20,10 +20,12 @@
                 <a href="pricing.html">Plans</a>
                 <a href="about_us.html">About Us</a>
             </nav>
-            <a href="about_us.html#contact" class="contact-button">Contact</a>
-            <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
+            <div class="header-actions">
+                <a href="about_us.html#contact" class="contact-button">Contact</a>
+                <button class="nav-toggle" aria-label="Open menu" data-i18n-aria-label="common.navToggleLabel" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -62,15 +64,14 @@
             <div class="home-inner">
                 <p class="home-label">YOUR EVERYDAY AI ASSISTANT</p>
                 <h2>
-                    <span class="line"><span class="line-inner">あなたの毎日に、</span></span>
-                    <span class="line"><span class="line-inner"><span class="break">ちょうどいいAI</span></span></span>
+                    <span class="line"><span class="line-inner" data-i18n="index.heroLine1">The right AI,</span></span>
+                    <span class="line"><span class="line-inner"><span class="break" data-i18n="index.heroLine2Html">for every day</span></span></span>
                 </h2>
-                <p class="home-text">
-                    予定管理から家電操作まで、
-                    NEXUSがあなたの一日をそっとサポートします。
+                <p class="home-text" data-i18n="index.heroText">
+                    From scheduling to smart home control, NEXUS quietly supports your day.
                 </p>
-                <a href="pricing.html" class="button">無料で始める ➡</a>
-                <img src="chat-preview.png" alt="NEXUSとの会話例" class="hero-image">
+                <a href="pricing.html" class="button" data-i18n="index.heroButton">Start for free ➡</a>
+                <img src="chat-preview.png" alt="Example conversation with NEXUS" data-i18n-alt="index.heroImageAlt" class="hero-image">
             </div>
         </section>
 
@@ -78,7 +79,7 @@
         <section id="features" class="features-section">
             <div class="section-heading" data-reveal>
                 <p class="section-heading-subtitle">FEATURES</p>
-                <h2>NEXUSにできること</h2>
+                <h2 data-i18n="index.featuresHeading">What NEXUS can do</h2>
             </div>
 
             <div class="persona-row accent-cyan" data-reveal="left">
@@ -89,20 +90,20 @@
                     <div class="persona-badge">NEXUS · <span>SCHEDULE MODE</span></div>
                     <div class="persona-name-overlay">
                         <p class="persona-label">SCHEDULE MODE</p>
-                        <h3>プランナー</h3>
+                        <h3 data-i18n="index.p1Name">Planner</h3>
                     </div>
                 </div>
                 <div class="persona-content">
                     <div class="feature-text">
                         <p class="feature-tag">SCHEDULE</p>
-                        <h3>スケジュール管理</h3>
-                        <p class="feature-summary">予定を自動で整理して、最適なタイミングで教えてくれます。</p>
+                        <h3 data-i18n="index.p1Title">Schedule Management</h3>
+                        <p class="feature-summary" data-i18n="index.p1Summary">Automatically organizes your schedule and tells you at just the right moment.</p>
                     </div>
-                    <blockquote class="persona-quote">「明日の予定は、もう把握してます。」</blockquote>
+                    <blockquote class="persona-quote" data-i18n="index.p1Quote">“I already know what's on your schedule tomorrow.”</blockquote>
                     <div class="detail-cards">
-                        <span class="detail-card" data-reveal="pop">🎙️ 音声で予定登録</span>
-                        <span class="detail-card" data-reveal="pop">⚡ 衝突を自動検知</span>
-                        <span class="detail-card" data-reveal="pop">🔔 前日にリマインド</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.p1Card1">🎙️ Add events by voice</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.p1Card2">⚡ Detects conflicts automatically</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.p1Card3">🔔 Reminds you the day before</span>
                     </div>
                 </div>
             </div>
@@ -117,20 +118,20 @@
                     <div class="persona-badge">NEXUS · <span>SMART HOME MODE</span></div>
                     <div class="persona-name-overlay">
                         <p class="persona-label">SMART HOME MODE</p>
-                        <h3>ガーディアン</h3>
+                        <h3 data-i18n="index.p2Name">Guardian</h3>
                     </div>
                 </div>
                 <div class="persona-content">
                     <div class="feature-text">
                         <p class="feature-tag">SMART HOME</p>
-                        <h3>スマートホーム連携</h3>
-                        <p class="feature-summary">照明やエアコンを声だけで操作できます。</p>
+                        <h3 data-i18n="index.p2Title">Smart Home Integration</h3>
+                        <p class="feature-summary" data-i18n="index.p2Summary">Control lights and AC with just your voice.</p>
                     </div>
-                    <blockquote class="persona-quote">「『行ってきます』のひと言で、全部消します。」</blockquote>
+                    <blockquote class="persona-quote" data-i18n="index.p2Quote">“Say ‘heading out’ and I'll switch everything off.”</blockquote>
                     <div class="detail-cards">
-                        <span class="detail-card" data-reveal="pop">🔌 主要メーカーに対応</span>
-                        <span class="detail-card" data-reveal="pop">🚪 外出先から遠隔操作</span>
-                        <span class="detail-card" data-reveal="pop">🌙 一括オフで安心</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.p2Card1">🔌 Works with major brands</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.p2Card2">🚪 Control it remotely</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.p2Card3">🌙 One-tap shutdown, total peace of mind</span>
                     </div>
                 </div>
             </div>
@@ -145,20 +146,20 @@
                     <div class="persona-badge">NEXUS · <span>NOTES MODE</span></div>
                     <div class="persona-name-overlay">
                         <p class="persona-label">NOTES MODE</p>
-                        <h3>スクライブ</h3>
+                        <h3 data-i18n="index.p3Name">Scribe</h3>
                     </div>
                 </div>
                 <div class="persona-content">
                     <div class="feature-text">
                         <p class="feature-tag">NOTES</p>
-                        <h3>メモ・要約</h3>
-                        <p class="feature-summary">会話やメモを自動で整理・要約します。</p>
+                        <h3 data-i18n="index.p3Title">Notes &amp; Summaries</h3>
+                        <p class="feature-summary" data-i18n="index.p3Summary">Automatically organizes and summarizes your conversations and notes.</p>
                     </div>
-                    <blockquote class="persona-quote">「大事なところだけ、残しておきます。」</blockquote>
+                    <blockquote class="persona-quote" data-i18n="index.p3Quote">“I'll keep only what matters.”</blockquote>
                     <div class="detail-cards">
-                        <span class="detail-card" data-reveal="pop">🗣️ 自動文字起こし</span>
-                        <span class="detail-card" data-reveal="pop">🏷️ 要約とタグ付け</span>
-                        <span class="detail-card" data-reveal="pop">🔍 キーワード検索</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.p3Card1">🗣️ Automatic transcription</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.p3Card2">🏷️ Summarized and tagged</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.p3Card3">🔍 Searchable by keyword</span>
                     </div>
                 </div>
             </div>
@@ -173,20 +174,20 @@
                     <div class="persona-badge">NEXUS · <span>WELLBEING MODE</span></div>
                     <div class="persona-name-overlay">
                         <p class="persona-label">WELLBEING MODE</p>
-                        <h3>コンパニオン</h3>
+                        <h3 data-i18n="index.p4Name">Companion</h3>
                     </div>
                 </div>
                 <div class="persona-content">
                     <div class="feature-text">
                         <p class="feature-tag">WELLBEING</p>
-                        <h3>健康サポート</h3>
-                        <p class="feature-summary">生活リズムに合わせて、軽くアドバイスします。</p>
+                        <h3 data-i18n="index.p4Title">Wellbeing Support</h3>
+                        <p class="feature-summary" data-i18n="index.p4Summary">Gentle advice, tuned to your daily rhythm.</p>
                     </div>
-                    <blockquote class="persona-quote">「そろそろ、休憩しませんか？」</blockquote>
+                    <blockquote class="persona-quote" data-i18n="index.p4Quote">“How about a break, right about now?”</blockquote>
                     <div class="detail-cards">
-                        <span class="detail-card" data-reveal="pop">😴 睡眠リズムを記録</span>
-                        <span class="detail-card" data-reveal="pop">💧 水分補給を提案</span>
-                        <span class="detail-card" data-reveal="pop">📋 体調メモを簡易記録</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.p4Card1">😴 Tracks your sleep rhythm</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.p4Card2">💧 Nudges you to hydrate</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.p4Card3">📋 Quick health notes</span>
                     </div>
                 </div>
             </div>
@@ -196,7 +197,7 @@
         <section id="pricing" class="pricing-section">
             <div class="section-heading" data-reveal>
                 <p class="section-heading-subtitle">PRICING</p>
-                <h2>あなたに合ったプランを</h2>
+                <h2 data-i18n="index.pricingHeading">Find the plan that's right for you</h2>
             </div>
 
             <div class="persona-row accent-cyan" data-reveal="left">
@@ -207,25 +208,25 @@
                     <div class="persona-badge">NEXUS · <span>FREE PLAN</span></div>
                     <div class="persona-name-overlay">
                         <p class="persona-label">FREE PLAN</p>
-                        <h3>スターター</h3>
+                        <h3 data-i18n="index.freeName">Starter</h3>
                     </div>
                 </div>
                 <div class="persona-content">
                     <p class="feature-tag">FREE PLAN</p>
-                    <p class="plan-price">¥0<span>/月</span></p>
-                    <p class="feature-summary">まずは無料で。基本の機能だけで十分な方に。</p>
+                    <p class="plan-price">¥0<span data-i18n="index.perMonth">/mo</span></p>
+                    <p class="feature-summary" data-i18n="index.freeSummary">Start free — perfect if the basics are all you need.</p>
                     <ul class="plan-detail-list">
-                        <li>基本のスケジュール管理</li>
-                        <li>1日10回までの会話</li>
-                        <li>メモ機能</li>
+                        <li data-i18n="index.freeList1">Basic schedule management</li>
+                        <li data-i18n="index.freeList2">Up to 10 conversations a day</li>
+                        <li data-i18n="index.freeList3">Notes feature</li>
                     </ul>
-                    <blockquote class="persona-quote">「まずは、ここから始めましょう。」</blockquote>
+                    <blockquote class="persona-quote" data-i18n="index.freeQuote">“Let's start right here.”</blockquote>
                     <div class="detail-cards">
-                        <span class="detail-card" data-reveal="pop">📅 基本のスケジュール管理</span>
-                        <span class="detail-card" data-reveal="pop">💬 1日10回まで会話</span>
-                        <span class="detail-card" data-reveal="pop">📝 メモ機能つき</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.freeCard1">📅 Basic schedule management</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.freeCard2">💬 Up to 10 conversations/day</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.freeCard3">📝 Includes notes</span>
                     </div>
-                    <a href="#" class="button">始める ➡</a>
+                    <a href="#" class="button" data-i18n="index.freeButton">Get started ➡</a>
                 </div>
             </div>
 
@@ -236,28 +237,28 @@
                 <div class="persona-portrait">
                     <div class="persona-portrait-bg"></div>
                     <div class="persona-icon">🚀</div>
-                    <div class="persona-badge">NEXUS · <span>PRO PLAN · 人気</span></div>
+                    <div class="persona-badge">NEXUS · <span data-i18n="index.proBadge">PRO PLAN · Popular</span></div>
                     <div class="persona-name-overlay">
-                        <p class="persona-label">PRO PLAN · 人気</p>
-                        <h3>パートナー</h3>
+                        <p class="persona-label" data-i18n="index.proBadge">PRO PLAN · Popular</p>
+                        <h3 data-i18n="index.proName">Partner</h3>
                     </div>
                 </div>
                 <div class="persona-content">
                     <p class="feature-tag">PRO PLAN</p>
-                    <p class="plan-price">¥980<span>/月</span></p>
-                    <p class="feature-summary">会話も家も健康も。本気で毎日に寄り添うなら、これ。</p>
+                    <p class="plan-price">¥980<span data-i18n="index.perMonth">/mo</span></p>
+                    <p class="feature-summary" data-i18n="index.proSummary">Conversations, your home, your health — if you want NEXUS to truly show up for you, this is it.</p>
                     <ul class="plan-detail-list">
-                        <li>無制限の会話</li>
-                        <li>スマートホーム連携</li>
-                        <li>健康サポート機能</li>
+                        <li data-i18n="index.proList1">Unlimited conversations</li>
+                        <li data-i18n="index.proList2">Smart home integration</li>
+                        <li data-i18n="index.proList3">Wellbeing support</li>
                     </ul>
-                    <blockquote class="persona-quote">「あなたの毎日に、本気で寄り添います。」</blockquote>
+                    <blockquote class="persona-quote" data-i18n="index.proQuote">“I'm here for your every day, for real.”</blockquote>
                     <div class="detail-cards">
-                        <span class="detail-card" data-reveal="pop">♾️ 無制限の会話</span>
-                        <span class="detail-card" data-reveal="pop">🏠 スマートホーム連携</span>
-                        <span class="detail-card" data-reveal="pop">❤️ 健康サポート機能</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.proCard1">♾️ Unlimited conversations</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.proCard2">🏠 Smart home integration</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.proCard3">❤️ Wellbeing support</span>
                     </div>
-                    <a href="#" class="button">Proを選ぶ ➡</a>
+                    <a href="#" class="button" data-i18n="index.proButton">Choose Pro ➡</a>
                 </div>
             </div>
 
@@ -271,25 +272,25 @@
                     <div class="persona-badge">NEXUS · <span>BUSINESS PLAN</span></div>
                     <div class="persona-name-overlay">
                         <p class="persona-label">BUSINESS PLAN</p>
-                        <h3>コマンダー</h3>
+                        <h3 data-i18n="index.bizName">Commander</h3>
                     </div>
                 </div>
                 <div class="persona-content">
                     <p class="feature-tag">BUSINESS PLAN</p>
-                    <p class="plan-price">¥2,980<span>/月</span></p>
-                    <p class="feature-summary">チームで使うなら、専用サポートとAPI連携まで。</p>
+                    <p class="plan-price">¥2,980<span data-i18n="index.perMonth">/mo</span></p>
+                    <p class="feature-summary" data-i18n="index.bizSummary">Built for teams — with dedicated support and API access.</p>
                     <ul class="plan-detail-list">
-                        <li>チームでの共有機能</li>
-                        <li>専用サポート</li>
-                        <li>API連携</li>
+                        <li data-i18n="index.bizList1">Team sharing features</li>
+                        <li data-i18n="index.bizList2">Dedicated support</li>
+                        <li data-i18n="index.bizList3">API access</li>
                     </ul>
-                    <blockquote class="persona-quote">「チーム全体を、一つにまとめます。」</blockquote>
+                    <blockquote class="persona-quote" data-i18n="index.bizQuote">“I'll bring your whole team together.”</blockquote>
                     <div class="detail-cards">
-                        <span class="detail-card" data-reveal="pop">👥 チームでの共有機能</span>
-                        <span class="detail-card" data-reveal="pop">🎧 専用サポート</span>
-                        <span class="detail-card" data-reveal="pop">🔗 API連携</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.bizCard1">👥 Team sharing features</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.bizCard2">🎧 Dedicated support</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.bizCard3">🔗 API access</span>
                     </div>
-                    <a href="#" class="button">相談する ➡</a>
+                    <a href="#" class="button" data-i18n="index.bizButton">Talk to us ➡</a>
                 </div>
             </div>
         </section>
@@ -298,7 +299,7 @@
         <section id="about" class="about-section">
             <div class="section-heading" data-reveal>
                 <p class="section-heading-subtitle">ABOUT US</p>
-                <h2>NEXUSについて</h2>
+                <h2 data-i18n="index.aboutHeading">About NEXUS</h2>
             </div>
             <div class="persona-row accent-orange" data-reveal="left">
                 <p class="feature-index">01</p>
@@ -308,20 +309,20 @@
                     <div class="persona-badge">NEXUS · <span>CHAPTER 01</span></div>
                     <div class="persona-name-overlay">
                         <p class="persona-label">CHAPTER 01 · ORIGIN</p>
-                        <h3>起源</h3>
+                        <h3 data-i18n="index.c1Name">Origin</h3>
                     </div>
                 </div>
                 <div class="persona-content">
                     <div class="feature-text">
                         <p class="feature-tag">ORIGIN</p>
-                        <h3>始まりは、小さな想いから</h3>
-                        <p class="feature-summary">忙しい毎日を少しだけ楽にするために、NEXUSは生まれました。複雑な操作は必要ありません。話しかけるだけで、あなたの生活をサポートします。</p>
+                        <h3 data-i18n="index.c1Title">It started with a small idea</h3>
+                        <p class="feature-summary" data-i18n="index.c1Summary">NEXUS was built to make busy days a little easier. No complicated setup — just talk, and it supports your life.</p>
                     </div>
-                    <blockquote class="persona-quote">「必要な時だけ、そっと支える。」</blockquote>
+                    <blockquote class="persona-quote" data-i18n="index.c1Quote">“Quietly there, only when you need it.”</blockquote>
                     <div class="detail-cards">
-                        <span class="detail-card" data-reveal="pop">🗓️ 2023年に開発スタート</span>
-                        <span class="detail-card" data-reveal="pop">👨‍💻 開発者チームの想い</span>
-                        <span class="detail-card" data-reveal="pop">🤝 必要な時だけ、そっと</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.c1Card1">🗓️ Development started in 2023</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.c1Card2">👨‍💻 Born from a small dev team's idea</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.c1Card3">🤝 Only when you need it</span>
                     </div>
                 </div>
             </div>
@@ -336,20 +337,20 @@
                     <div class="persona-badge">NEXUS · <span>CHAPTER 02</span></div>
                     <div class="persona-name-overlay">
                         <p class="persona-label">CHAPTER 02 · PHILOSOPHY</p>
-                        <h3>哲学</h3>
+                        <h3 data-i18n="index.c2Name">Philosophy</h3>
                     </div>
                 </div>
                 <div class="persona-content">
                     <div class="feature-text">
                         <p class="feature-tag">PHILOSOPHY</p>
-                        <h3>静かに、寄り添う</h3>
-                        <p class="feature-summary">目立つ通知や複雑な設定ではなく、必要な瞬間に、必要なだけ。NEXUSは声をかけずとも寄り添う、そんな存在を目指しています。</p>
+                        <h3 data-i18n="index.c2Title">Quietly, by your side</h3>
+                        <p class="feature-summary" data-i18n="index.c2Summary">Not loud notifications or complicated settings — just the right amount, at the right moment. NEXUS aims to be there for you without ever demanding attention.</p>
                     </div>
-                    <blockquote class="persona-quote">「テクノロジーは、静かであるべき。」</blockquote>
+                    <blockquote class="persona-quote" data-i18n="index.c2Quote">“Technology should be quiet.”</blockquote>
                     <div class="detail-cards">
-                        <span class="detail-card" data-reveal="pop">🔕 通知は最小限に</span>
-                        <span class="detail-card" data-reveal="pop">⚙️ 複雑な設定は不要</span>
-                        <span class="detail-card" data-reveal="pop">💭 寄り添う存在へ</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.c2Card1">🔕 Minimal notifications</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.c2Card2">⚙️ No complicated setup</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.c2Card3">💭 Always by your side</span>
                     </div>
                 </div>
             </div>
@@ -364,20 +365,20 @@
                     <div class="persona-badge">NEXUS · <span>CHAPTER 03</span></div>
                     <div class="persona-name-overlay">
                         <p class="persona-label">CHAPTER 03 · FUTURE</p>
-                        <h3>未来</h3>
+                        <h3 data-i18n="index.c3Name">Future</h3>
                     </div>
                 </div>
                 <div class="persona-content">
                     <div class="feature-text">
                         <p class="feature-tag">FUTURE</p>
-                        <h3>一人から、みんなへ</h3>
-                        <p class="feature-summary">現在は個人の日常サポートを中心に、家庭やチームでも使える機能へと少しずつ広げています。</p>
+                        <h3 data-i18n="index.c3Title">From one person to everyone</h3>
+                        <p class="feature-summary" data-i18n="index.c3Summary">We started with everyday support for individuals, and we're gradually expanding into features for households and teams too.</p>
                     </div>
-                    <blockquote class="persona-quote">「一人から、みんなへ。少しずつ広がっています。」</blockquote>
+                    <blockquote class="persona-quote" data-i18n="index.c3Quote">“From one person to everyone — growing, little by little.”</blockquote>
                     <div class="detail-cards">
-                        <span class="detail-card" data-reveal="pop">🏠 個人から家庭へ</span>
-                        <span class="detail-card" data-reveal="pop">👥 チームでも使える機能</span>
-                        <span class="detail-card" data-reveal="pop">🌍 少しずつ広がる未来</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.c3Card1">🏠 From individuals to households</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.c3Card2">👥 Features built for teams too</span>
+                        <span class="detail-card" data-reveal="pop" data-i18n="index.c3Card3">🌍 A future that keeps expanding</span>
                     </div>
                 </div>
             </div>
@@ -402,24 +403,24 @@
     <div style="display:flex;align-items:center;gap:10px;">
       <div style="width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,var(--cyan),var(--blue));
         display:flex;align-items:center;justify-content:center;font-weight:900;color:#0a0e1a;font-size:13px;">N</div>
-      <span style="font-size:14px;font-weight:600;">NEXUS アシスタント</span>
+      <span style="font-size:14px;font-weight:600;" data-i18n="common.chatTitle">NEXUS Assistant</span>
     </div>
     <span id="nexus-chat-close" style="cursor:pointer;color:var(--text-dim);font-size:16px;">×</span>
   </div>
 
   <div id="nexus-chat-messages" style="flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:10px;max-height:280px;">
     <div style="background:linear-gradient(90deg, rgba(79,224,212,0.15), rgba(108,141,255,0.15));border:1px solid var(--border);
-      padding:10px 14px;border-radius:12px;font-size:13px;max-width:85%;">
-      こんにちは！NEXUSです。何でも聞いてくださいね。
+      padding:10px 14px;border-radius:12px;font-size:13px;max-width:85%;" data-i18n="common.chatGreeting">
+      Hi! I'm NEXUS. Feel free to ask me anything.
     </div>
   </div>
 
   <div style="padding:12px;border-top:1px solid var(--border);display:flex;gap:8px;">
-    <input id="nexus-chat-input" type="text" placeholder="質問を入力してください"
+    <input id="nexus-chat-input" type="text" placeholder="Type your question" data-i18n-placeholder="common.chatPlaceholder"
       style="flex:1;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;
       color:var(--text);font-size:13px;font-family:inherit;">
     <button id="nexus-chat-send" style="background:linear-gradient(90deg,var(--cyan),var(--blue));border:none;
-      border-radius:10px;padding:0 14px;color:#0a0e1a;font-weight:700;cursor:pointer;font-size:13px;">送信</button>
+      border-radius:10px;padding:0 14px;color:#0a0e1a;font-weight:700;cursor:pointer;font-size:13px;" data-i18n="common.chatSend">Send</button>
   </div>
 </div>
 
@@ -463,10 +464,16 @@
     addMessage(question, true);
     input.value = "";
 
+    const t = (key, fallback) => {
+      const lang = localStorage.getItem("nexus-lang") === "ja" ? "ja" : "en";
+      const entry = window.NEXUS_I18N && NEXUS_I18N.common[key];
+      return entry ? entry[lang] : fallback;
+    };
+
     const loadingDiv = document.createElement("div");
     loadingDiv.style.fontSize = "13px";
     loadingDiv.style.color = "var(--text-dim)";
-    loadingDiv.textContent = "考え中...";
+    loadingDiv.textContent = t("chatThinking", "Thinking...");
     messages.appendChild(loadingDiv);
     messages.scrollTop = messages.scrollHeight;
 
@@ -481,11 +488,11 @@
       if(data.answer){
         addMessage(data.answer, false);
       } else {
-        addMessage("エラーが発生しました。サーバーが起動しているか確認してください。", false);
+        addMessage(t("chatErrorGeneric", "Something went wrong. Please check that the server is running."), false);
       }
     } catch(err){
       loadingDiv.remove();
-      addMessage("サーバーに接続できません。server.pyが起動しているか確認してください。", false);
+      addMessage(t("chatErrorConnection", "Can't connect to the server. Please check that server.py is running."), false);
     }
   }
 
@@ -494,6 +501,7 @@
 })();
 </script>
 
+<script src="translations.js"></script>
 <script src="motion.js"></script>
 
 </body>

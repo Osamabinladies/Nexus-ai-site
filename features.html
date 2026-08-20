@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>機能 — NEXUS</title>
+    <title data-i18n="features.title">Features — NEXUS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -20,17 +20,19 @@
                 <a href="pricing.html">Plans</a>
                 <a href="about_us.html">About Us</a>
             </nav>
-            <a href="about_us.html#contact" class="contact-button">Contact</a>
-            <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
+            <div class="header-actions">
+                <a href="about_us.html#contact" class="contact-button">Contact</a>
+                <button class="nav-toggle" aria-label="Open menu" data-i18n-aria-label="common.navToggleLabel" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </div>
     </header>
 
     <div class="marquee">
         <div class="marquee-track">
-            <span>NEXUS — <em>4つのコア機能</em> — NEXUS — <em>話しかけるだけ</em> — NEXUS — <em>4つのコア機能</em> — NEXUS — <em>話しかけるだけ</em> —</span>
-            <span aria-hidden="true">NEXUS — <em>4つのコア機能</em> — NEXUS — <em>話しかけるだけ</em> — NEXUS — <em>4つのコア機能</em> — NEXUS — <em>話しかけるだけ</em> —</span>
+            <span>NEXUS — <em data-i18n="features.marquee1">4 core features</em> — NEXUS — <em data-i18n="features.marquee2">Just talk to it</em> — NEXUS — <em data-i18n="features.marquee1">4 core features</em> — NEXUS — <em data-i18n="features.marquee2">Just talk to it</em> —</span>
+            <span aria-hidden="true">NEXUS — <em data-i18n="features.marquee1">4 core features</em> — NEXUS — <em data-i18n="features.marquee2">Just talk to it</em> — NEXUS — <em data-i18n="features.marquee1">4 core features</em> — NEXUS — <em data-i18n="features.marquee2">Just talk to it</em> —</span>
         </div>
     </div>
 
@@ -61,8 +63,8 @@
             <div class="skyline-vignette"></div>
             <div class="page-hero-inner" data-reveal>
                 <p class="page-hero-subtitle">FEATURES</p>
-                <h2>NEXUSが、<span class="break">毎日を軽くする</span></h2>
-                <p>4つのコア機能で、あなたの一日をそっとサポートします。</p>
+                <h2 data-i18n-html="features.heroHeadingHtml">NEXUS makes <span class="break">every day lighter</span></h2>
+                <p data-i18n="features.heroText">Four core features that quietly support your day.</p>
             </div>
         </section>
 
@@ -76,25 +78,25 @@
                 <div class="persona-badge">NEXUS · <span>SCHEDULE MODE</span></div>
                 <div class="persona-name-overlay">
                     <p class="persona-label">SCHEDULE MODE</p>
-                    <h3>プランナー</h3>
+                    <h3 data-i18n="features.p1Name">Planner</h3>
                 </div>
             </div>
             <div class="persona-content">
                 <div class="feature-text">
                     <p class="feature-tag">SCHEDULE</p>
-                    <h3>スケジュール管理</h3>
-                    <p class="feature-summary">予定を話しかけるだけで登録。重複や移動時間も自動で考慮します。</p>
+                    <h3 data-i18n="features.p1Title">Schedule Management</h3>
+                    <p class="feature-summary" data-i18n="features.p1Summary">Just say it, and it's on your schedule. Conflicts and travel time are factored in automatically.</p>
                     <ul>
-                        <li>音声・テキストで予定登録</li>
-                        <li>予定の衝突を自動検知</li>
-                        <li>前日・当日のリマインド通知</li>
+                        <li data-i18n="features.p1List1">Add events by voice or text</li>
+                        <li data-i18n="features.p1List2">Detects scheduling conflicts automatically</li>
+                        <li data-i18n="features.p1List3">Reminders the day before and the day of</li>
                     </ul>
                 </div>
-                <blockquote class="persona-quote">「明日の予定は、もう把握してます。」</blockquote>
+                <blockquote class="persona-quote" data-i18n="features.p1Quote">“I already know what's on your schedule tomorrow.”</blockquote>
                 <div class="detail-cards">
-                    <span class="detail-card" data-reveal="pop">🎙️ 音声で予定登録</span>
-                    <span class="detail-card" data-reveal="pop">⚡ 衝突を自動検知</span>
-                    <span class="detail-card" data-reveal="pop">🔔 前日にリマインド</span>
+                    <span class="detail-card" data-reveal="pop" data-i18n="features.p1Card1">🎙️ Add events by voice</span>
+                    <span class="detail-card" data-reveal="pop" data-i18n="features.p1Card2">⚡ Detects conflicts automatically</span>
+                    <span class="detail-card" data-reveal="pop" data-i18n="features.p1Card3">🔔 Reminds you the day before</span>
                 </div>
             </div>
         </div>
@@ -109,25 +111,25 @@
                 <div class="persona-badge">NEXUS · <span>SMART HOME MODE</span></div>
                 <div class="persona-name-overlay">
                     <p class="persona-label">SMART HOME MODE</p>
-                    <h3>ガーディアン</h3>
+                    <h3 data-i18n="features.p2Name">Guardian</h3>
                 </div>
             </div>
             <div class="persona-content">
                 <div class="feature-text">
                     <p class="feature-tag">SMART HOME</p>
-                    <h3>スマートホーム連携</h3>
-                    <p class="feature-summary">照明・エアコン・鍵など、対応家電をひとつの会話でまとめて操作。</p>
+                    <h3 data-i18n="features.p2Title">Smart Home Integration</h3>
+                    <p class="feature-summary" data-i18n="features.p2Summary">Lights, AC, locks, and more — control every compatible device in a single conversation.</p>
                     <ul>
-                        <li>主要スマート家電メーカーに対応</li>
-                        <li>「行ってきます」で一括オフ</li>
-                        <li>外出先からの遠隔操作</li>
+                        <li data-i18n="features.p2List1">Works with major smart device brands</li>
+                        <li data-i18n="features.p2List2">Say “heading out” for a one-tap shutdown</li>
+                        <li data-i18n="features.p2List3">Control everything remotely</li>
                     </ul>
                 </div>
-                <blockquote class="persona-quote">「『行ってきます』のひと言で、全部消します。」</blockquote>
+                <blockquote class="persona-quote" data-i18n="features.p2Quote">“Say ‘heading out’ and I'll switch everything off.”</blockquote>
                 <div class="detail-cards">
-                    <span class="detail-card" data-reveal="pop">🔌 主要メーカーに対応</span>
-                    <span class="detail-card" data-reveal="pop">🚪 外出先から遠隔操作</span>
-                    <span class="detail-card" data-reveal="pop">🌙 一括オフで安心</span>
+                    <span class="detail-card" data-reveal="pop" data-i18n="features.p2Card1">🔌 Works with major brands</span>
+                    <span class="detail-card" data-reveal="pop" data-i18n="features.p2Card2">🚪 Control it remotely</span>
+                    <span class="detail-card" data-reveal="pop" data-i18n="features.p2Card3">🌙 One-tap shutdown, total peace of mind</span>
                 </div>
             </div>
         </div>
@@ -142,25 +144,25 @@
                 <div class="persona-badge">NEXUS · <span>NOTES MODE</span></div>
                 <div class="persona-name-overlay">
                     <p class="persona-label">NOTES MODE</p>
-                    <h3>スクライブ</h3>
+                    <h3 data-i18n="features.p3Name">Scribe</h3>
                 </div>
             </div>
             <div class="persona-content">
                 <div class="feature-text">
                     <p class="feature-tag">NOTES</p>
-                    <h3>メモ・要約</h3>
-                    <p class="feature-summary">会議や会話のメモを自動で整理し、要点だけをまとめて残します。</p>
+                    <h3 data-i18n="features.p3Title">Notes &amp; Summaries</h3>
+                    <p class="feature-summary" data-i18n="features.p3Summary">Automatically organizes notes from meetings and conversations, keeping only what matters.</p>
                     <ul>
-                        <li>音声メモの自動文字起こし</li>
-                        <li>長文の要約とタグ付け</li>
-                        <li>過去のメモをキーワード検索</li>
+                        <li data-i18n="features.p3List1">Automatic transcription of voice memos</li>
+                        <li data-i18n="features.p3List2">Summarizes and tags long notes</li>
+                        <li data-i18n="features.p3List3">Search past notes by keyword</li>
                     </ul>
                 </div>
-                <blockquote class="persona-quote">「大事なところだけ、残しておきます。」</blockquote>
+                <blockquote class="persona-quote" data-i18n="features.p3Quote">“I'll keep only what matters.”</blockquote>
                 <div class="detail-cards">
-                    <span class="detail-card" data-reveal="pop">🗣️ 自動文字起こし</span>
-                    <span class="detail-card" data-reveal="pop">🏷️ 要約とタグ付け</span>
-                    <span class="detail-card" data-reveal="pop">🔍 キーワード検索</span>
+                    <span class="detail-card" data-reveal="pop" data-i18n="features.p3Card1">🗣️ Automatic transcription</span>
+                    <span class="detail-card" data-reveal="pop" data-i18n="features.p3Card2">🏷️ Summarized and tagged</span>
+                    <span class="detail-card" data-reveal="pop" data-i18n="features.p3Card3">🔍 Searchable by keyword</span>
                 </div>
             </div>
         </div>
@@ -175,25 +177,25 @@
                 <div class="persona-badge">NEXUS · <span>WELLBEING MODE</span></div>
                 <div class="persona-name-overlay">
                     <p class="persona-label">WELLBEING MODE</p>
-                    <h3>コンパニオン</h3>
+                    <h3 data-i18n="features.p4Name">Companion</h3>
                 </div>
             </div>
             <div class="persona-content">
                 <div class="feature-text">
                     <p class="feature-tag">WELLBEING</p>
-                    <h3>健康サポート</h3>
-                    <p class="feature-summary">生活リズムを見守り、無理のない範囲で軽いアドバイスを届けます。</p>
+                    <h3 data-i18n="features.p4Title">Wellbeing Support</h3>
+                    <p class="feature-summary" data-i18n="features.p4Summary">Watches your daily rhythm and offers gentle, no-pressure advice.</p>
                     <ul>
-                        <li>睡眠・活動リズムの記録</li>
-                        <li>水分補給や休憩のさりげない提案</li>
-                        <li>体調メモの簡易記録</li>
+                        <li data-i18n="features.p4List1">Tracks sleep and activity patterns</li>
+                        <li data-i18n="features.p4List2">Gentle nudges to hydrate or take a break</li>
+                        <li data-i18n="features.p4List3">Quick notes on how you're feeling</li>
                     </ul>
                 </div>
-                <blockquote class="persona-quote">「そろそろ、休憩しませんか？」</blockquote>
+                <blockquote class="persona-quote" data-i18n="features.p4Quote">“How about a break, right about now?”</blockquote>
                 <div class="detail-cards">
-                    <span class="detail-card" data-reveal="pop">😴 睡眠リズムを記録</span>
-                    <span class="detail-card" data-reveal="pop">💧 水分補給を提案</span>
-                    <span class="detail-card" data-reveal="pop">📋 体調メモを簡易記録</span>
+                    <span class="detail-card" data-reveal="pop" data-i18n="features.p4Card1">😴 Tracks your sleep rhythm</span>
+                    <span class="detail-card" data-reveal="pop" data-i18n="features.p4Card2">💧 Nudges you to hydrate</span>
+                    <span class="detail-card" data-reveal="pop" data-i18n="features.p4Card3">📋 Quick health notes</span>
                 </div>
             </div>
         </div>
@@ -201,10 +203,10 @@
         <!-- banner at the bottom pushing people towards the pricing page -->
         <section class="cta-band" data-reveal="zoom">
             <div>
-                <h3>すべての機能を、無料で試せます</h3>
-                <p>クレジットカード登録不要。今日から始められます。</p>
+                <h3 data-i18n="features.ctaTitle">Try every feature, free</h3>
+                <p data-i18n="features.ctaText">No credit card required. Start today.</p>
             </div>
-            <a href="pricing.html" class="button">料金を見る ➡</a>
+            <a href="pricing.html" class="button" data-i18n="features.ctaButton">See pricing ➡</a>
         </section>
     </main>
 
@@ -226,24 +228,24 @@
     <div style="display:flex;align-items:center;gap:10px;">
       <div style="width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,var(--cyan),var(--blue));
         display:flex;align-items:center;justify-content:center;font-weight:900;color:#0a0e1a;font-size:13px;">N</div>
-      <span style="font-size:14px;font-weight:600;">NEXUS アシスタント</span>
+      <span style="font-size:14px;font-weight:600;" data-i18n="common.chatTitle">NEXUS Assistant</span>
     </div>
     <span id="nexus-chat-close" style="cursor:pointer;color:var(--text-dim);font-size:16px;">×</span>
   </div>
 
   <div id="nexus-chat-messages" style="flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:10px;max-height:280px;">
     <div style="background:linear-gradient(90deg, rgba(79,224,212,0.15), rgba(108,141,255,0.15));border:1px solid var(--border);
-      padding:10px 14px;border-radius:12px;font-size:13px;max-width:85%;">
-      こんにちは！NEXUSです。何でも聞いてくださいね。
+      padding:10px 14px;border-radius:12px;font-size:13px;max-width:85%;" data-i18n="common.chatGreeting">
+      Hi! I'm NEXUS. Feel free to ask me anything.
     </div>
   </div>
 
   <div style="padding:12px;border-top:1px solid var(--border);display:flex;gap:8px;">
-    <input id="nexus-chat-input" type="text" placeholder="質問を入力してください"
+    <input id="nexus-chat-input" type="text" placeholder="Type your question" data-i18n-placeholder="common.chatPlaceholder"
       style="flex:1;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;
       color:var(--text);font-size:13px;font-family:inherit;">
     <button id="nexus-chat-send" style="background:linear-gradient(90deg,var(--cyan),var(--blue));border:none;
-      border-radius:10px;padding:0 14px;color:#0a0e1a;font-weight:700;cursor:pointer;font-size:13px;">送信</button>
+      border-radius:10px;padding:0 14px;color:#0a0e1a;font-weight:700;cursor:pointer;font-size:13px;" data-i18n="common.chatSend">Send</button>
   </div>
 </div>
 
@@ -287,10 +289,16 @@
     addMessage(question, true);
     input.value = "";
 
+    const t = (key, fallback) => {
+      const lang = localStorage.getItem("nexus-lang") === "ja" ? "ja" : "en";
+      const entry = window.NEXUS_I18N && NEXUS_I18N.common[key];
+      return entry ? entry[lang] : fallback;
+    };
+
     const loadingDiv = document.createElement("div");
     loadingDiv.style.fontSize = "13px";
     loadingDiv.style.color = "var(--text-dim)";
-    loadingDiv.textContent = "考え中...";
+    loadingDiv.textContent = t("chatThinking", "Thinking...");
     messages.appendChild(loadingDiv);
     messages.scrollTop = messages.scrollHeight;
 
@@ -305,11 +313,11 @@
       if(data.answer){
         addMessage(data.answer, false);
       } else {
-        addMessage("エラーが発生しました。サーバーが起動しているか確認してください。", false);
+        addMessage(t("chatErrorGeneric", "Something went wrong. Please check that the server is running."), false);
       }
     } catch(err){
       loadingDiv.remove();
-      addMessage("サーバーに接続できません。server.pyが起動しているか確認してください。", false);
+      addMessage(t("chatErrorConnection", "Can't connect to the server. Please check that server.py is running."), false);
     }
   }
 
@@ -318,6 +326,7 @@
 })();
 </script>
 
+<script src="translations.js"></script>
 <script src="motion.js"></script>
 
 </body>
