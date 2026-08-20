@@ -220,6 +220,19 @@ var NEXUS_I18N = {
     bizCard3: { en: "🔗 API access", ja: "🔗 API連携" },
     bizButton: { en: "Talk to us ➡", ja: "相談する ➡" },
 
+    paymentSelectMethod: { en: "Choose a payment method (test mode — no real charge will occur)", ja: "お支払い方法を選択してください（テストモード・実際の請求は発生しません）" },
+    payWithCard: { en: "💳 Pay with card (Stripe)", ja: "💳 カードで支払う（Stripe）" },
+    paypalUnavailable: { en: "PayPal is currently unavailable.", ja: "PayPalは現在利用できません。" },
+    payRedirecting: { en: "Redirecting to Stripe checkout...", ja: "Stripeの決済ページに移動しています..." },
+    payGenericError: { en: "Something went wrong.", ja: "エラーが発生しました。" },
+    payConnectionError: { en: "Can't connect to the server. Please check that server.py is running.", ja: "サーバーに接続できません。server.pyが起動しているか確認してください。" },
+    payConfirming: { en: "Confirming your payment...", ja: "お支払いを確認しています..." },
+    payComplete: { en: "Payment complete! Welcome to NEXUS Pro.", ja: "お支払いが完了しました！NEXUS Proへようこそ。" },
+    payConfirmError: { en: "Something went wrong confirming the payment.", ja: "決済の確認中にエラーが発生しました。" },
+    paypalError: { en: "A PayPal error occurred. Please try again.", ja: "PayPalでエラーが発生しました。もう一度お試しください。" },
+    payConfigError: { en: "Couldn't load payment settings. Please check that server.py is running.", ja: "決済設定を読み込めませんでした。server.pyが起動しているか確認してください。" },
+    payCancelled: { en: "Payment was cancelled.", ja: "決済がキャンセルされました。" },
+
     faqQ1: { en: "Can I use every feature on the free plan?", ja: "無料プランでもすべての機能が使えますか？" },
     faqA1: { en: "Basic schedule management and notes are available on the free plan. Smart home integration and wellbeing support require Pro or higher.", ja: "基本のスケジュール管理とメモ機能は無料プランでもご利用いただけます。スマートホーム連携や健康サポートはProプラン以上が対象です。" },
     faqQ2: { en: "Can I change plans anytime?", ja: "プランはいつでも変更できますか？" },
@@ -272,6 +285,11 @@ var NEXUS_I18N = {
     labelMessage: { en: "Message", ja: "お問い合わせ内容" },
     placeholderName: { en: "Jordan Lee", ja: "山田 太郎" },
     placeholderMessage: { en: "Tell us what's on your mind", ja: "ご質問やご要望をご記入ください" },
-    submitButton: { en: "Send", ja: "送信する" }
+    submitButton: { en: "Send", ja: "送信する" },
+
+    contactSuccess: { en: "Thanks for reaching out — your message has been sent.", ja: "お問い合わせありがとうございます。メッセージを送信しました。" },
+    contactError: { en: "Something went wrong while sending. Please try again in a moment.", ja: "送信中にエラーが発生しました。しばらくしてからもう一度お試しください。" },
+    contactMissing: { en: "Please fill in all fields.", ja: "すべての項目を入力してください。" },
+    contactUnconfigured: { en: "The contact form isn't set up yet. Add SMTP settings to the server's .env file.", ja: "現在お問い合わせフォームは準備中です。サーバーの.envにSMTP設定を追加してください。" }
   }
 };
