@@ -42,7 +42,7 @@ PAYPAL_CLIENT_ID = os.environ.get("PAYPAL_CLIENT_ID")
 PAYPAL_CLIENT_SECRET = os.environ.get("PAYPAL_CLIENT_SECRET")
 PAYPAL_API_BASE = os.environ.get("PAYPAL_API_BASE", "https://api-m.sandbox.paypal.com")
 
-PRO_PLAN_NAME = "NEXUS Pro プラン"
+PRO_PLAN_NAME = {"en": "NEXUS Pro Plan", "ja": "NEXUS Pro プラン"}
 PRO_PLAN_PRICE_JPY = 980  # matches the price shown on pricing.html
 
 if STRIPE_SECRET_KEY:
@@ -63,150 +63,228 @@ CONTACT_EMAIL_TO = os.environ.get("CONTACT_EMAIL_TO") or SMTP_USERNAME
 # (features, pricing, FAQ, company story). No external API needed.
 # ---------------------------------------------------------------------------
 
+# Each intent matches on keywords in either language (so a question in
+# either English or Japanese is recognized), and answers in whichever
+# language the site is currently set to (English by default).
 INTENTS = [
     {
         "name": "greeting",
-        "keywords": ["こんにちは", "おはよう", "こんばんは", "はじめまして", "やあ", "hello", "hi"],
-        "answer": "こんにちは！NEXUSです。スケジュール管理、スマートホーム連携、メモ・要約、健康サポート、料金プランなど、気になることを聞いてくださいね。",
+        "keywords": ["こんにちは", "おはよう", "こんばんは", "はじめまして", "やあ", "hello", "hi", "hey"],
+        "answer": {
+            "en": "Hi! I'm NEXUS. Feel free to ask about schedule management, smart home integration, notes & summaries, wellbeing support, or pricing plans.",
+            "ja": "こんにちは！NEXUSです。スケジュール管理、スマートホーム連携、メモ・要約、健康サポート、料金プランなど、気になることを聞いてくださいね。",
+        },
     },
     {
         "name": "thanks",
         "keywords": ["ありがとう", "thanks", "thank you", "サンキュー", "助かった"],
-        "answer": "どういたしまして！他に気になることがあれば、いつでも聞いてください。",
+        "answer": {
+            "en": "You're welcome! Let me know if there's anything else you'd like to know.",
+            "ja": "どういたしまして！他に気になることがあれば、いつでも聞いてください。",
+        },
     },
     {
         "name": "overview",
-        "keywords": ["nexusとは", "nexusって", "何ができる", "できること", "機能一覧", "概要", "紹介"],
-        "answer": (
-            "NEXUSは毎日に寄り添うAIアシスタントです。①スケジュール管理（プランナー）"
-            "②スマートホーム連携（ガーディアン）③メモ・要約（スクライブ）"
-            "④健康サポート（コンパニオン）の4つのモードがあります。詳しく知りたいモードはありますか？"
-        ),
+        "keywords": ["nexusとは", "nexusって", "何ができる", "できること", "機能一覧", "概要", "紹介",
+                     "what is nexus", "about nexus", "overview", "what can nexus do"],
+        "answer": {
+            "en": ("NEXUS is an AI assistant that quietly supports your everyday life. It has four core modes: "
+                   "① Schedule Management (Planner) ② Smart Home Integration (Guardian) ③ Notes & Summaries (Scribe) "
+                   "④ Wellbeing Support (Companion). Want to know more about any of them?"),
+            "ja": ("NEXUSは毎日に寄り添うAIアシスタントです。①スケジュール管理（プランナー）"
+                   "②スマートホーム連携（ガーディアン）③メモ・要約（スクライブ）"
+                   "④健康サポート（コンパニオン）の4つのモードがあります。詳しく知りたいモードはありますか？"),
+        },
     },
     {
         "name": "schedule",
-        "keywords": ["スケジュール", "予定", "プランナー", "リマインド", "カレンダー", "音声で予定"],
-        "answer": (
-            "スケジュール管理（プランナーモード）は、予定を自動で整理して最適なタイミングで教えてくれます。"
-            "音声での予定登録、予定の衝突を自動検知、前日リマインドに対応しています。"
-        ),
+        "keywords": ["スケジュール", "予定", "プランナー", "リマインド", "カレンダー", "音声で予定",
+                     "schedule", "planner", "reminder", "calendar"],
+        "answer": {
+            "en": ("Schedule Management (Planner mode) automatically organizes your schedule and tells you at "
+                   "just the right moment. It supports adding events by voice, automatic conflict detection, "
+                   "and reminders the day before."),
+            "ja": ("スケジュール管理（プランナーモード）は、予定を自動で整理して最適なタイミングで教えてくれます。"
+                   "音声での予定登録、予定の衝突を自動検知、前日リマインドに対応しています。"),
+        },
     },
     {
         "name": "smart_home",
-        "keywords": ["スマートホーム", "家電", "照明", "エアコン", "ガーディアン", "遠隔操作"],
-        "answer": (
-            "スマートホーム連携（ガーディアンモード）では、照明やエアコンを声だけで操作できます。"
-            "主要メーカーに対応し、外出先からの遠隔操作や、外出時の一括オフにも対応しています。"
-        ),
+        "keywords": ["スマートホーム", "家電", "照明", "エアコン", "ガーディアン", "遠隔操作",
+                     "smart home", "guardian", "lights", "remote control", "appliances"],
+        "answer": {
+            "en": ("Smart Home Integration (Guardian mode) lets you control lights and AC with just your voice. "
+                   "It works with major brands, supports remote control from outside, and a one-tap shutdown "
+                   "when you head out."),
+            "ja": ("スマートホーム連携（ガーディアンモード）では、照明やエアコンを声だけで操作できます。"
+                   "主要メーカーに対応し、外出先からの遠隔操作や、外出時の一括オフにも対応しています。"),
+        },
     },
     {
         "name": "notes",
-        "keywords": ["メモ", "要約", "スクライブ", "文字起こし", "議事録", "ノート"],
-        "answer": (
-            "メモ・要約（スクライブモード）は、会話やメモを自動で整理・要約します。"
-            "音声の自動文字起こし、要約とタグ付け、キーワード検索に対応しています。"
-        ),
+        "keywords": ["メモ", "要約", "スクライブ", "文字起こし", "議事録", "ノート",
+                     "notes", "summary", "scribe", "transcription", "memo"],
+        "answer": {
+            "en": ("Notes & Summaries (Scribe mode) automatically organizes and summarizes your conversations "
+                   "and notes. It supports automatic transcription, summarizing with tags, and keyword search."),
+            "ja": ("メモ・要約（スクライブモード）は、会話やメモを自動で整理・要約します。"
+                   "音声の自動文字起こし、要約とタグ付け、キーワード検索に対応しています。"),
+        },
     },
     {
         "name": "wellbeing",
-        "keywords": ["健康", "睡眠", "水分", "コンパニオン", "休憩", "体調"],
-        "answer": (
-            "健康サポート（コンパニオンモード）は、生活リズムに合わせて軽くアドバイスします。"
-            "睡眠リズムの記録、水分補給の提案、体調メモの簡易記録ができます。"
-        ),
+        "keywords": ["健康", "睡眠", "水分", "コンパニオン", "休憩", "体調",
+                     "health", "sleep", "hydration", "companion", "wellbeing", "break"],
+        "answer": {
+            "en": ("Wellbeing Support (Companion mode) gives gentle advice tuned to your daily rhythm. It tracks "
+                   "your sleep rhythm, suggests hydration, and keeps quick health notes."),
+            "ja": ("健康サポート（コンパニオンモード）は、生活リズムに合わせて軽くアドバイスします。"
+                   "睡眠リズムの記録、水分補給の提案、体調メモの簡易記録ができます。"),
+        },
     },
     {
         "name": "pricing_overview",
-        "keywords": ["料金", "プラン", "値段", "いくら", "price", "価格", "月額"],
-        "answer": (
-            "料金プランは3種類です。スターター（無料/月）、パートナー（Proプラン・¥980/月・人気）、"
-            "コマンダー（Businessプラン・¥2,980/月）。どのプランについて詳しく知りたいですか？"
-        ),
+        "keywords": ["料金", "プラン", "値段", "いくら", "price", "価格", "月額",
+                     "pricing", "plan", "how much", "cost", "monthly"],
+        "answer": {
+            "en": ("There are three pricing plans: Starter (free/mo), Partner (Pro plan, ¥980/mo, most popular), "
+                   "and Commander (Business plan, ¥2,980/mo). Which plan would you like to know more about?"),
+            "ja": ("料金プランは3種類です。スターター（無料/月）、パートナー（Proプラン・¥980/月・人気）、"
+                   "コマンダー（Businessプラン・¥2,980/月）。どのプランについて詳しく知りたいですか？"),
+        },
     },
     {
         "name": "free_plan",
-        "keywords": ["無料プラン", "フリープラン", "スターター", "無料で"],
-        "answer": (
-            "無料プラン（スターター）は¥0/月です。基本のスケジュール管理、1日10回までの会話、"
-            "メモ機能が使えます。まずはここから気軽に始められます。"
-        ),
+        "keywords": ["無料プラン", "フリープラン", "スターター", "無料で",
+                     "free plan", "starter", "free"],
+        "answer": {
+            "en": ("The free plan (Starter) is ¥0/mo. It includes basic schedule management, up to 10 "
+                   "conversations a day, and the notes feature. It's an easy way to get started."),
+            "ja": ("無料プラン（スターター）は¥0/月です。基本のスケジュール管理、1日10回までの会話、"
+                   "メモ機能が使えます。まずはここから気軽に始められます。"),
+        },
     },
     {
         "name": "pro_plan",
-        "keywords": ["proプラン", "プロプラン", "パートナー", "980"],
-        "answer": (
-            "Proプラン（パートナー）は¥980/月です。無制限の会話、スマートホーム連携、"
-            "健康サポート機能が使える、一番人気のプランです。"
-        ),
+        "keywords": ["proプラン", "プロプラン", "パートナー", "980",
+                     "pro plan", "partner"],
+        "answer": {
+            "en": ("The Pro plan (Partner) is ¥980/mo. It's the most popular plan, with unlimited conversations, "
+                   "smart home integration, and wellbeing support."),
+            "ja": ("Proプラン（パートナー）は¥980/月です。無制限の会話、スマートホーム連携、"
+                   "健康サポート機能が使える、一番人気のプランです。"),
+        },
     },
     {
         "name": "business_plan",
-        "keywords": ["businessプラン", "ビジネスプラン", "コマンダー", "2980", "法人"],
-        "answer": (
-            "Businessプラン（コマンダー）は¥2,980/月です。チームでの共有機能、専用サポート、"
-            "API連携が含まれます。基本は5名までのご利用で、それ以上のチームはお問い合わせください。"
-        ),
+        "keywords": ["businessプラン", "ビジネスプラン", "コマンダー", "2980", "法人",
+                     "business plan", "commander", "team plan"],
+        "answer": {
+            "en": ("The Business plan (Commander) is ¥2,980/mo. It includes team sharing features, dedicated "
+                   "support, and API access. It covers up to 5 people by default — contact us for larger teams."),
+            "ja": ("Businessプラン（コマンダー）は¥2,980/月です。チームでの共有機能、専用サポート、"
+                   "API連携が含まれます。基本は5名までのご利用で、それ以上のチームはお問い合わせください。"),
+        },
     },
     {
         "name": "plan_change",
-        "keywords": ["プラン変更", "アップグレード", "ダウングレード", "変更できます"],
-        "answer": "はい、プランはいつでもアップグレード・ダウングレードが可能です。差額は日割り計算で調整されます。",
+        "keywords": ["プラン変更", "アップグレード", "ダウングレード", "変更できます",
+                     "change plan", "upgrade", "downgrade"],
+        "answer": {
+            "en": "Yes, you can upgrade or downgrade your plan anytime. Charges are prorated automatically.",
+            "ja": "はい、プランはいつでもアップグレード・ダウングレードが可能です。差額は日割り計算で調整されます。",
+        },
     },
     {
         "name": "cancel",
-        "keywords": ["解約", "キャンセル", "退会", "やめたい"],
-        "answer": "はい、契約期間の縛りはなく、いつでも解約可能です。",
+        "keywords": ["解約", "キャンセル", "退会", "やめたい", "cancel", "unsubscribe"],
+        "answer": {
+            "en": "Yes, there's no minimum commitment — you can cancel anytime.",
+            "ja": "はい、契約期間の縛りはなく、いつでも解約可能です。",
+        },
     },
     {
         "name": "free_plan_limits",
-        "keywords": ["無料プランでも", "全部の機能", "無料でも使えます"],
-        "answer": (
-            "基本のスケジュール管理とメモ機能は無料プランでもご利用いただけます。"
-            "スマートホーム連携や健康サポートはProプラン以上が対象です。"
-        ),
+        "keywords": ["無料プランでも", "全部の機能", "無料でも使えます",
+                     "free plan features", "all features free"],
+        "answer": {
+            "en": ("Basic schedule management and notes are available on the free plan. Smart home integration "
+                   "and wellbeing support require Pro or higher."),
+            "ja": ("基本のスケジュール管理とメモ機能は無料プランでもご利用いただけます。"
+                   "スマートホーム連携や健康サポートはProプラン以上が対象です。"),
+        },
     },
     {
         "name": "business_team_size",
-        "keywords": ["何人まで", "人数", "チーム人数", "何名"],
-        "answer": "Businessプランは基本5名までとなっており、それ以上のチームでのご利用はお問い合わせください。",
+        "keywords": ["何人まで", "人数", "チーム人数", "何名",
+                     "how many people", "team size", "members"],
+        "answer": {
+            "en": "The Business plan covers up to 5 people by default — contact us for larger teams.",
+            "ja": "Businessプランは基本5名までとなっており、それ以上のチームでのご利用はお問い合わせください。",
+        },
     },
     {
         "name": "company",
-        "keywords": ["会社", "設立", "誰が作った", "開発者", "起源", "nexusについて", "運営会社"],
-        "answer": (
-            "NEXUSは2023年、「本当に必要な時だけそっと支えてくれるAIを作りたい」という開発者チームの想いから生まれました。"
-            "現在は12万人以上に利用され、平均評価は4.7です。"
-        ),
+        "keywords": ["会社", "設立", "誰が作った", "開発者", "起源", "nexusについて", "運営会社",
+                     "company", "founded", "who made this", "developer", "origin"],
+        "answer": {
+            "en": ("NEXUS was born in 2023 from a small dev team's idea to build an AI that would quietly step "
+                   "in only when truly needed. It's now used by over 120,000 people, with an average rating of 4.7."),
+            "ja": ("NEXUSは2023年、「本当に必要な時だけそっと支えてくれるAIを作りたい」という開発者チームの想いから生まれました。"
+                   "現在は12万人以上に利用され、平均評価は4.7です。"),
+        },
     },
     {
         "name": "philosophy",
-        "keywords": ["哲学", "理念", "コンセプト", "静かであるべき", "考え方"],
-        "answer": "NEXUSの哲学は「テクノロジーは、静かであるべき」。目立つ通知や複雑な設定ではなく、必要な瞬間に必要なだけ寄り添うことを目指しています。",
+        "keywords": ["哲学", "理念", "コンセプト", "静かであるべき", "考え方",
+                     "philosophy", "concept"],
+        "answer": {
+            "en": ("NEXUS's philosophy is \"technology should be quiet.\" Rather than loud notifications or "
+                   "complicated settings, we aim to be there for you only when truly needed."),
+            "ja": "NEXUSの哲学は「テクノロジーは、静かであるべき」。目立つ通知や複雑な設定ではなく、必要な瞬間に必要なだけ寄り添うことを目指しています。",
+        },
     },
     {
         "name": "future",
-        "keywords": ["未来", "今後", "これから", "展望", "ロードマップ"],
-        "answer": "現在は個人の日常サポートが中心ですが、「一人から、みんなへ」を合言葉に、家庭やチームでも使える機能へ少しずつ広げています。",
+        "keywords": ["未来", "今後", "これから", "展望", "ロードマップ",
+                     "future", "roadmap", "what's next"],
+        "answer": {
+            "en": ("Right now we focus on everyday support for individuals, but under the idea \"from one "
+                   "person to everyone,\" we're gradually expanding into features for households and teams too."),
+            "ja": "現在は個人の日常サポートが中心ですが、「一人から、みんなへ」を合言葉に、家庭やチームでも使える機能へ少しずつ広げています。",
+        },
     },
     {
         "name": "contact",
-        "keywords": ["問い合わせ", "連絡", "サポート窓口", "相談したい", "contact"],
-        "answer": "お問い合わせは About Usページ下部のフォームからお願いします（about_us.html の「お問い合わせ」セクションです）。",
+        "keywords": ["問い合わせ", "連絡", "サポート窓口", "相談したい", "contact", "get in touch", "support"],
+        "answer": {
+            "en": "You can reach out through the form at the bottom of the About Us page (the Contact section on about_us.html).",
+            "ja": "お問い合わせは About Usページ下部のフォームからお願いします（about_us.html の「お問い合わせ」セクションです）。",
+        },
     },
     {
         "name": "signup",
-        "keywords": ["始める", "登録", "サインアップ", "使ってみたい", "申し込み"],
-        "answer": "Plansページの「始める」ボタンから、無料のスターターですぐに始められます。",
+        "keywords": ["始める", "登録", "サインアップ", "使ってみたい", "申し込み",
+                     "sign up", "get started", "register"],
+        "answer": {
+            "en": "You can start right away with the free Starter plan from the \"Get started\" button on the Plans page.",
+            "ja": "Plansページの「始める」ボタンから、無料のスターターですぐに始められます。",
+        },
     },
 ]
 
-FALLBACK_ANSWER = (
-    "すみません、うまく理解できませんでした。"
-    "「スケジュール管理」「スマートホーム連携」「メモ・要約」「健康サポート」「料金プラン」"
-    "「会社について」などについて聞いてみてください。"
-)
+FALLBACK_ANSWER = {
+    "en": ("Sorry, I didn't quite catch that. Try asking about \"schedule management\", \"smart home integration\", "
+           "\"notes & summaries\", \"wellbeing support\", \"pricing plans\", or \"about NEXUS\"."),
+    "ja": ("すみません、うまく理解できませんでした。"
+           "「スケジュール管理」「スマートホーム連携」「メモ・要約」「健康サポート」「料金プラン」"
+           "「会社について」などについて聞いてみてください。"),
+}
 
-EMPTY_ANSWER = "質問を入力してください。"
+EMPTY_ANSWER = {
+    "en": "Please type a question.",
+    "ja": "質問を入力してください。",
+}
 
 
 def normalize(text: str) -> str:
@@ -215,10 +293,15 @@ def normalize(text: str) -> str:
     return text
 
 
-def find_answer(question: str) -> str:
+def resolve_lang(lang: str | None) -> str:
+    return "ja" if lang == "ja" else "en"
+
+
+def find_answer(question: str, lang: str = "en") -> str:
+    lang = resolve_lang(lang)
     question = (question or "").strip()
     if not question:
-        return EMPTY_ANSWER
+        return EMPTY_ANSWER[lang]
 
     normalized = normalize(question)
 
@@ -231,8 +314,8 @@ def find_answer(question: str) -> str:
             best_intent = intent
 
     if best_intent is None:
-        return FALLBACK_ANSWER
-    return best_intent["answer"]
+        return FALLBACK_ANSWER[lang]
+    return best_intent["answer"][lang]
 
 
 # ---------------------------------------------------------------------------
@@ -242,26 +325,38 @@ def find_answer(question: str) -> str:
 # so the chatbot always works even offline.
 # ---------------------------------------------------------------------------
 
-SITE_KNOWLEDGE = "\n".join(
-    f"- {intent['answer']}" for intent in INTENTS if intent["name"] not in ("greeting", "thanks")
-)
-
-SYSTEM_INSTRUCTION = (
-    "あなたはAIアシスタントアプリ「NEXUS」の公式サイトに埋め込まれたチャットボットです。"
-    "以下の情報のみを根拠に、日本語で簡潔・親切に答えてください。"
-    "情報にない質問については、正直に分からないと伝え、About Usページの問い合わせフォームを案内してください。\n\n"
-    f"# NEXUSの情報\n{SITE_KNOWLEDGE}"
-)
+def _site_knowledge(lang: str) -> str:
+    return "\n".join(
+        f"- {intent['answer'][lang]}" for intent in INTENTS if intent["name"] not in ("greeting", "thanks")
+    )
 
 
-def ask_gemini(question: str) -> str | None:
+SYSTEM_INSTRUCTIONS = {
+    "en": (
+        "You are the chatbot embedded on the official site for the AI assistant app \"NEXUS\". "
+        "Answer concisely and helpfully in English, based only on the information below. "
+        "If a question isn't covered by this information, say so honestly and point the user to the "
+        "contact form on the About Us page.\n\n"
+        f"# About NEXUS\n{_site_knowledge('en')}"
+    ),
+    "ja": (
+        "あなたはAIアシスタントアプリ「NEXUS」の公式サイトに埋め込まれたチャットボットです。"
+        "以下の情報のみを根拠に、日本語で簡潔・親切に答えてください。"
+        "情報にない質問については、正直に分からないと伝え、About Usページの問い合わせフォームを案内してください。\n\n"
+        f"# NEXUSの情報\n{_site_knowledge('ja')}"
+    ),
+}
+
+
+def ask_gemini(question: str, lang: str = "en") -> str | None:
     if not gemini_client:
         return None
+    lang = resolve_lang(lang)
     try:
         response = gemini_client.models.generate_content(
             model=GEMINI_MODEL,
             contents=question,
-            config={"system_instruction": SYSTEM_INSTRUCTION, "max_output_tokens": 300},
+            config={"system_instruction": SYSTEM_INSTRUCTIONS[lang], "max_output_tokens": 300},
         )
         text = (response.text or "").strip()
         return text or None
@@ -283,10 +378,11 @@ def home():
 def chat():
     data = request.get_json(silent=True) or {}
     question = (data.get("question") or "").strip()
+    lang = resolve_lang(data.get("lang"))
     if not question:
-        return jsonify({"answer": EMPTY_ANSWER})
+        return jsonify({"answer": EMPTY_ANSWER[lang]})
 
-    answer = ask_gemini(question) or find_answer(question)
+    answer = ask_gemini(question, lang) or find_answer(question, lang)
     return jsonify({"answer": answer})
 
 
@@ -309,10 +405,25 @@ def payment_config():
     )
 
 
+STRIPE_UNCONFIGURED_ERROR = {
+    "en": "Stripe isn't configured. Add STRIPE_SECRET_KEY to the server's .env file.",
+    "ja": "Stripeが設定されていません。サーバーの.envにSTRIPE_SECRET_KEYを設定してください。",
+}
+PAYPAL_UNCONFIGURED_ERROR = {
+    "en": "PayPal isn't configured. Add PAYPAL_CLIENT_ID/SECRET to the server's .env file.",
+    "ja": "PayPalが設定されていません。サーバーの.envにPAYPAL_CLIENT_ID/SECRETを設定してください。",
+}
+PAYPAL_UNCONFIGURED_ERROR_SHORT = {
+    "en": "PayPal isn't configured.",
+    "ja": "PayPalが設定されていません。",
+}
+
+
 @app.route("/create-checkout-session", methods=["POST"])
 def create_checkout_session():
+    lang = resolve_lang(request.args.get("lang"))
     if not STRIPE_SECRET_KEY:
-        return jsonify({"error": "Stripeが設定されていません。サーバーの.envにSTRIPE_SECRET_KEYを設定してください。"}), 503
+        return jsonify({"error": STRIPE_UNCONFIGURED_ERROR[lang]}), 503
 
     try:
         session = stripe.checkout.Session.create(
@@ -322,7 +433,7 @@ def create_checkout_session():
                 {
                     "price_data": {
                         "currency": "jpy",
-                        "product_data": {"name": PRO_PLAN_NAME},
+                        "product_data": {"name": PRO_PLAN_NAME[lang]},
                         "unit_amount": PRO_PLAN_PRICE_JPY,
                         "recurring": {"interval": "month"},
                     },
@@ -350,8 +461,14 @@ def get_paypal_access_token() -> str:
 
 @app.route("/paypal/create-order", methods=["POST"])
 def paypal_create_order():
+    lang = resolve_lang(request.args.get("lang"))
     if not (PAYPAL_CLIENT_ID and PAYPAL_CLIENT_SECRET):
-        return jsonify({"error": "PayPalが設定されていません。サーバーの.envにPAYPAL_CLIENT_ID/SECRETを設定してください。"}), 503
+        return jsonify({"error": PAYPAL_UNCONFIGURED_ERROR[lang]}), 503
+
+    order_description = {
+        "en": f"{PRO_PLAN_NAME['en']} (first month, manual renewal)",
+        "ja": f"{PRO_PLAN_NAME['ja']}（初月分・手動更新）",
+    }[lang]
 
     try:
         token = get_paypal_access_token()
@@ -363,7 +480,7 @@ def paypal_create_order():
                 "purchase_units": [
                     {
                         "amount": {"currency_code": "JPY", "value": str(PRO_PLAN_PRICE_JPY)},
-                        "description": f"{PRO_PLAN_NAME}（初月分・手動更新）",
+                        "description": order_description,
                     }
                 ],
             },
@@ -377,8 +494,9 @@ def paypal_create_order():
 
 @app.route("/paypal/capture-order/<order_id>", methods=["POST"])
 def paypal_capture_order(order_id):
+    lang = resolve_lang(request.args.get("lang"))
     if not (PAYPAL_CLIENT_ID and PAYPAL_CLIENT_SECRET):
-        return jsonify({"error": "PayPalが設定されていません。"}), 503
+        return jsonify({"error": PAYPAL_UNCONFIGURED_ERROR_SHORT[lang]}), 503
 
     try:
         token = get_paypal_access_token()

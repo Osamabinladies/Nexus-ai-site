@@ -296,7 +296,7 @@
       const res = await fetch(API_URL, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({question})
+        body: JSON.stringify({question, lang: localStorage.getItem("nexus-lang") === "ja" ? "ja" : "en"})
       });
       const data = await res.json();
       loadingDiv.remove();
@@ -326,10 +326,10 @@
   const statusEl = document.getElementById("payment-status");
   if(!toggleBtn) return;
 
+  const currentLang = () => localStorage.getItem("nexus-lang") === "ja" ? "ja" : "en";
   const t = (key, fallback) => {
-    const lang = localStorage.getItem("nexus-lang") === "ja" ? "ja" : "en";
     const entry = window.NEXUS_I18N && NEXUS_I18N.pricing[key];
-    return entry ? entry[lang] : fallback;
+    return entry ? entry[currentLang()] : fallback;
   };
 
   toggleBtn.addEventListener("click", () => {
@@ -344,7 +344,7 @@
     setStatus(t("payRedirecting", "Redirecting to Stripe checkout..."));
     stripeBtn.disabled = true;
     try {
-      const res = await fetch("/create-checkout-session", { method: "POST" });
+      const res = await fetch("/create-checkout-session?lang=" + currentLang(), { method: "POST" });
       const data = await res.json();
       if(data.url){
         window.location.href = data.url;
@@ -364,7 +364,7 @@
       stripeBtn.style.opacity = "0.5";
     }
     if(!config.paypalEnabled || !config.paypalClientId){
-      paypalContainer.innerHTML = '<p style="font-size:12px;color:var(--text-dim);margin:0;">' + t("paypalUnavailable", "PayPal is currently unavailable.") + '</p>';
+      paypalContainer.innerHTML = '<p style="font-size:12px;color:var(--text-dim);margin:0;" data-i18n="pricing.paypalUnavailable">' + t("paypalUnavailable", "PayPal is currently unavailable.") + '</p>';
       return;
     }
     const script = document.createElement("script");
@@ -374,14 +374,14 @@
       window.paypal.Buttons({
         style: { layout: "vertical", color: "gold", shape: "rect", label: "paypal" },
         createOrder: async () => {
-          const res = await fetch("/paypal/create-order", { method: "POST" });
+          const res = await fetch("/paypal/create-order?lang=" + currentLang(), { method: "POST" });
           const data = await res.json();
           if(data.error){ setStatus(data.error); throw new Error(data.error); }
           return data.id;
         },
         onApprove: async (data) => {
           setStatus(t("payConfirming", "Confirming your payment..."));
-          const res = await fetch("/paypal/capture-order/" + data.orderID, { method: "POST" });
+          const res = await fetch("/paypal/capture-order/" + data.orderID + "?lang=" + currentLang(), { method: "POST" });
           const result = await res.json();
           if(result.status === "COMPLETED"){
             setStatus(t("payComplete", "Payment complete! Welcome to NEXUS Pro."));
