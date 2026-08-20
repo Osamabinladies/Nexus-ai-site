@@ -169,32 +169,18 @@
 
         <!-- contact form: plain HTML form post to /contact, no fetch/JS needed to submit -->
         <section class="contact-wrap" id="contact" data-reveal>
-<<<<<<< HEAD
-            <h2>お問い合わせ</h2>
-            <p class="contact-subtitle">ご質問・ご相談など、お気軽にご連絡ください。</p>
-            <p id="contact-status" style="display:none;padding:12px 16px;border-radius:10px;margin-bottom:16px;font-size:14px;"></p>
-            <form action="/contact" method="post">
-                <label for="name">お名前</label>
-                <input type="text" name="name" id="name" placeholder="山田 太郎" required>
-
-                <label for="email">メールアドレス</label>
-                <input type="email" name="email" id="email" placeholder="you@example.com" required>
-
-                <label for="message">お問い合わせ内容</label>
-                <textarea name="message" id="message" rows="5" placeholder="ご質問やご要望をご記入ください" required></textarea>
-=======
             <h2 data-i18n="about.contactTitle">Contact Us</h2>
             <p class="contact-subtitle" data-i18n="about.contactSubtitle">Questions, feedback, anything at all — feel free to reach out.</p>
-            <form action="" method="post">
+            <p id="contact-status" style="display:none;padding:12px 16px;border-radius:10px;margin-bottom:16px;font-size:14px;"></p>
+            <form action="/contact" method="post">
                 <label for="name" data-i18n="about.labelName">Name</label>
-                <input type="text" name="name" id="name" placeholder="Jordan Lee" data-i18n-placeholder="about.placeholderName">
+                <input type="text" name="name" id="name" placeholder="Jordan Lee" data-i18n-placeholder="about.placeholderName" required>
 
                 <label for="email" data-i18n="about.labelEmail">Email</label>
-                <input type="email" name="email" id="email" placeholder="you@example.com">
+                <input type="email" name="email" id="email" placeholder="you@example.com" required>
 
                 <label for="message" data-i18n="about.labelMessage">Message</label>
-                <textarea name="message" id="message" rows="5" placeholder="Tell us what's on your mind" data-i18n-placeholder="about.placeholderMessage"></textarea>
->>>>>>> 4c86c611f20f80007f1595d1896cbb0aebb91e32
+                <textarea name="message" id="message" rows="5" placeholder="Tell us what's on your mind" data-i18n-placeholder="about.placeholderMessage" required></textarea>
 
                 <button type="submit" class="submit-button" data-i18n="about.submitButton">Send</button>
             </form>
@@ -297,7 +283,7 @@
       const res = await fetch(API_URL, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({question})
+        body: JSON.stringify({question, lang: localStorage.getItem("nexus-lang") === "ja" ? "ja" : "en"})
       });
       const data = await res.json();
       loadingDiv.remove();
@@ -317,17 +303,23 @@
 })();
 </script>
 
-<<<<<<< HEAD
+<script src="translations.js"></script>
 <script>
 (function(){
   const statusEl = document.getElementById("contact-status");
   if(!statusEl) return;
 
+  const t = (key, fallback) => {
+    const lang = localStorage.getItem("nexus-lang") === "ja" ? "ja" : "en";
+    const entry = window.NEXUS_I18N && NEXUS_I18N.about[key];
+    return entry ? entry[lang] : fallback;
+  };
+
   const messages = {
-    success: { text: "お問い合わせありがとうございます。メッセージを送信しました。", ok: true },
-    error: { text: "送信中にエラーが発生しました。しばらくしてからもう一度お試しください。", ok: false },
-    missing: { text: "すべての項目を入力してください。", ok: false },
-    unconfigured: { text: "現在お問い合わせフォームは準備中です。サーバーの.envにSMTP設定を追加してください。", ok: false },
+    success: { text: t("contactSuccess", "Thanks for reaching out — your message has been sent."), ok: true },
+    error: { text: t("contactError", "Something went wrong while sending. Please try again in a moment."), ok: false },
+    missing: { text: t("contactMissing", "Please fill in all fields."), ok: false },
+    unconfigured: { text: t("contactUnconfigured", "The contact form isn't set up yet. Add SMTP settings to the server's .env file."), ok: false },
   };
 
   const params = new URLSearchParams(window.location.search);
@@ -341,10 +333,6 @@
   }
 })();
 </script>
-
-=======
-<script src="translations.js"></script>
->>>>>>> 4c86c611f20f80007f1595d1896cbb0aebb91e32
 <script src="motion.js"></script>
 
 </body>

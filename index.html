@@ -481,7 +481,7 @@
       const res = await fetch(API_URL, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({question})
+        body: JSON.stringify({question, lang: localStorage.getItem("nexus-lang") === "ja" ? "ja" : "en"})
       });
       const data = await res.json();
       loadingDiv.remove();
