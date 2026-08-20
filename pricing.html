@@ -65,44 +65,104 @@
             </div>
         </section>
 
-        <!-- same plan-card layout as the pricing section on index.html -->
-        <section class="pricing-section">
-            <div class="plan-list">
-                <div class="plan-card" data-reveal>
-                    <h3 class="plan-name">Free</h3>
-                    <p class="plan-price">¥0<span>/月</span></p>
-                    <ul class="plan-detail-list">
-                        <li>基本のスケジュール管理</li>
-                        <li>1日10回までの会話</li>
-                        <li>メモ機能</li>
-                    </ul>
-                    <a href="#" class="plan-button">始める</a>
-                </div>
-
-                <div class="plan-card plan-card-highlight" data-label="人気" data-reveal="zoom">
-                    <h3 class="plan-name">Pro</h3>
-                    <p class="plan-price">¥980<span>/月</span></p>
-                    <ul class="plan-detail-list">
-                        <li>無制限の会話</li>
-                        <li>スマートホーム連携</li>
-                        <li>健康サポート機能</li>
-                    </ul>
-                    <a href="#" class="plan-button plan-button-filled">Proを選ぶ</a>
-                </div>
-
-                <div class="plan-card" data-reveal>
-                    <h3 class="plan-name">Business</h3>
-                    <p class="plan-price">¥2,980<span>/月</span></p>
-                    <ul class="plan-detail-list">
-                        <li>チームでの共有機能</li>
-                        <li>専用サポート</li>
-                        <li>API連携</li>
-                    </ul>
-                    <a href="#" class="plan-button">相談する</a>
+        <!-- one persona per plan: same pinned-portrait mechanic as the
+             features page, so you meet each tier before comparing them -->
+        <div class="persona-row accent-cyan" data-reveal="left">
+            <p class="feature-index">01</p>
+            <div class="persona-portrait">
+                <div class="persona-portrait-bg"></div>
+                <div class="persona-icon">🌱</div>
+                <div class="persona-badge">NEXUS · <span>FREE PLAN</span></div>
+                <div class="persona-name-overlay">
+                    <p class="persona-label">FREE PLAN</p>
+                    <h3>スターター</h3>
                 </div>
             </div>
+            <div class="persona-content">
+                <p class="feature-tag">FREE PLAN</p>
+                <p class="plan-price">¥0<span>/月</span></p>
+                <p class="feature-summary">まずは無料で。基本の機能だけで十分な方に。</p>
+                <ul class="plan-detail-list">
+                    <li>基本のスケジュール管理</li>
+                    <li>1日10回までの会話</li>
+                    <li>メモ機能</li>
+                </ul>
+                <blockquote class="persona-quote">「まずは、ここから始めましょう。」</blockquote>
+                <div class="detail-cards">
+                    <span class="detail-card" data-reveal="pop">📅 基本のスケジュール管理</span>
+                    <span class="detail-card" data-reveal="pop">💬 1日10回まで会話</span>
+                    <span class="detail-card" data-reveal="pop">📝 メモ機能つき</span>
+                </div>
+                <a href="#" class="button">始める ➡</a>
+            </div>
+        </div>
 
-            <!-- frequently asked questions, just a repeating question/answer block -->
+        <hr>
+
+        <div class="persona-row accent-pink reverse" data-reveal="right">
+            <p class="feature-index">02</p>
+            <div class="persona-portrait">
+                <div class="persona-portrait-bg"></div>
+                <div class="persona-icon">🚀</div>
+                <div class="persona-badge">NEXUS · <span>PRO PLAN · 人気</span></div>
+                <div class="persona-name-overlay">
+                    <p class="persona-label">PRO PLAN · 人気</p>
+                    <h3>パートナー</h3>
+                </div>
+            </div>
+            <div class="persona-content">
+                <p class="feature-tag">PRO PLAN</p>
+                <p class="plan-price">¥980<span>/月</span></p>
+                <p class="feature-summary">会話も家も健康も。本気で毎日に寄り添うなら、これ。</p>
+                <ul class="plan-detail-list">
+                    <li>無制限の会話</li>
+                    <li>スマートホーム連携</li>
+                    <li>健康サポート機能</li>
+                </ul>
+                <blockquote class="persona-quote">「あなたの毎日に、本気で寄り添います。」</blockquote>
+                <div class="detail-cards">
+                    <span class="detail-card" data-reveal="pop">♾️ 無制限の会話</span>
+                    <span class="detail-card" data-reveal="pop">🏠 スマートホーム連携</span>
+                    <span class="detail-card" data-reveal="pop">❤️ 健康サポート機能</span>
+                </div>
+                <a href="#" class="button">Proを選ぶ ➡</a>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="persona-row accent-violet" data-reveal="left">
+            <p class="feature-index">03</p>
+            <div class="persona-portrait">
+                <div class="persona-portrait-bg"></div>
+                <div class="persona-icon">🏢</div>
+                <div class="persona-badge">NEXUS · <span>BUSINESS PLAN</span></div>
+                <div class="persona-name-overlay">
+                    <p class="persona-label">BUSINESS PLAN</p>
+                    <h3>コマンダー</h3>
+                </div>
+            </div>
+            <div class="persona-content">
+                <p class="feature-tag">BUSINESS PLAN</p>
+                <p class="plan-price">¥2,980<span>/月</span></p>
+                <p class="feature-summary">チームで使うなら、専用サポートとAPI連携まで。</p>
+                <ul class="plan-detail-list">
+                    <li>チームでの共有機能</li>
+                    <li>専用サポート</li>
+                    <li>API連携</li>
+                </ul>
+                <blockquote class="persona-quote">「チーム全体を、一つにまとめます。」</blockquote>
+                <div class="detail-cards">
+                    <span class="detail-card" data-reveal="pop">👥 チームでの共有機能</span>
+                    <span class="detail-card" data-reveal="pop">🎧 専用サポート</span>
+                    <span class="detail-card" data-reveal="pop">🔗 API連携</span>
+                </div>
+                <a href="#" class="button">相談する ➡</a>
+            </div>
+        </div>
+
+        <!-- frequently asked questions, just a repeating question/answer block -->
+        <section class="pricing-section">
             <div class="faq-list">
                 <div class="faq-item" data-reveal>
                     <h4>無料プランでもすべての機能が使えますか？</h4>
