@@ -125,7 +125,21 @@
                     <span class="detail-card" data-reveal="pop">🏠 スマートホーム連携</span>
                     <span class="detail-card" data-reveal="pop">❤️ 健康サポート機能</span>
                 </div>
-                <a href="#" class="button">Proを選ぶ ➡</a>
+                <button type="button" id="pro-checkout-toggle" class="button">Proを選ぶ ➡</button>
+
+                <div id="pro-payment-panel" style="display:none;margin-top:16px;padding:16px;border:1px solid var(--border);
+                    border-radius:12px;background:var(--card);max-width:320px;">
+                    <p style="font-size:12px;color:var(--text-dim);margin:0 0 12px;">
+                        お支払い方法を選択してください（テストモード・実際の請求は発生しません）
+                    </p>
+                    <button type="button" id="stripe-checkout-btn" style="width:100%;margin-bottom:10px;padding:12px;
+                        border:none;border-radius:10px;background:linear-gradient(90deg,var(--cyan),var(--blue));
+                        color:#0a0e1a;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;">
+                        💳 カードで支払う（Stripe）
+                    </button>
+                    <div id="paypal-button-container"></div>
+                    <p id="payment-status" style="font-size:12px;color:var(--text-dim);margin:10px 0 0;"></p>
+                </div>
             </div>
         </div>
 
@@ -291,6 +305,93 @@
 
   sendBtn.addEventListener("click", sendMessage);
   input.addEventListener("keydown", (e) => { if(e.key === "Enter") sendMessage(); });
+})();
+</script>
+
+<script>
+(function(){
+  const toggleBtn = document.getElementById("pro-checkout-toggle");
+  const panel = document.getElementById("pro-payment-panel");
+  const stripeBtn = document.getElementById("stripe-checkout-btn");
+  const paypalContainer = document.getElementById("paypal-button-container");
+  const statusEl = document.getElementById("payment-status");
+  if(!toggleBtn) return;
+
+  toggleBtn.addEventListener("click", () => {
+    panel.style.display = panel.style.display === "block" ? "none" : "block";
+  });
+
+  function setStatus(text){
+    if(statusEl) statusEl.textContent = text;
+  }
+
+  stripeBtn.addEventListener("click", async () => {
+    setStatus("Stripeの決済ページに移動しています...");
+    stripeBtn.disabled = true;
+    try {
+      const res = await fetch("/create-checkout-session", { method: "POST" });
+      const data = await res.json();
+      if(data.url){
+        window.location.href = data.url;
+      } else {
+        setStatus(data.error || "エラーが発生しました。");
+        stripeBtn.disabled = false;
+      }
+    } catch(err){
+      setStatus("サーバーに接続できません。server.pyが起動しているか確認してください。");
+      stripeBtn.disabled = false;
+    }
+  });
+
+  fetch("/payment-config").then(r => r.json()).then(config => {
+    if(!config.stripeEnabled){
+      stripeBtn.disabled = true;
+      stripeBtn.style.opacity = "0.5";
+    }
+    if(!config.paypalEnabled || !config.paypalClientId){
+      paypalContainer.innerHTML = '<p style="font-size:12px;color:var(--text-dim);margin:0;">PayPalは現在利用できません。</p>';
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = "https://www.paypal.com/sdk/js?client-id=" + encodeURIComponent(config.paypalClientId) + "&currency=JPY";
+    script.onload = () => {
+      if(!window.paypal) return;
+      window.paypal.Buttons({
+        style: { layout: "vertical", color: "gold", shape: "rect", label: "paypal" },
+        createOrder: async () => {
+          const res = await fetch("/paypal/create-order", { method: "POST" });
+          const data = await res.json();
+          if(data.error){ setStatus(data.error); throw new Error(data.error); }
+          return data.id;
+        },
+        onApprove: async (data) => {
+          setStatus("お支払いを確認しています...");
+          const res = await fetch("/paypal/capture-order/" + data.orderID, { method: "POST" });
+          const result = await res.json();
+          if(result.status === "COMPLETED"){
+            setStatus("お支払いが完了しました！NEXUS Proへようこそ。");
+          } else {
+            setStatus(result.error || "決済の確認中にエラーが発生しました。");
+          }
+        },
+        onError: () => {
+          setStatus("PayPalでエラーが発生しました。もう一度お試しください。");
+        },
+      }).render("#paypal-button-container");
+    };
+    document.head.appendChild(script);
+  }).catch(() => {
+    setStatus("決済設定を読み込めませんでした。server.pyが起動しているか確認してください。");
+  });
+
+  const params = new URLSearchParams(window.location.search);
+  if(params.get("checkout") === "success"){
+    panel.style.display = "block";
+    setStatus("お支払いが完了しました！NEXUS Proへようこそ。");
+  } else if(params.get("checkout") === "cancel"){
+    panel.style.display = "block";
+    setStatus("決済がキャンセルされました。");
+  }
 })();
 </script>
 
