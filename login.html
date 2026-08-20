@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="login.title">Log In — NEXUS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-login">
+
+    <header class="site-header">
+        <div class="header-inner">
+            <h1 class="logo">NEXUS</h1>
+            <nav class="site-nav">
+                <a href="index.html">Home</a>
+                <a href="features.html">Features</a>
+                <a href="pricing.html">Plans</a>
+                <a href="about_us.html">About Us</a>
+                <a href="login.html" data-auth-link="login" class="active" data-i18n="common.navLogin">Log In</a>
+                <a href="signup.html" data-auth-link="signup" class="nav-signup" data-i18n="common.navSignup">Sign Up</a>
+            </nav>
+            <div class="header-actions">
+                <a href="about_us.html#contact" class="contact-button">Contact</a>
+                <button class="nav-toggle" aria-label="Open menu" data-i18n-aria-label="common.navToggleLabel" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="marquee">
+        <div class="marquee-track">
+            <span>NEXUS — <em data-i18n="login.marquee1">Welcome back</em> — NEXUS — <em data-i18n="login.marquee2">Your everyday AI is waiting</em> — NEXUS — <em data-i18n="login.marquee1">Welcome back</em> — NEXUS — <em data-i18n="login.marquee2">Your everyday AI is waiting</em> —</span>
+            <span aria-hidden="true">NEXUS — <em data-i18n="login.marquee1">Welcome back</em> — NEXUS — <em data-i18n="login.marquee2">Your everyday AI is waiting</em> — NEXUS — <em data-i18n="login.marquee1">Welcome back</em> — NEXUS — <em data-i18n="login.marquee2">Your everyday AI is waiting</em> —</span>
+        </div>
+    </div>
+
+    <main>
+        <section class="page-hero" data-parallax>
+            <div class="home-bg">
+                <div class="sun-glow"></div>
+                <div class="skyline-scene">
+                    <div class="skyline-parallax back">
+                        <div class="skyline-track pan-back">
+                            <img src="skyline-back.svg" alt="">
+                            <img src="skyline-back.svg" alt="" aria-hidden="true">
+                        </div>
+                    </div>
+                    <div class="skyline-parallax front">
+                        <div class="skyline-track pan-front">
+                            <img src="skyline-front.svg" alt="">
+                            <img src="skyline-front.svg" alt="" aria-hidden="true">
+                        </div>
+                    </div>
+                    <div class="skyline-reflection">
+                        <img src="skyline-front.svg" alt="" aria-hidden="true">
+                    </div>
+                    <div class="skyline-water-shimmer"></div>
+                </div>
+            </div>
+            <div class="skyline-vignette"></div>
+            <div class="page-hero-inner" data-reveal>
+                <p class="page-hero-subtitle">LOG IN</p>
+                <h2 data-i18n-html="login.heroHeadingHtml">Welcome <span class="break">back</span></h2>
+                <p data-i18n="login.heroText">Log in to pick up right where you left off.</p>
+            </div>
+        </section>
+
+        <!-- same pinned-portrait "cast profile" mechanic as the other pages,
+             just one row: Pip the robot, and the login form beside it -->
+        <div class="persona-row accent-cyan" data-reveal="left">
+            <p class="feature-index">01</p>
+            <div class="persona-portrait">
+                <div class="persona-portrait-bg"></div>
+                <div class="persona-icon">
+                    <svg class="bot-mascot" id="pip-bot" viewBox="0 0 200 200" role="img" aria-label="Pip, the NEXUS robot">
+                        <ellipse class="bot-shadow" cx="100" cy="180" rx="46" ry="10"></ellipse>
+                        <g class="bot-float">
+                            <line x1="100" y1="34" x2="100" y2="14" stroke="var(--persona-accent)" stroke-width="3" stroke-linecap="round"></line>
+                            <circle class="bot-antenna-tip" cx="100" cy="12" r="5"></circle>
+                            <rect class="bot-body" x="46" y="34" width="108" height="120" rx="40"></rect>
+                            <rect class="bot-face-plate" x="62" y="60" width="76" height="60" rx="26"></rect>
+                            <g class="bot-eye-group">
+                                <ellipse class="bot-eye-white" cx="100" cy="96" rx="26" ry="24"></ellipse>
+                                <circle class="bot-eye-pupil" cx="100" cy="96" r="11"></circle>
+                            </g>
+                            <circle class="bot-cheek" cx="70" cy="112" r="7"></circle>
+                            <circle class="bot-cheek" cx="130" cy="112" r="7"></circle>
+                            <g class="bot-arm bot-arm-left">
+                                <rect x="30" y="98" width="24" height="60" rx="12"></rect>
+                            </g>
+                            <g class="bot-arm bot-arm-right">
+                                <rect x="146" y="98" width="24" height="60" rx="12"></rect>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <div class="persona-badge">NEXUS · <span>SIGN IN</span></div>
+                <div class="persona-name-overlay">
+                    <p class="persona-label">SIGN IN</p>
+                    <h3 data-i18n="login.botName">Pip</h3>
+                </div>
+            </div>
+            <div class="persona-content">
+                <blockquote class="persona-quote" data-i18n="login.botQuote">“Good to see you again.”</blockquote>
+
+                <h3 data-i18n="login.formTitle">Log in to NEXUS</h3>
+                <p id="auth-status" class="form-status"></p>
+
+                <form class="auth-form" action="/login" method="post">
+                    <label for="email" data-i18n="login.labelEmail">Email</label>
+                    <input type="email" name="email" id="email" placeholder="you@example.com" data-i18n-placeholder="login.placeholderEmail" required>
+
+                    <label for="password" data-i18n="login.labelPassword">Password</label>
+                    <div class="password-field">
+                        <input type="password" name="password" id="password" placeholder="Your password" data-i18n-placeholder="login.placeholderPassword" required>
+                        <button type="button" class="password-toggle" id="password-toggle" data-i18n="login.showPassword">Show password</button>
+                    </div>
+
+                    <button type="submit" class="submit-button" data-i18n="login.submitButton">Log In ➡</button>
+                </form>
+
+                <p class="auth-switch">
+                    <span data-i18n="login.noAccount">New here?</span>
+                    <a href="signup.html" data-i18n="login.signupLink">Create an account</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p class="footer-wordmark">NEXUS</p>
+        <p>&copy; 2026 NEXUS Inc. All rights reserved.</p>
+    </footer>
+
+
+<div id="nexus-chat-btn" style="position:fixed;bottom:24px;right:24px;width:60px;height:60px;border-radius:50%;
+  background:linear-gradient(135deg,var(--cyan),var(--blue));display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-weight:900;color:#0a0e1a;font-size:22px;z-index:100;border:2px solid rgba(255,255,255,0.15);">
+  N
+</div>
+
+<div id="nexus-chat-box" style="display:none;position:fixed;bottom:96px;right:24px;width:320px;max-height:440px;
+  background:var(--card);border:1px solid var(--border);border-radius:16px;z-index:100;flex-direction:column;overflow:hidden;">
+  <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,var(--cyan),var(--blue));
+        display:flex;align-items:center;justify-content:center;font-weight:900;color:#0a0e1a;font-size:13px;">N</div>
+      <span style="font-size:14px;font-weight:600;" data-i18n="common.chatTitle">NEXUS Assistant</span>
+    </div>
+    <span id="nexus-chat-close" style="cursor:pointer;color:var(--text-dim);font-size:16px;">×</span>
+  </div>
+
+  <div id="nexus-chat-messages" style="flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:10px;max-height:280px;">
+    <div style="background:linear-gradient(90deg, rgba(79,224,212,0.15), rgba(108,141,255,0.15));border:1px solid var(--border);
+      padding:10px 14px;border-radius:12px;font-size:13px;max-width:85%;" data-i18n="common.chatGreeting">
+      Hi! I'm NEXUS. Feel free to ask me anything.
+    </div>
+  </div>
+
+  <div style="padding:12px;border-top:1px solid var(--border);display:flex;gap:8px;">
+    <input id="nexus-chat-input" type="text" placeholder="Type your question" data-i18n-placeholder="common.chatPlaceholder"
+      style="flex:1;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;
+      color:var(--text);font-size:13px;font-family:inherit;">
+    <button id="nexus-chat-send" style="background:linear-gradient(90deg,var(--cyan),var(--blue));border:none;
+      border-radius:10px;padding:0 14px;color:#0a0e1a;font-weight:700;cursor:pointer;font-size:13px;" data-i18n="common.chatSend">Send</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const API_URL = "/chat";
+  const btn = document.getElementById("nexus-chat-btn");
+  const box = document.getElementById("nexus-chat-box");
+  const closeBtn = document.getElementById("nexus-chat-close");
+  const input = document.getElementById("nexus-chat-input");
+  const sendBtn = document.getElementById("nexus-chat-send");
+  const messages = document.getElementById("nexus-chat-messages");
+
+  btn.addEventListener("click", () => {
+    box.style.display = box.style.display === "flex" ? "none" : "flex";
+  });
+  closeBtn.addEventListener("click", () => { box.style.display = "none"; });
+
+  function addMessage(text, isUser){
+    const div = document.createElement("div");
+    div.style.padding = "10px 14px";
+    div.style.borderRadius = "12px";
+    div.style.fontSize = "13px";
+    div.style.maxWidth = "85%";
+    if(isUser){
+      div.style.background = "var(--border)";
+      div.style.alignSelf = "flex-end";
+      div.style.marginLeft = "auto";
+    } else {
+      div.style.background = "linear-gradient(90deg, rgba(79,224,212,0.15), rgba(108,141,255,0.15))";
+      div.style.border = "1px solid var(--border)";
+    }
+    div.textContent = text;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  async function sendMessage(){
+    const question = input.value.trim();
+    if(!question) return;
+    addMessage(question, true);
+    input.value = "";
+
+    const t = (key, fallback) => {
+      const lang = localStorage.getItem("nexus-lang") === "ja" ? "ja" : "en";
+      const entry = window.NEXUS_I18N && NEXUS_I18N.common[key];
+      return entry ? entry[lang] : fallback;
+    };
+
+    const loadingDiv = document.createElement("div");
+    loadingDiv.style.fontSize = "13px";
+    loadingDiv.style.color = "var(--text-dim)";
+    loadingDiv.textContent = t("chatThinking", "Thinking...");
+    messages.appendChild(loadingDiv);
+    messages.scrollTop = messages.scrollHeight;
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({question, lang: localStorage.getItem("nexus-lang") === "ja" ? "ja" : "en"})
+      });
+      const data = await res.json();
+      loadingDiv.remove();
+      if(data.answer){
+        addMessage(data.answer, false);
+      } else {
+        addMessage(t("chatErrorGeneric", "Something went wrong. Please check that the server is running."), false);
+      }
+    } catch(err){
+      loadingDiv.remove();
+      addMessage(t("chatErrorConnection", "Can't connect to the server. Please check that server.py is running."), false);
+    }
+  }
+
+  sendBtn.addEventListener("click", sendMessage);
+  input.addEventListener("keydown", (e) => { if(e.key === "Enter") sendMessage(); });
+})();
+</script>
+
+<script src="translations.js"></script>
+<script>
+(function(){
+  const t = (key, fallback) => {
+    const lang = localStorage.getItem("nexus-lang") === "ja" ? "ja" : "en";
+    const entry = window.NEXUS_I18N && NEXUS_I18N.login[key];
+    return entry ? entry[lang] : fallback;
+  };
+
+  const statusEl = document.getElementById("auth-status");
+  if(statusEl){
+    const messages = {
+      missing: t("errorMissing", "Please enter your email and password."),
+      invalid: t("errorInvalid", "Incorrect email or password."),
+    };
+    const params = new URLSearchParams(window.location.search);
+    const msg = messages[params.get("error")];
+    if(msg){
+      statusEl.textContent = msg;
+      statusEl.classList.add("visible", "error");
+    }
+  }
+
+  const passwordInput = document.getElementById("password");
+  const toggleBtn = document.getElementById("password-toggle");
+  const bot = document.getElementById("pip-bot");
+
+  if(toggleBtn && passwordInput){
+    toggleBtn.addEventListener("click", () => {
+      const showing = passwordInput.type === "text";
+      passwordInput.type = showing ? "password" : "text";
+      toggleBtn.textContent = showing ? t("showPassword", "Show password") : t("hidePassword", "Hide password");
+    });
+  }
+
+  if(passwordInput && bot){
+    passwordInput.addEventListener("focus", () => bot.classList.add("covering"));
+    passwordInput.addEventListener("blur", () => bot.classList.remove("covering"));
+  }
+})();
+</script>
+<script src="motion.js"></script>
+
+</body>
+</html>

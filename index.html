@@ -19,6 +19,8 @@
                 <a href="features.html">Features</a>
                 <a href="pricing.html">Plans</a>
                 <a href="about_us.html">About Us</a>
+                <a href="login.html" data-auth-link="login" data-i18n="common.navLogin">Log In</a>
+                <a href="signup.html" data-auth-link="signup" class="nav-signup" data-i18n="common.navSignup">Sign Up</a>
             </nav>
             <div class="header-actions">
                 <a href="about_us.html#contact" class="contact-button">Contact</a>
@@ -34,6 +36,10 @@
             <span>NEXUS — <em>YOUR EVERYDAY AI</em> — NEXUS — <em>ALWAYS LISTENING, RARELY LOUD</em> — NEXUS — <em>YOUR EVERYDAY AI</em> — NEXUS — <em>ALWAYS LISTENING, RARELY LOUD</em> —</span>
             <span aria-hidden="true">NEXUS — <em>YOUR EVERYDAY AI</em> — NEXUS — <em>ALWAYS LISTENING, RARELY LOUD</em> — NEXUS — <em>YOUR EVERYDAY AI</em> — NEXUS — <em>ALWAYS LISTENING, RARELY LOUD</em> —</span>
         </div>
+    </div>
+
+    <div class="welcome-banner-wrap">
+        <p id="welcome-banner" class="form-status ok"></p>
     </div>
 
     <main>
@@ -502,6 +508,31 @@
 </script>
 
 <script src="translations.js"></script>
+<script>
+(function(){
+  const banner = document.getElementById("welcome-banner");
+  if(!banner) return;
+
+  const t = (key, fallback) => {
+    const lang = localStorage.getItem("nexus-lang") === "ja" ? "ja" : "en";
+    const entry = window.NEXUS_I18N && NEXUS_I18N.index[key];
+    return entry ? entry[lang] : fallback;
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  let text = null;
+  if(params.get("welcome") === "1"){
+    text = t("welcomeBanner", "Welcome to NEXUS! Your account is ready.");
+  } else if(params.get("login") === "success"){
+    text = t("loginBanner", "Welcome back!");
+  }
+
+  if(text){
+    banner.textContent = text;
+    banner.classList.add("visible");
+  }
+})();
+</script>
 <script src="motion.js"></script>
 
 </body>

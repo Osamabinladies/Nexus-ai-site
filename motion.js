@@ -69,6 +69,46 @@
     applyLang();
   }
 
+  /* ---- auth state: swap the header's Log In / Sign Up links for a
+     greeting + Log Out once /me confirms a session. Runs on every page,
+     since the nav links are shared across all of them. ---- */
+  (function () {
+    var loginLink = document.querySelector('[data-auth-link="login"]');
+    var signupLink = document.querySelector('[data-auth-link="signup"]');
+    if (!loginLink || !signupLink) return;
+
+    var tCommon = function (key, fallback) {
+      var lang = localStorage.getItem("nexus-lang") === "ja" ? "ja" : "en";
+      var entry = window.NEXUS_I18N && NEXUS_I18N.common[key];
+      return entry ? entry[lang] : fallback;
+    };
+
+    fetch("/me")
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data.loggedIn) return;
+
+        var userSpan = document.createElement("span");
+        userSpan.className = "nav-user";
+        userSpan.textContent = data.name;
+
+        var logoutLink = document.createElement("a");
+        logoutLink.href = "#";
+        logoutLink.textContent = tCommon("navLogout", "Log Out");
+        logoutLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          logoutLink.textContent = tCommon("navLoggingOut", "Logging out...");
+          fetch("/logout", { method: "POST" }).then(function () {
+            window.location.href = "index.html";
+          });
+        });
+
+        loginLink.replaceWith(userSpan);
+        signupLink.replaceWith(logoutLink);
+      })
+      .catch(function () {});
+  })();
+
   /* ---- header: adds a solid/blurred background once the page scrolls ---- */
   var header = document.querySelector(".site-header");
   if (header) {

@@ -13,11 +13,18 @@ var NEXUS_I18N = {
     chatThinking: { en: "Thinking...", ja: "考え中..." },
     chatErrorGeneric: { en: "Something went wrong. Please check that the server is running.", ja: "エラーが発生しました。サーバーが起動しているか確認してください。" },
     chatErrorConnection: { en: "Can't connect to the server. Please check that server.py is running.", ja: "サーバーに接続できません。server.pyが起動しているか確認してください。" },
-    langToggleLabel: { en: "Switch language", ja: "言語を切り替える" }
+    langToggleLabel: { en: "Switch language", ja: "言語を切り替える" },
+
+    navLogin: { en: "Log In", ja: "ログイン" },
+    navSignup: { en: "Sign Up", ja: "新規登録" },
+    navLogout: { en: "Log Out", ja: "ログアウト" },
+    navLoggingOut: { en: "Logging out...", ja: "ログアウト中..." }
   },
 
   index: {
     title: { en: "N.E.X.U.S", ja: "N.E.X.U.S" },
+    welcomeBanner: { en: "Welcome to NEXUS! Your account is ready.", ja: "NEXUSへようこそ！アカウントの準備ができました。" },
+    loginBanner: { en: "Welcome back!", ja: "おかえりなさい！" },
     heroLine1: { en: "The right AI,", ja: "あなたの毎日に、" },
     heroLine2Html: { en: "for every day", ja: "ちょうどいいAI" },
     heroText: { en: "From scheduling to smart home control, NEXUS quietly supports your day.", ja: "予定管理から家電操作まで、NEXUSがあなたの一日をそっとサポートします。" },
@@ -291,5 +298,64 @@ var NEXUS_I18N = {
     contactError: { en: "Something went wrong while sending. Please try again in a moment.", ja: "送信中にエラーが発生しました。しばらくしてからもう一度お試しください。" },
     contactMissing: { en: "Please fill in all fields.", ja: "すべての項目を入力してください。" },
     contactUnconfigured: { en: "The contact form isn't set up yet. Add SMTP settings to the server's .env file.", ja: "現在お問い合わせフォームは準備中です。サーバーの.envにSMTP設定を追加してください。" }
+  },
+
+  login: {
+    title: { en: "Log In — NEXUS", ja: "ログイン — NEXUS" },
+    marquee1: { en: "Welcome back", ja: "おかえりなさい" },
+    marquee2: { en: "Your everyday AI is waiting", ja: "毎日のAIが待っています" },
+    heroHeadingHtml: { en: "Welcome <span class=\"break\">back</span>", ja: "おかえりなさい<span class=\"break\">。</span>" },
+    heroText: { en: "Log in to pick up right where you left off.", ja: "続きから、すぐに始められます。" },
+
+    botBadge: { en: "SIGN IN", ja: "サインイン" },
+    botName: { en: "Pip", ja: "ピップ" },
+    botQuote: { en: "“Good to see you again.”", ja: "「また会えて嬉しいです。」" },
+
+    formTitle: { en: "Log in to NEXUS", ja: "NEXUSにログイン" },
+    labelEmail: { en: "Email", ja: "メールアドレス" },
+    labelPassword: { en: "Password", ja: "パスワード" },
+    placeholderEmail: { en: "you@example.com", ja: "you@example.com" },
+    placeholderPassword: { en: "Your password", ja: "パスワード" },
+    showPassword: { en: "Show password", ja: "パスワードを表示" },
+    hidePassword: { en: "Hide password", ja: "パスワードを隠す" },
+    submitButton: { en: "Log In ➡", ja: "ログイン ➡" },
+    noAccount: { en: "New here?", ja: "はじめての方は" },
+    signupLink: { en: "Create an account", ja: "アカウントを作成" },
+
+    errorMissing: { en: "Please enter your email and password.", ja: "メールアドレスとパスワードを入力してください。" },
+    errorInvalid: { en: "Incorrect email or password.", ja: "メールアドレスまたはパスワードが違います。" }
+  },
+
+  signup: {
+    title: { en: "Sign Up — NEXUS", ja: "新規登録 — NEXUS" },
+    marquee1: { en: "Join NEXUS", ja: "NEXUSに参加" },
+    marquee2: { en: "Free to start", ja: "無料で始められます" },
+    heroHeadingHtml: { en: "Meet your <span class=\"break\">everyday AI</span>", ja: "あなたの<span class=\"break\">毎日のAIへ</span>" },
+    heroText: { en: "Create a free account — it only takes a moment.", ja: "無料アカウントを作成。1分もかかりません。" },
+
+    botBadge: { en: "SIGN UP", ja: "サインアップ" },
+    botName: { en: "Pip", ja: "ピップ" },
+    botQuote: { en: "“Nice to meet you — let's get started.”", ja: "「はじめまして。一緒に始めましょう。」" },
+
+    formTitle: { en: "Create your account", ja: "アカウントを作成" },
+    labelName: { en: "Name", ja: "お名前" },
+    labelEmail: { en: "Email", ja: "メールアドレス" },
+    labelPassword: { en: "Password", ja: "パスワード" },
+    labelConfirmPassword: { en: "Confirm password", ja: "パスワード（確認）" },
+    placeholderName: { en: "Jordan Lee", ja: "山田 太郎" },
+    placeholderEmail: { en: "you@example.com", ja: "you@example.com" },
+    placeholderPassword: { en: "At least 8 characters", ja: "8文字以上" },
+    placeholderConfirmPassword: { en: "Type it again", ja: "もう一度入力" },
+    showPassword: { en: "Show password", ja: "パスワードを表示" },
+    hidePassword: { en: "Hide password", ja: "パスワードを隠す" },
+    submitButton: { en: "Create Account ➡", ja: "アカウントを作成 ➡" },
+    haveAccount: { en: "Already have an account?", ja: "すでにアカウントをお持ちの方は" },
+    loginLink: { en: "Log in", ja: "ログイン" },
+
+    errorMissing: { en: "Please fill in every field.", ja: "すべての項目を入力してください。" },
+    errorInvalidEmail: { en: "Please enter a valid email address.", ja: "正しいメールアドレスを入力してください。" },
+    errorWeakPassword: { en: "Password must be at least 8 characters.", ja: "パスワードは8文字以上で入力してください。" },
+    errorMismatch: { en: "Passwords don't match.", ja: "パスワードが一致しません。" },
+    errorDuplicate: { en: "An account with that email already exists.", ja: "そのメールアドレスはすでに登録されています。" }
   }
 };
