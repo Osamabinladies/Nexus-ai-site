@@ -696,71 +696,6 @@ body.page-features main::before {
     transform-origin: 50% 50%;
 }
 
-.feature-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 22px;
-}
-
-.feature-card {
-    flex: 1 1 220px;
-    background: linear-gradient(160deg, var(--card-background-color), var(--card-background-color-2));
-    border: 1px solid var(--border-color);
-    border-radius: 18px;
-    padding: 30px 24px;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.45s var(--ease), border-color 0.45s var(--ease), box-shadow 0.45s var(--ease);
-}
-
-.feature-card::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: 18px;
-    padding: 1px;
-    background: var(--sunset);
-    opacity: 0;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-}
-
-.feature-card:hover {
-    transform: translateY(-10px) scale(1.015);
-    box-shadow: 0 26px 50px -22px rgba(255, 46, 121, 0.35);
-}
-
-.feature-card:hover::before {
-    opacity: 1;
-}
-
-.feature-icon {
-    font-size: 1.8rem;
-    margin-bottom: 14px;
-    display: inline-block;
-    transition: transform 0.4s var(--ease);
-}
-
-.feature-card:hover .feature-icon {
-    transform: scale(1.15) rotate(-6deg);
-}
-
-.feature-title {
-    font-family: 'Anton', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    font-size: 1.05rem;
-    margin-bottom: 10px;
-}
-
-.feature-description {
-    color: var(--subtext-color);
-    font-size: 0.92rem;
-}
-
 /* ---- pricing section ---- */
 .pricing-section {
     max-width: var(--content-width);
@@ -793,69 +728,6 @@ body.page-features main::before {
     transform-origin: 50% 50%;
 }
 
-.plan-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 26px;
-}
-
-.plan-card {
-    flex: 1 1 260px;
-    background: linear-gradient(165deg, var(--card-background-color), var(--card-background-color-2));
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 36px 28px;
-    text-align: center;
-    position: relative;
-    transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease), border-color 0.45s var(--ease);
-}
-
-.plan-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(255,255,255,0.14);
-    box-shadow: 0 26px 60px -26px rgba(79, 224, 212, 0.3);
-}
-
-/* the middle plan gets an animated neon border to stand out */
-.plan-card-highlight {
-    border-color: transparent;
-    background:
-        linear-gradient(165deg, var(--card-background-color), var(--card-background-color-2)) padding-box,
-        var(--sunset) border-box;
-    border: 2px solid transparent;
-    background-size: 200% 200%, 200% auto;
-    animation: sheen 6s linear infinite;
-    transform: scale(1.03);
-}
-
-.plan-card-highlight:hover {
-    transform: scale(1.05) translateY(-8px);
-}
-
-/* draws the badge using the data-label attribute from the HTML */
-.plan-card[data-label]::before {
-    content: attr(data-label);
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--sunset);
-    color: #060409;
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.05em;
-    padding: 5px 16px;
-    border-radius: 999px;
-    text-transform: uppercase;
-}
-
-.plan-name {
-    color: var(--subtext-color);
-    font-size: 0.95rem;
-    letter-spacing: 0.08em;
-    margin-bottom: 12px;
-}
-
 .plan-price {
     font-family: 'Anton', sans-serif;
     font-size: 2.3rem;
@@ -883,42 +755,11 @@ body.page-features main::before {
     border-bottom: 1px solid var(--border-color);
 }
 
-.plan-button {
-    display: block;
-    padding: 13px;
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 999px;
-    color: #fff;
-    font-weight: 700;
-    font-size: 0.88rem;
-    letter-spacing: 0.03em;
-    transition: 0.35s var(--ease);
-}
-
-.plan-button:hover {
-    border-color: transparent;
-    background: var(--sunset);
-    color: #060409;
-    transform: translateY(-2px);
-}
-
-.plan-button-filled {
-    background: var(--sunset);
-    color: #060409;
-    border-color: transparent;
-}
-
-.plan-button-filled:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 14px 30px -12px rgba(255, 46, 121, 0.55);
-}
-
 /* ---- about section ---- */
 .about-section {
-    max-width: 720px;
+    max-width: var(--content-width);
     margin: 0 auto;
     padding: 30px 24px 110px;
-    text-align: center;
     position: relative;
     isolation: isolate;
 }
@@ -946,10 +787,6 @@ body.page-about main::before {
     opacity: 0.5;
     transform: translateX(calc(var(--scroll-pan-2, 0) * -5%)) scale(calc(1 + var(--scroll-zoom-2, 0)));
     transform-origin: 50% 50%;
-}
-
-.about-text {
-    color: var(--subtext-color);
 }
 
 /* ---- footer ---- */
@@ -1488,15 +1325,6 @@ hr {
     .page-hero {
         padding: 130px 24px 50px;
         min-height: auto;
-    }
-
-    .feature-list,
-    .plan-list {
-        flex-direction: column;
-    }
-
-    .plan-card-highlight {
-        transform: none;
     }
 
     .persona-row,
