@@ -182,6 +182,14 @@ main {
     transition: background 0.4s var(--ease), border-color 0.4s var(--ease), backdrop-filter 0.4s var(--ease);
 }
 
+/* .site-nav's z-index only ranks within .site-header's own stacking
+   context, so an open mobile drawer can't out-rank page content (like
+   .auth-card-wrap, raised above the header so Pip's peek isn't clipped)
+   unless the header itself is raised too while the drawer is open. */
+.site-header:has(.site-nav.open) {
+    z-index: 100;
+}
+
 .site-header.scrolled {
     background: var(--header-background-color);
     border-bottom: 1px solid var(--border-color);
@@ -1324,7 +1332,10 @@ hr {
     left: 50%;
     width: 260px;
     transform: translate(-50%, -72%);
-    z-index: 2;
+    /* above .site-header's z-index: 50, so Pip's head/antenna never gets
+       clipped by the fixed header at scroll positions where the peeking
+       part would otherwise land underneath it */
+    z-index: 60;
     pointer-events: none;
 }
 
@@ -1437,6 +1448,12 @@ hr {
     margin: 130px auto 120px;
     padding: 0 24px;
     position: relative;
+    /* [data-reveal]'s transform gives this its own stacking context, which
+       would otherwise cap .bot-peek's z-index locally and keep it stuck
+       behind .site-header (z-index: 50) no matter what value it's given.
+       Stays below the mobile nav drawer's z-index: 60 so an open drawer
+       still correctly covers the card instead of the other way around. */
+    z-index: 55;
 }
 
 .auth-card {
